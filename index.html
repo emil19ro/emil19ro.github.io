@@ -7,32 +7,135 @@
   <link href="/dist/output.css" rel="stylesheet" />
   <script defer src="/assets/fontawesome/js/solid.min.js"></script>
   <script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
+  <script defer src="/assets/fontawesome/js/brands.min.js"></script>
   <script src="/assets/alpineJs/alpine.min.js" defer></script>
 </head>
 
-<body class="bg-eco-primary-bg text-eco-primary-muted">
+<body class="bg-et-primary-bg text-et-primary-muted">
   <div class="container mx-auto">
-    <!-- Exemplu simplu cu Alpine.js -->
-    <!-- <div x-data="{ open: false }" @click.away="open = false">
-      <button @click="open = !open">
-        Toggle Content
-      </button>
+    <div x-data="{ currentPage: 'home' }" class="flex flex-col items-center mt-16 mx-6 lg:mx-0">
+      <!-- Header -->
+      <div class="relative flex justify-between items-center w-full">
+        <div class="flex flex-col lg:hidden gap-2.5">
+          <div class="w-14 h-1.5 bg-et-primary-muted rounded-lg"></div>
+          <div class="w-10 h-1.5 bg-et-primary-muted rounded-lg"></div>
+          <div class="w-14 h-1.5 bg-et-primary-muted rounded-lg"></div>
+        </div>
+        <div class="flex">
+          <h2 class="font-bold bg-gradient-to-r from-et-logo-g-start to-et-logo-g-end bg-clip-text text-transparent">
+            ETCode</h2>
+        </div>
+        <!-- desktop -->
+        <div id="primary-menu">
+          <a href="#" @click="currentPage = 'home'" :class="{'text-et-orange': currentPage === 'home'}">
+            <h5>Home</h5>
+          </a>
+          <a href="#" @click="currentPage = 'services'" :class="{'text-et-orange': currentPage === 'services'}">
+            <h5>Services</h5>
+          </a>
+          <a href="#" @click="currentPage = 'about'" :class="{'text-et-orange': currentPage === 'about'}">
+            <h5>About me</h5>
+          </a>
+          <a href="#" @click="currentPage = 'portofolio'" :class="{'text-et-orange': currentPage === 'portofolio'}">
+            <h5>Portofolio</h5>
+          </a>
+          <a href="#" @click="currentPage = 'contact'" :class="{'text-et-orange': currentPage === 'contact'}">
+            <h5>Contact me</h5>
+          </a>
+        </div>
+        <div class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl">
+          <h6>Hire Me</h6>
+        </div>
+      </div>
 
-      <div x-show="open">
-        <p>This is a toggled content!</p>
+      <!-- Content Sections -->
+      <div class="w-full my-20">
+        <div x-show="currentPage === 'home'" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-14">
+            <div class="flex flex-col gap-3">
+              <h6 class="text-et-secondary-muted">Hi i am</h6>
+              <h5>Emil Teodor Hrisca</h5>
+            </div>
+            <div>
+              <h3 class="text-et-orange font-bold">Front-End/Back End Programmer</h3>
+            </div>
+            <div class="flex gap-5 justify-around">
+              <div class="media-icons">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+              <div class="media-icons">
+                <i class="fab fab fa-youtube"></i>
+              </div>
+              <div class="media-icons">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <div class="media-icons">
+                <i class="fab fa-discord"></i>
+              </div>
+              <div class="media-icons">
+                <i class="fab fab fa-whatsapp"></i>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="flex py-3 px-10 items-center justify-center bg-et-orange text-et-white rounded-xl">
+                <h6>Hire Me</h6>
+              </div>
+              <div
+                class="flex py-3 px-10 items-center justify-center bg-transparent border-2 border-et-primary-muted text-et-white rounded-xl">
+                <h6>Download CV</h6>
+              </div>
+            </div>
+            <div class="flex p-5 bg-et-secondary-bg gap-5 rounded-xl">
+              <div class="flex flex-col items-center w-1/3">
+                <div>
+                  <h6 class="text-et-orange">5+</h6>
+                  <h6>Experiences</h6>
+                </div>
+              </div>
+              <div class="w-0.5 bg-et-secondary-muted"></div>
+              <div class="flex flex-col items-center w-1/3">
+                <div>
+                  <h6 class="text-et-orange">20+</h6>
+                  <h6>Project done</h6>
+                </div>
+              </div>
+              <div class="w-0.5 bg-et-secondary-muted"></div>
+              <div class="flex flex-col items-center w-1/3">
+                <div>
+                  <h6 class="text-et-orange">80+</h6>
+                  <h6>Happy Clients</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-center"><img class="rounded-[50%]" src="/assets/images/me.jpg"
+              alt="image" style="width:clamp(200px, 500px, 500px)"></div>
+
+        </div>
+
+        <div x-show="currentPage === 'services'" class="">
+          <div class="btn-red-300">hey</div>
+          <h2>Our Services</h2>
+          <p>This is the services content.</p>
+        </div>
+
+        <div x-show="currentPage === 'about'" class="">
+          <h2>About Me</h2>
+          <p>This is the about me content.</p>
+        </div>
+
+        <div x-show="currentPage === 'portofolio'" class="">
+          <h2>Portofolio</h2>
+          <p>This is the portofolio content.</p>
+        </div>
+
+        <div x-show="currentPage === 'contact'" class="">
+          <h2>Contact Me</h2>
+          <p>This is the contact me content.</p>
+        </div>
       </div>
-    </div> -->
-    <div class="flex justify-between mt-16">
-      <div class="flex"><h3 class="font-bold bg-gradient-to-r from-eco-logo-g-start to-eco-logo-g-end bg-clip-text text-transparent">ECoDeX</h3></div>
-      <div class="flex gap-16">
-        <h6 class="text-eco-text-orange">Home</h6>
-        <h6>Services</h6>
-        <h6>About me</h6>
-        <h6>Portofolio</h6>
-        <h6>Contact me</h6>
-      </div>
-      <div>Hire Me</div>
     </div>
+
   </div>
 </body>
 

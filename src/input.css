@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --default-font-family: "Quicksand", sans-serif;
+@plugin "../plugins/buttonPlugin";
 
-  --color-eco-primary-bg: #121212;
-  --color-eco-secondary-bg: #ffffff0a;
-  --color-eco-primary-muted: #959595;
-  --color-eco-secondary-muted: #575757;
-  --color-eco-text-white: #DFDFDF;
-  --color-eco-text-orange: #FD6F00;
-  --color-eco-logo-g-start: #FA6E00;
-  --color-eco-logo-g-end: #E60026;
+@theme {
+  --default-font-family: "Lato", sans-serif;
+
+  --color-et-primary-bg: #121212;
+  --color-et-secondary-bg: #ffffff09;
+  --color-et-primary-muted: #959595;
+  --color-et-secondary-muted: #575757;
+  --color-et-white: #DFDFDF;
+  --color-et-orange: #FD6F00;
+  --color-et-logo-g-start: #FA6E00;
+  --color-et-logo-g-end: #E60026;
 }
 
 h1{
@@ -36,5 +38,16 @@ h6{
 @layer component {
   .menu-item {
     @apply relative flex h-full items-center p-4 cursor-pointer font-bold text-pink-200 hover:text-zinc-200 hover:bg-white/10 transition-colors ease-in-out;
+  }
+}
+.media-icons{
+  @apply flex items-center justify-center w-12 h-12 bg-et-secondary-bg border border-et-primary-muted rounded-[50%] p-2 text-2xl text-et-white;
+}
+
+#primary-menu {
+  @apply absolute top-full w-full py-8 flex flex-col items-center gap-6 lg:gap-10 xl:gap-16 bg-et-primary-bg/95 z-999;
+
+  @media (width >= theme(--breakpoint-lg)) {
+    @apply static w-auto flex-row bg-none p-0;
   }
 }
