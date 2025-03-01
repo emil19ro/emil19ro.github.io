@@ -2,42 +2,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-eco-primary-bg: '#121212';
-  --color-eco-secondary-bg: '#ffffff0a';
-  --color-eco-primary-muted: '#959595';
-  --color-eco-secondary-muted: '#575757';
-  --color-eco-text-white: '#DFDFDF';
-  --color-eco-text-orange: '#FD6F00';
-  --color-eco-logo-g-start: '#FA6E00';
-  --color-eco-logo-g-end: '#E60026';
+  --default-font-family: "Quicksand", sans-serif;
+
+  --color-eco-primary-bg: #121212;
+  --color-eco-secondary-bg: #ffffff0a;
+  --color-eco-primary-muted: #959595;
+  --color-eco-secondary-muted: #575757;
+  --color-eco-text-white: #DFDFDF;
+  --color-eco-text-orange: #FD6F00;
+  --color-eco-logo-g-start: #FA6E00;
+  --color-eco-logo-g-end: #E60026;
 }
 
-@layer base{
-  html{
-    font-family: "Quicksand", sans-serif;
-  }
-  h1{
-    @apply text-6xl;
-  }
-  h2{
-    @apply text-5xl;
-  }
-  h3{
-    @apply text-4xl;
-  }
-  h4{
-    @apply text-3xl;
-  }
-  h5{
-    @apply text-2xl;
-  }
-  h6{
-    @apply text-xl;
-  }
+h1{
+  @apply text-6xl;
+}
+h2{
+  @apply text-5xl;
+}
+h3{
+  @apply text-4xl;
+}
+h4{
+  @apply text-3xl;
+}
+h5{
+  @apply text-2xl;
+}
+h6{
+  @apply text-xl;
 }
 
-@layer components{
-  .menu-item{
+@layer component {
+  .menu-item {
     @apply relative flex h-full items-center p-4 cursor-pointer font-bold text-pink-200 hover:text-zinc-200 hover:bg-white/10 transition-colors ease-in-out;
   }
 }
