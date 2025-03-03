@@ -26,26 +26,26 @@
         </div>
         <div class="flex">
           <h2 class="font-bold bg-gradient-to-r from-et-logo-g-start to-et-logo-g-end bg-clip-text text-transparent">
-            ET</h2>
+            ETCode</h2>
         </div>
         <!-- desktop -->
         <div id="primary-menu" x-show="open || window.innerWidth >= 1024" x-transition
           @resize.window="open = window.innerWidth >= 1024">
           <a href="#" @click="currentPage = 'home'" :class="{'text-et-orange': currentPage === 'home'}">
-            <h5 class="hover-effect hover:opacity-80">Home</h5>
+            <h5 class="hover-effect opacity-90 hover:opacity-100">Home</h5>
           </a>
           <a href="#" @click="currentPage = 'services'" :class="{'text-et-orange': currentPage === 'services'}">
-            <h5 class="hover-effect hover:opacity-80">Services</h5>
+            <h5 class="hover-effect opacity-90 hover:opacity-100">Services</h5>
           </a>
           <a href="#" @click="currentPage = 'about'" :class="{'text-et-orange': currentPage === 'about'}">
-            <h5 class="hover-effect hover:opacity-80">About me</h5>
+            <h5 class="hover-effect opacity-90 hover:opacity-100">About me</h5>
           </a>
           <a href="#" @click="currentPage = 'portofolio'" :class="{'text-et-orange': currentPage === 'portofolio'}">
-            <h5 class="hover-effect hover:opacity-80">Portofolio</h5>
+            <h5 class="hover-effect opacity-90 hover:opacity-100">Portofolio</h5>
           </a>
         </div>
         <div @click="showOverlay = true"
-          class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
+          class="flex py-3 px-8 items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">
           <h6>Contact Me</h6>
         </div>
       </div>
@@ -138,32 +138,32 @@
           class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
           @click="showOverlay = false">
           <div @click.stop class="relative bg-et-primary-bg p-8 rounded-lg w-96 shadow-lg">
-            <h2 class="text-2xl font-semibold text-et-primary-muted mb-4">Contact me</h2>
+            <h2 class="text-2xl font-semibold text-et-white mb-4">Contact me</h2>
           <form action="https://formsubmit.co/emil19ro@gmail.com" method="POST">
               <button @click="showOverlay = false" class="absolute top-4 right-4 text-2xl text-et-primary-muted hover:text-et-orange">&times;</button>
               <input type="hidden" name="_next" value="https://emil19ro.github.io/Emil-Portofolio/thank-you.html">
               <input type="hidden" name="_captcha" value="false">
               <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-et-primary-muted">Your Name</label>
+                <label for="name" class="block text-sm font-medium text-et-white">Your Name</label>
                 <input type="text" id="name" name="name" required
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-et-orange">
               </div>
               <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-et-primary-muted">Your Email</label>
+                <label for="email" class="block text-sm font-medium text-et-white">Your Email</label>
                 <input type="email" id="email" name="email" required
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-et-orange">
               </div>
               <div class="mb-4">
-                <label for="message" class="block text-sm font-medium text-et-primary-muted">Your Message</label>
+                <label for="message" class="block text-sm font-medium text-et-white">Your Message</label>
                 <textarea id="message" name="message" required
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-et-orange"></textarea>
               </div>
               <button type="submit"
-                class="flex py-3 px-10 w-full items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect opacity-90 hover:opacity-100">Send Email
+                class="flex py-3 px-10 w-full items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">Send Email
               </button>
             </form>
             <button @click="showOverlay = false"
-              class="mt-4 w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400 transition">Cancel</button>
+              class="mt-4 w-full bg-gray-300 text-gray-800 py-2 rounded-md transition opacity-90 hover:opacity-100">Cancel</button>
           </div>
         </div>
       </div>

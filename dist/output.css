@@ -5,6 +5,7 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-500: oklch(0.637 0.237 25.331);
     --color-blue-500: oklch(0.623 0.214 259.815);
     --color-blue-600: oklch(0.546 0.245 262.881);
     --color-gray-300: oklch(0.872 0.01 258.338);
@@ -573,6 +574,9 @@
   .text-gray-800 {
     color: var(--color-gray-800);
   }
+  .text-red-500 {
+    color: var(--color-red-500);
+  }
   .text-transparent {
     color: transparent;
   }
@@ -626,6 +630,13 @@
       }
     }
   }
+  .hover\:bg-et-orange\/100 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in oklab, var(--color-et-orange) 100%, transparent);
+      }
+    }
+  }
   .hover\:bg-et-secondary-muted\/20 {
     &:hover {
       @media (hover: hover) {
@@ -654,6 +665,13 @@
       }
     }
   }
+  .hover\:text-et-orange\/100 {
+    &:hover {
+      @media (hover: hover) {
+        color: color-mix(in oklab, var(--color-et-orange) 100%, transparent);
+      }
+    }
+  }
   .hover\:opacity-80 {
     &:hover {
       @media (hover: hover) {
@@ -677,6 +695,11 @@
   .focus\:ring-blue-500 {
     &:focus {
       --tw-ring-color: var(--color-blue-500);
+    }
+  }
+  .focus\:ring-et-orange {
+    &:focus {
+      --tw-ring-color: var(--color-et-orange);
     }
   }
   .focus\:outline-none {
