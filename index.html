@@ -28,22 +28,22 @@
         <!-- desktop -->
         <div id="primary-menu">
           <a href="#" @click="currentPage = 'home'" :class="{'text-et-orange': currentPage === 'home'}">
-            <h5>Home</h5>
+            <h5 class="hover:opacity-80">Home</h5>
           </a>
           <a href="#" @click="currentPage = 'services'" :class="{'text-et-orange': currentPage === 'services'}">
-            <h5>Services</h5>
+            <h5 class="hover:opacity-80">Services</h5>
           </a>
           <a href="#" @click="currentPage = 'about'" :class="{'text-et-orange': currentPage === 'about'}">
-            <h5>About me</h5>
+            <h5 class="hover:opacity-80">About me</h5>
           </a>
           <a href="#" @click="currentPage = 'portofolio'" :class="{'text-et-orange': currentPage === 'portofolio'}">
-            <h5>Portofolio</h5>
+            <h5 class="hover:opacity-80">Portofolio</h5>
           </a>
           <a href="#" @click="currentPage = 'contact'" :class="{'text-et-orange': currentPage === 'contact'}">
-            <h5>Contact me</h5>
+            <h5 class="hover:opacity-80">Contact me</h5>
           </a>
         </div>
-        <div class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl">
+        <div class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
           <h6>Hire Me</h6>
         </div>
       </div>
@@ -53,36 +53,39 @@
         <div x-show="currentPage === 'home'" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div class="flex flex-col gap-14">
             <div class="flex flex-col gap-3">
-              <h6 class="text-et-secondary-muted">Hi i am</h6>
+              <h6 class="text-et-secondary-muted">Hello, i'm</h6>
               <h5>Emil Teodor Hrisca</h5>
             </div>
             <div>
               <h3 class="text-et-orange font-bold">Front-End/Back End Programmer</h3>
             </div>
             <div class="flex gap-5 justify-around">
-              <div class="media-icons">
-                <i class="fab fa-facebook-f"></i>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://www.facebook.com/profile.php?id=100073444290378" target="_blank"><i class="fab fa-facebook-f"></i></a>
               </div>
-              <div class="media-icons">
-                <i class="fab fab fa-youtube"></i>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://www.youtube.com/@emyemil5862" target="_blank"><i class="fab fab fa-youtube"></i></a>
               </div>
-              <div class="media-icons">
-                <i class="fab fa-linkedin-in"></i>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://www.linkedin.com/in/emil-hrisca-4110b8217/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
               </div>
-              <div class="media-icons">
-                <i class="fab fa-discord"></i>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://discord.gg/JwCjEw5j" target="_blank"><i class="fab fa-discord"></i></a>
               </div>
-              <div class="media-icons">
-                <i class="fab fab fa-whatsapp"></i>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://wa.me/33647381349" target="_blank"><i class="fab fab fa-whatsapp"></i></a>
+              </div>
+              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
+                <a href="https://github.com/emil19ro" target="_blank"><i class="fab fab fab fa-github"></i></a>
               </div>
             </div>
             <div class="flex gap-5">
-              <div class="flex py-3 px-10 items-center justify-center bg-et-orange text-et-white rounded-xl">
+              <div class="flex py-3 px-10 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
                 <h6>Hire Me</h6>
               </div>
               <div
-                class="flex py-3 px-10 items-center justify-center bg-transparent border-2 border-et-primary-muted text-et-white rounded-xl">
-                <h6>Download CV</h6>
+                class="flex py-3 px-10 items-center justify-center bg-transparent border-2 border-et-primary-muted text-et-white rounded-xl hover-effect hover:bg-et-secondary-muted/20">
+                <a href="/assets/files/cv.emil.pdf" target="_blank"><h6>Download CV</h6></a>
               </div>
             </div>
             <div class="flex p-5 bg-et-secondary-bg gap-5 rounded-xl">
@@ -107,10 +110,10 @@
                 </div>
               </div>
             </div>
+            <div></div>
           </div>
           <div class="flex items-center justify-center"><img class="rounded-[50%]" src="/assets/images/me.jpg"
               alt="image" style="width:clamp(200px, 500px, 500px)"></div>
-
         </div>
 
         <div x-show="currentPage === 'services'" class="">
