@@ -36,8 +36,8 @@ h6{
 }
 
 
-.hover-effect {
-  @apply transition-colors ease-in-out cursor-pointer;
+@utility hover-effect {
+  @apply transition-colors ease-in-out cursor-pointer select-none;
 }
 
 .media-icons{
@@ -45,7 +45,7 @@ h6{
 }
 
 #primary-menu {
-  @apply absolute top-full w-full py-8 flex flex-col items-center gap-6 lg:gap-10 xl:gap-16 bg-et-primary-bg/95 z-999;
+  @apply absolute top-full w-full py-8 flex flex-col items-center gap-6 lg:gap-10 xl:gap-16 bg-et-primary-bg/95 z-50;
 
   @media (width >= theme(--breakpoint-lg)) {
     @apply static w-auto flex-row bg-none p-0;

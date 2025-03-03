@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/dist/output.css" rel="stylesheet" />
-  <script defer src="/assets/fontawesome/js/solid.min.js"></script>
-  <script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
-  <script defer src="/assets/fontawesome/js/brands.min.js"></script>
-  <script src="/assets/alpineJs/alpine.min.js" defer></script>
+  <link href="dist/output.css" rel="stylesheet" />
+  <script defer src="assets/fontawesome/js/solid.min.js"></script>
+  <script defer src="assets/fontawesome/js/fontawesome.min.js"></script>
+  <script defer src="assets/fontawesome/js/brands.min.js"></script>
+  <script src="assets/alpineJs/alpine.min.js" defer></script>
 </head>
 
 <body class="bg-et-primary-bg text-et-primary-muted">
   <div class="container mx-auto">
-    <div x-data="{ currentPage: 'home', open: false }" class="flex flex-col items-center mt-16 mx-6 lg:mx-0">
+    <div x-data="{ currentPage: 'home', open: false, showOverlay: false }"
+      class="flex flex-col items-center mt-16 mx-6 lg:mx-0">
       <!-- Header -->
       <div class="relative flex flex-wrap justify-center sm:justify-between items-center w-full gap-5">
         <div @click="open = !open" class="flex flex-col lg:hidden gap-2.5 hover-effect hover:opacity-80">
@@ -26,11 +27,8 @@
             ETCode</h2>
         </div>
         <!-- desktop -->
-        <div id="primary-menu"
-            x-show="open || window.innerWidth >= 1024" 
-            x-transition 
-            @resize.window="open = window.innerWidth >= 1024"
-        >
+        <div id="primary-menu" x-show="open || window.innerWidth >= 1024" x-transition
+          @resize.window="open = window.innerWidth >= 1024">
           <a href="#" @click="currentPage = 'home'" :class="{'text-et-orange': currentPage === 'home'}">
             <h5 class="hover-effect hover:opacity-80">Home</h5>
           </a>
@@ -43,12 +41,10 @@
           <a href="#" @click="currentPage = 'portofolio'" :class="{'text-et-orange': currentPage === 'portofolio'}">
             <h5 class="hover-effect hover:opacity-80">Portofolio</h5>
           </a>
-          <a href="#" @click="currentPage = 'contact'" :class="{'text-et-orange': currentPage === 'contact'}">
-            <h5 class="hover-effect hover:opacity-80">Contact me</h5>
-          </a>
         </div>
-        <div class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
-          <h6>Hire Me</h6>
+        <div @click="showOverlay = true"
+          class="flex py-3 px-8 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
+          <h6>Contact Me</h6>
         </div>
       </div>
 
@@ -65,10 +61,8 @@
             </div>
             <div class="flex flex-wrap gap-5 justify-center lg:justify-around">
               <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
-                <a href="https://www.facebook.com/profile.php?id=100073444290378" target="_blank"><i class="fab fa-facebook-f"></i></a>
-              </div>
-              <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
-                <a href="https://www.linkedin.com/in/emil-hrisca-4110b8217/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/emil-hrisca-4110b8217/" target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a>
               </div>
               <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">
                 <a href="https://discord.gg/JwCjEw5j" target="_blank"><i class="fab fa-discord"></i></a>
@@ -81,12 +75,15 @@
               </div>
             </div>
             <div class="flex flex-wrap justify-center gap-5">
-              <div class="flex py-3 px-10 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
-                <h6>Hire Me</h6>
+              <div @click="showOverlay = true"
+                class="flex py-3 px-10 items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect hover:opacity-80">
+                <h6>Contact Me</h6>
               </div>
               <div
                 class="flex py-3 px-10 items-center justify-center bg-transparent border-2 border-et-primary-muted text-et-white rounded-xl hover-effect hover:bg-et-secondary-muted/20">
-                <a href="/assets/files/cv.emil.pdf" target="_blank"><h6>Download CV</h6></a>
+                <a href="assets/files/cv.emil.pdf" target="_blank">
+                  <h6>Download CV</h6>
+                </a>
               </div>
             </div>
             <div class="flex p-5 bg-et-secondary-bg gap-2 sm:gap-5 rounded-xl">
@@ -106,14 +103,14 @@
               <div class="w-0.5 bg-et-secondary-muted"></div>
               <div class="flex flex-col items-center w-1/3">
                 <div>
-                  <h6 class="text-et-orange">80+</h6>
+                  <h6 class="text-et-orange">30+</h6>
                   <h6>Happy Clients</h6>
                 </div>
               </div>
             </div>
             <div></div>
           </div>
-          <div class="flex items-center justify-center"><img class="rounded-[50%]" src="/assets/images/me.jpg"
+          <div class="flex items-center justify-center"><img class="rounded-[50%]" src="assets/images/me.jpg"
               alt="image" style="width:clamp(200px, 500px, 500px)"></div>
         </div>
 
@@ -133,13 +130,40 @@
           <p>This is the portofolio content.</p>
         </div>
 
-        <div x-show="currentPage === 'contact'" class="">
-          <h2>Contact Me</h2>
-          <p>This is the contact me content.</p>
+        <div x-show="showOverlay" x-transition.opacity
+          class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          @click="showOverlay = false">
+          <div @click.stop class="relative bg-et-primary-bg p-8 rounded-lg w-96 shadow-lg">
+            <h2 class="text-2xl font-semibold text-et-primary-muted mb-4">Contact me</h2>
+          <form action="https://formsubmit.co/emil19ro@gmail.com" method="POST">
+              <button @click="showOverlay = false" class="absolute top-4 right-4 text-2xl text-et-primary-muted hover:text-et-orange">&times;</button>
+              <input type="hidden" name="_next" value="https://emil19ro.github.io/Emil-Portofolio/thank-you.html">
+              <input type="hidden" name="_captcha" value="false">
+              <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-et-primary-muted">Your Name</label>
+                <input type="text" id="name" name="name" required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-et-primary-muted">Your Email</label>
+                <input type="email" id="email" name="email" required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div class="mb-4">
+                <label for="message" class="block text-sm font-medium text-et-primary-muted">Your Message</label>
+                <textarea id="message" name="message" required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+              </div>
+              <button type="submit"
+                class="flex py-3 px-10 w-full items-center justify-center bg-et-orange text-et-white rounded-xl hover-effect opacity-90 hover:opacity-100">Send Email
+              </button>
+            </form>
+            <button @click="showOverlay = false"
+              class="mt-4 w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400 transition">Cancel</button>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </body>
 
