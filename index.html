@@ -14,9 +14,9 @@
 </head>
 
 <body class="bg-et-primary-bg text-et-primary-muted">
-  <div class="container mx-auto">
-    <div x-data="{ currentPage: 'services', open: false, showOverlay: false }"
-      class="flex flex-col items-center mt-16 mx-6 lg:mx-0">
+  <div class="container">
+    <div x-data="{ currentPage: 'home', open: false, showOverlay: false }"
+      class="flex flex-col items-center mt-16">
       <!-- Header -->
       <div class="relative flex flex-wrap justify-center sm:justify-between items-center w-full gap-5">
         <div @click="open = !open" class="flex flex-col lg:hidden gap-2.5 hover-effect hover:opacity-80">
@@ -115,77 +115,216 @@
             <div></div>
           </div>
           <div class="flex items-center justify-center"><img class="rounded-[50%]" src="assets/images/me.jpg"
-              alt="image" style="width:clamp(200px, 500px, 500px)"></div>
+              alt="image" style="width:clamp(200px, 500px, 500px)">
+          </div>
         </div>
 
         <div x-show="currentPage === 'services'" class="flex flex-col items-center gap-10">
-          <div class="mb-9"><h2>Services I Offer</h2></div>
+          <div class="mb-9">
+            <h2>Services I Offer</h2>
+          </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fas fa-laptop-code media-icons self-center">ico</i>
               <h5 class="text-et-orange">Custom Web Development</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>Front-end with Angular & React.</p></li>
-                <li><p>Backend integration with ASP.NET, Python & Node.js.</p></li>
-                <li><p>WordPress theme and plugin development.</p></li>
+                <li>
+                  <p>Front-end with Angular & React.</p>
+                </li>
+                <li>
+                  <p>Backend integration with ASP.NET, Python & Node.js.</p>
+                </li>
+                <li>
+                  <p>WordPress theme and plugin development.</p>
+                </li>
               </ul>
             </div>
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fas fa-database media-icons self-center">ico</i>
               <h5 class="text-et-orange">Full-Stack Development</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>Database management.</p></li>
-                <li><p>RESTful API integration.</p></li>
-                <li><p>Cloud and server-side architecture.</p></li>
+                <li>
+                  <p>Database management.</p>
+                </li>
+                <li>
+                  <p>RESTful API integration.</p>
+                </li>
+                <li>
+                  <p>Cloud and server-side architecture.</p>
+                </li>
               </ul>
             </div>
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fas fa-desktop media-icons self-center">ico</i>
               <h5 class="text-et-orange">UI/UX Design Implementation</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>Responsive designs with CSS and TailwindCSS.</p></li>
-                <li><p>Figma to HTML conversion.</p></li>
-                <li><p>Cross-platform designs for both desktop and mobile devices.</p></li>
+                <li>
+                  <p>Responsive designs with CSS and TailwindCSS.</p>
+                </li>
+                <li>
+                  <p>Figma to HTML conversion.</p>
+                </li>
+                <li>
+                  <p>Cross-platform designs for both desktop and mobile devices.</p>
+                </li>
               </ul>
             </div>
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fa fa-code media-icons self-center">ico</i>
               <h5 class="text-et-orange">Programming & Scripting Teaching</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>C++, C#, Python, Java, Lua.</p></li>
-                <li><p>Web technologies: HTML, CSS, JavaScript/TypeScript.</p></li>
-                <li><p>Frameworks: Angular, ASP Net, React, TailwindCSS, Unity, SpringBoot.</p></li>
-                <li><p>Clear and structured learning paths for all skill levels.</p></li>
+                <li>
+                  <p>C++, C#, Python, Java, Lua.</p>
+                </li>
+                <li>
+                  <p>Web technologies: HTML, CSS, JavaScript/TypeScript.</p>
+                </li>
+                <li>
+                  <p>Frameworks: Angular, ASP Net, React, TailwindCSS, Unity, SpringBoot.</p>
+                </li>
+                <li>
+                  <p>Clear and structured learning paths for all skill levels.</p>
+                </li>
               </ul>
             </div>
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fa fa-gamepad media-icons self-center">ico</i>
               <h5 class="text-et-orange">Unity Game Development</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>Game mechanics and AI design.</p></li>
-                <li><p>Performance optimization.</p></li>
-                <li><p>C# Best Practice.</p></li>
-                <li><p>Retarget Humanoid animations.</p></li>
-                <li><p>Support for multiplayer and networked game systems.</p></li>
+                <li>
+                  <p>Game mechanics and AI design.</p>
+                </li>
+                <li>
+                  <p>Performance optimization.</p>
+                </li>
+                <li>
+                  <p>C# Best Practice.</p>
+                </li>
+                <li>
+                  <p>Retarget Humanoid animations.</p>
+                </li>
+                <li>
+                  <p>Support for multiplayer and networked game systems.</p>
+                </li>
               </ul>
             </div>
             <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
               <i class="fa fa-server media-icons self-center">ico</i>
               <h5 class="text-et-orange">MMORPG Server Emulation</h5>
               <ul class="flex flex-col gap-2 list-disc">
-                <li><p>Custom server creation.</p></li>
-                <li><p>Virtual player behavior development.</p></li>
-                <li><p>Pathfinding and algorithm optimization.</p></li>
-                <li><p>Customizable game logic to match your unique vision.</p></li>
+                <li>
+                  <p>Custom server creation.</p>
+                </li>
+                <li>
+                  <p>Virtual player behavior development.</p>
+                </li>
+                <li>
+                  <p>Pathfinding and algorithm optimization.</p>
+                </li>
+                <li>
+                  <p>Customizable game logic to match your unique vision.</p>
+                </li>
               </ul>
             </div>
           </div>
-          
+
         </div>
 
         <div x-show="currentPage === 'about'" class="">
-          <h2>About Me</h2>
-          <p>This is the about me content.</p>
+          <div class="relative mt-5 rounded-lg bg-zinc-900 p-8 flex flex-col gap-32">
+            <div
+              class="absolute top-0 xl:left-1/2 w-4 ml-[-30px] xl:-ml-[8px] h-full rounded-full bg-linear-to-b from-white/20 to-teal-900/60">
+              <div class="sticky top-1/2 [--color:var(--color-teal-500)]">
+                <div class="relative h-4 w-4">
+                  <div class="absolute h-4 w-4 animate-ping rounded-full bg-(--color) opacity-75"></div>
+                  <div class="bg-(--color) rounded-full relative h-4 w-4"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-and-image">
+              <!-- Prima secțiune (Text stânga, Imagine dreapta) -->
+              <div class="text-container">
+                <h4>Introduction: A Passion for Technology</h4>
+                <h5>My passion for modern technologies has always been present, but it truly took off during the
+                  pandemic when I had more time to explore.
+                  As a dedicated player of an MMORPG, I discovered an open-source emulator maintained by the
+                  community for over 13 years. Curious to learn more,
+                  I installed it and tried to understand the C++ code behind it. However, I quickly realized that I
+                  had no prior experience with the language.
+                </h5>
+              </div>
+              <div class="image-container">
+                <img src="assets/images/passion_for_tech.webp" alt="image">
+                <div class="overlay"></div>
+              </div>
+            </div>
+            <div class="text-and-image">
+              <div class="text-container">
+                <h4 class="">My Journey into Programming</h4>
+                <h5>Determined to learn c++, I completed a 70-hour course on Udemy, which sparked a deep
+                  fascination with programming.
+                  After finishing the course, I started modifying the emulator, gradually becoming more confident in
+                  my skills.
+                  At some point, I had an idea: what if I could implement AI-controlled bots? Since some content
+                  required large groups of players,
+                  I wanted to create virtual companions to replace real players, allowing me to enjoy the game on my
+                  own terms. What began as a simple concept evolved
+                  into a four-year-long project, where I developed and refined intelligent bot behavior, enhancing the
+                  game’s experience.</h5>
+              </div>
+              <div class="image-container">
+                <img src="assets/images/journey_programing.jpg" alt="image">
+                <div class="overlay"></div>
+              </div>
+            </div>
+            <div class="text-and-image">
+              <div class="text-container">
+                <h4 class="">Formal Education and Industry Experience</h4>
+                <h5>This project ignited my desire to pursue software development professionally. To formalize my
+                  knowledge, I enrolled in an
+                  intensive one-year coding school, attending 40 hours of in-person classes per week (Monday to
+                  Friday, 8 hours per day). I studied Python,
+                  Java, Kivy, Spring Boot, and Angular, successfully passed all my exams, and obtained my diploma.
+                  Following this, I completed a six-month internship at a software company, gaining hands-on industry
+                  experience.</h5>
+              </div>
+              <div class="image-container">
+                <img src="assets/images/formal_education.jpg" alt="image">
+                <div class="overlay"></div>
+              </div>
+            </div>
+            <div class="text-and-image">
+              <div class="text-container">
+                <h4>Real-World Projects and Development Expertise</h4>
+                <h5>Beyond my studies, I have worked on multiple projects for friends, family, and clients, developing
+                  custom applications
+                  using Angular and ASP.NET. These experiences have helped me refine my expertise in both front-end
+                  and back-end development while
+                  delivering real-world solutions.
+                  While I have a strong preference for ASP.NET and Angular due to their scalability and efficiency,
+                  I adapt to the needs of each project and use the right language or framework whenever necessary. I
+                  have never hesitated to quickly learn new
+                  technologies such as Lua, Python, XML, or any other tool required to achieve my goals efficiently.
+                </h5>
+              </div>
+              <div class="image-container">
+                <img src="assets/images/realworld_projects.jpg" alt="image">
+                <div class="overlay"></div>
+              </div>
+            </div>
+            <div class="text-and-image">
+              <div class="text-container">
+                <h4 class="">Lifelong Learning and Growth</h4>
+                <h5>To this day, I am continuously learning and exploring new frameworks and tools, driven by a deep
+                  curiosity and a commitment to writing efficient,
+                  maintainable, and high-quality code.</h5>
+              </div>
+              <div class="image-container">
+                <img src="assets/images/updating.jpg" alt="image">
+                <div class="overlay"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div x-show="currentPage === 'portofolio'" class="">
@@ -198,9 +337,10 @@
           @click="showOverlay = false">
           <div @click.stop class="relative bg-et-primary-bg p-8 rounded-lg w-96 shadow-lg">
             <h2 class="text-2xl font-semibold text-et-white mb-4">Contact me</h2>
-          <form action="https://formsubmit.co/emil19ro@gmail.com" method="POST">
-              <button @click="showOverlay = false" class="absolute top-4 right-4 text-2xl text-et-primary-muted hover:text-et-orange">&times;</button>
-              <input type="hidden" name="_next" value="https://emil19ro.github.io/Emil-Portofolio/thank-you.html">
+            <form action="https://formsubmit.co/emil19ro@gmail.com" method="POST">
+              <button @click="showOverlay = false"
+                class="absolute top-4 right-4 text-2xl text-et-primary-muted hover:text-et-orange">&times;</button>
+              <input type="hidden" name="_next" value="https://emil19ro.github.io/thank-you.html">
               <input type="hidden" name="_captcha" value="false">
               <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-et-white">Your Name</label>
@@ -218,7 +358,8 @@
                   class="w-full px-4 py-2 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-et-orange"></textarea>
               </div>
               <button type="submit"
-                class="flex py-3 px-10 w-full items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">Send Email
+                class="flex py-3 px-10 w-full items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">Send
+                Email
               </button>
             </form>
             <button @click="showOverlay = false"

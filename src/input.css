@@ -35,9 +35,16 @@ h6{
   @apply text-xl;
 }
 
+@utility overlay {
+  @apply absolute inset-0;
+}
 
 @utility hover-effect {
   @apply transition-colors ease-in-out cursor-pointer select-none;
+}
+
+.container {
+  @apply px-4 mx-auto;
 }
 
 .media-icons{
@@ -49,6 +56,26 @@ h6{
 
   @media (width >= theme(--breakpoint-lg)) {
     @apply static w-auto flex-row bg-none p-0;
+  }
+}
+
+.text-and-image {
+  @apply grid grid-cols-1 xl:grid-cols-2 gap-20 odd:xl:[&_>_.text-container]:order-2;
+
+  .text-container {
+    @apply flex flex-col gap-4 justify-center text-justify;
+  }
+
+  .image-container {
+    @apply relative aspect-[4/3] flex items-center justify-center;
+
+    img {
+      @apply w-full h-full object-cover saturate-70;
+    }
+
+    .overlay {
+      @apply bg-linear-to-b from-[#2e4e3e] to-[#2f4b7e] opacity-15;
+    }
   }
 }
 
