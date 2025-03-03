@@ -15,7 +15,7 @@
 
 <body class="bg-et-primary-bg text-et-primary-muted">
   <div class="container mx-auto">
-    <div x-data="{ currentPage: 'home', open: false, showOverlay: false }"
+    <div x-data="{ currentPage: 'services', open: false, showOverlay: false }"
       class="flex flex-col items-center mt-16 mx-6 lg:mx-0">
       <!-- Header -->
       <div class="relative flex flex-wrap justify-center sm:justify-between items-center w-full gap-5">
@@ -118,10 +118,69 @@
               alt="image" style="width:clamp(200px, 500px, 500px)"></div>
         </div>
 
-        <div x-show="currentPage === 'services'" class="">
-          <div class="btn-red-300">hey</div>
-          <h2>Our Services</h2>
-          <p>This is the services content.</p>
+        <div x-show="currentPage === 'services'" class="flex flex-col items-center gap-10">
+          <div class="mb-9"><h2>Services I Offer</h2></div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fas fa-laptop-code media-icons self-center">ico</i>
+              <h5 class="text-et-orange">Custom Web Development</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>Front-end with Angular & React.</p></li>
+                <li><p>Backend integration with ASP.NET, Python & Node.js.</p></li>
+                <li><p>WordPress theme and plugin development.</p></li>
+              </ul>
+            </div>
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fas fa-database media-icons self-center">ico</i>
+              <h5 class="text-et-orange">Full-Stack Development</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>Database management.</p></li>
+                <li><p>RESTful API integration.</p></li>
+                <li><p>Cloud and server-side architecture.</p></li>
+              </ul>
+            </div>
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fas fa-desktop media-icons self-center">ico</i>
+              <h5 class="text-et-orange">UI/UX Design Implementation</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>Responsive designs with CSS and TailwindCSS.</p></li>
+                <li><p>Figma to HTML conversion.</p></li>
+                <li><p>Cross-platform designs for both desktop and mobile devices.</p></li>
+              </ul>
+            </div>
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fa fa-code media-icons self-center">ico</i>
+              <h5 class="text-et-orange">Programming & Scripting Teaching</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>C++, C#, Python, Java, Lua.</p></li>
+                <li><p>Web technologies: HTML, CSS, JavaScript/TypeScript.</p></li>
+                <li><p>Frameworks: Angular, ASP Net, React, TailwindCSS, Unity, SpringBoot.</p></li>
+                <li><p>Clear and structured learning paths for all skill levels.</p></li>
+              </ul>
+            </div>
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fa fa-gamepad media-icons self-center">ico</i>
+              <h5 class="text-et-orange">Unity Game Development</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>Game mechanics and AI design.</p></li>
+                <li><p>Performance optimization.</p></li>
+                <li><p>C# Best Practice.</p></li>
+                <li><p>Retarget Humanoid animations.</p></li>
+                <li><p>Support for multiplayer and networked game systems.</p></li>
+              </ul>
+            </div>
+            <div class="flex flex-col items-start gap-5 px-10 py-5 bg-et-secondary-bg rounded-xl">
+              <i class="fa fa-server media-icons self-center">ico</i>
+              <h5 class="text-et-orange">MMORPG Server Emulation</h5>
+              <ul class="flex flex-col gap-2 list-disc">
+                <li><p>Custom server creation.</p></li>
+                <li><p>Virtual player behavior development.</p></li>
+                <li><p>Pathfinding and algorithm optimization.</p></li>
+                <li><p>Customizable game logic to match your unique vision.</p></li>
+              </ul>
+            </div>
+          </div>
+          
         </div>
 
         <div x-show="currentPage === 'about'" class="">
