@@ -41,9 +41,9 @@
           <a href="#" @click="currentPage = 'about'; open = false" :class="{'text-et-orange': currentPage === 'about'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">About me</h5>
           </a>
-          <a href="#" @click="currentPage = 'portofolio'; open = false" :class="{'text-et-orange': currentPage === 'portofolio'}">
+          <!-- <a href="#" @click="currentPage = 'portofolio'; open = false" :class="{'text-et-orange': currentPage === 'portofolio'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Portofolio</h5>
-          </a>
+          </a> -->
         </div>
         <div @click="showOverlay = true"
           class="flex py-3 px-8 items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">
@@ -56,11 +56,11 @@
         <div x-show="currentPage === 'home'" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div class="flex flex-col gap-14">
             <div class="flex flex-col gap-3">
-              <h6 class="text-et-secondary-muted">Hello, i'm</h6>
+              <h6 class="text-et-secondary-muted">Hello, I am</h6>
               <h5>Emil Teodor Hrisca</h5>
             </div>
             <div>
-              <h3 class="text-et-orange font-bold">Front-End/Back End Programmer</h3>
+              <h3 class="text-et-orange font-bold">Front-End / Back-End Programmer</h3>
             </div>
             <div class="flex flex-wrap gap-5 justify-center lg:justify-around">
               <div class="media-icons hover-effect hover:bg-et-secondary-muted/20">

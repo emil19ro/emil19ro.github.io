@@ -74,7 +74,7 @@ h6{
     }
 
     .overlay {
-      @apply bg-linear-to-b from-[#2e4e3e] to-[#2f4b7e] opacity-15;
+      @apply bg-linear-to-b from-[#f0e8bd8f] to-[#7b92b4] opacity-0.5 bg-blend-multiply;
     }
   }
 }

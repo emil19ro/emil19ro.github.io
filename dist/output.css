@@ -837,11 +837,12 @@ h6 {
     .overlay {
       --tw-gradient-position: to bottom in oklab;
       background-image: linear-gradient(var(--tw-gradient-stops));
-      --tw-gradient-from: #2e4e3e;
+      --tw-gradient-from: #f0e8bd8f;
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      --tw-gradient-to: #2f4b7e;
+      --tw-gradient-to: #7b92b4;
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-      opacity: 15%;
+      opacity: 0.5%;
+      background-blend-mode: multiply;
     }
   }
 }
