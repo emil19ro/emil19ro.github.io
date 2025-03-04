@@ -30,17 +30,18 @@
         </div>
         <!-- desktop -->
         <div id="primary-menu" x-show="open || window.innerWidth >= 1024" x-transition
-          @resize.window="open = window.innerWidth >= 1024">
-          <a href="#" @click="currentPage = 'home'" :class="{'text-et-orange': currentPage === 'home'}">
+          @resize.window="open = window.innerWidth >= 1024"
+          @click.away="open = false"> <!-- Închide meniul dacă dai click în afară -->
+          <a href="#" @click="currentPage = 'home'; open = false" :class="{'text-et-orange': currentPage === 'home'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Home</h5>
           </a>
-          <a href="#" @click="currentPage = 'services'" :class="{'text-et-orange': currentPage === 'services'}">
+          <a href="#" @click="currentPage = 'services'; open = false" :class="{'text-et-orange': currentPage === 'services'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Services</h5>
           </a>
-          <a href="#" @click="currentPage = 'about'" :class="{'text-et-orange': currentPage === 'about'}">
+          <a href="#" @click="currentPage = 'about'; open = false" :class="{'text-et-orange': currentPage === 'about'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">About me</h5>
           </a>
-          <a href="#" @click="currentPage = 'portofolio'" :class="{'text-et-orange': currentPage === 'portofolio'}">
+          <a href="#" @click="currentPage = 'portofolio'; open = false" :class="{'text-et-orange': currentPage === 'portofolio'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Portofolio</h5>
           </a>
         </div>
