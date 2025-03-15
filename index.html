@@ -2,43 +2,42 @@
 <html>
 
 <html lang="en" translate="no">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emil Hrisca</title>
-  <link href="/dist/output.css" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <script defer src="/assets/fontawesome/js/solid.min.js"></script>
-  <script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
-  <script defer src="/assets/fontawesome/js/brands.min.js"></script>
-  <script src="/assets/alpineJs/alpine.min.js" defer></script>
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Emil Hrisca</title>
+<link href="/dist/output.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script defer src="/assets/fontawesome/js/solid.min.js"></script>
+<script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
+<script defer src="/assets/fontawesome/js/brands.min.js"></script>
+<script src="/assets/alpineJs/alpine.min.js" defer></script>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      new Swiper(".swiper", {
-        loop: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      });
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".swiper", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
     });
-  </script>
+  });
+</script>
 
 </head>
 
 <body class="bg-et-primary-bg text-et-primary-muted">
   <div class="container">
-    <div x-data="{ currentPage: 'home', open: false, showOverlay: false }"
-      class="flex flex-col items-center mt-16">
+    <div x-data="{ currentPage: 'home', open: false, showOverlay: false }" class="flex flex-col items-center mt-16">
       <!-- Header -->
       <div class="relative flex flex-wrap justify-center sm:justify-between items-center w-full gap-5">
         <div @click="open = !open" class="flex flex-col lg:hidden gap-2.5 hover-effect hover:opacity-80">
@@ -366,7 +365,8 @@
 
               <ul class="list-disc ml-5">
                 <li><strong>Photo Upload:</strong> Users can easily upload and manage their photos via
-                  <strong>Cloudinary</strong>, providing fast and secure media handling.</li>
+                  <strong>Cloudinary</strong>, providing fast and secure media handling.
+                </li>
                 <li><strong>Real-Time Messaging:</strong> With <strong>SignalR</strong>, users can send live messages
                   and see who's online, creating a more interactive experience.</li>
                 <li><strong>Responsive Design:</strong> The app uses <strong>TailwindCSS 4</strong> for a clean and
@@ -454,7 +454,91 @@
             </p>
           </div>
           <div class="border p-6 rounded-2xl border-white/10">
-            <h4 class="text-2xl font-semibold mb-4">Figma to HTML pixel perfect implementaiton</h4>
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">Fullstack WoW Registration & Donation System (OLD, NOT ONLINE
+                ANYMORE)</h4>
+              <ul class="list-disc ml-5">
+                <li>Built with ASP.NET for the backend and Angular for the frontend.</li>
+                <li>Allows users to register and manage their World of Warcraft accounts.</li>
+                <li>Secure payment integration for donations.</li>
+                <li>Modern and responsive UI for a smooth user experience.</li>
+                <li>Admin panel for managing users and transactions.</li>
+              </ul>
+            </div>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website20.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website21.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website22.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website23.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website24.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website25.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <h4 class="text-2xl font-semibold mb-4 text-left">Figma to HTML pixel perfect implementaiton</h4>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website26.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website27.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website28.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website29.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website30.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website31.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <h4 class="text-2xl font-semibold mb-4 text-left">Figma to HTML pixel perfect implementaiton</h4>
             <!-- Swiper Container -->
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
@@ -491,39 +575,26 @@
             </div>
           </div>
           <div class="border p-6 rounded-2xl border-white/10">
-            <h4 class="text-2xl font-semibold mb-4">Fullstack WoW Registration & Donation System (OLD, NOT ONLINE ANYMORE)</h4>
-            <ul>
-              <li>Built with ASP.NET for the backend and Angular for the frontend.</li>
-              <li>Allows users to register and manage their World of Warcraft accounts.</li>
-              <li>Secure payment integration for donations.</li>
-              <li>Modern and responsive UI for a smooth user experience.</li>
-              <li>Admin panel for managing users and transactions.</li>
-            </ul>
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">VS Code Extension</h4>
+              <ul class="list-disc ml-5">
+                <li><strong>VS Code Extension: PHP Tag Background Highlighter</strong></li>
+                <li>Enhances the visibility of PHP code inside HTML files.</li>
+                <li>Changes the background color of PHP tags for better readability.</li>
+                <li>Customizable themes to match your preferred coding style.</li>
+                <li>Lightweight and optimized for smooth performance.</li>
+                <li>Perfect for developers working with mixed HTML and PHP files.</li>
+              </ul>
+            </div>
             <!-- Swiper Container -->
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website20.png" alt="Project 1"
+                  <img src="/assets/images/website32.png" alt="Project 1"
                     style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
                 </div>
                 <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website21.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website22.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website23.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website24.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website25.png" alt="Project 2"
+                  <img src="/assets/images/website33.png" alt="Project 2"
                     style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
                 </div>
               </div>
@@ -532,6 +603,111 @@
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
               <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">Personal Needed TODO app</h4>
+              <ul class="list-disc ml-5">
+                <li><strong>Personal To-Do App in Python</strong></li>
+                <li>Designed to fit my personal workflow and productivity needs.</li>
+                <li>Simple, fast, and lightweight—no unnecessary features.</li>
+                <li>Built with Python for flexibility and customization.</li>
+                <li>Helps me organize tasks efficiently in a way that suits me best.</li>
+                <li>A personal project that improves my daily productivity.</li>
+              </ul>
+            </div>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website34.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">Python Rest Api's communications Network</h4>
+              <ul class="list-disc ml-5">
+                <li><strong>World of Warcraft & Discord AI Chat Integration</strong></li>
+                <li>Developed a Python script that links in-game chat from two different World of Warcraft clients
+                  through a server.</li>
+                <li>Integrated ChatGPT to allow AI-powered responses to player messages directly in the game.</li>
+                <li>Implemented a cross-version world chat, enabling players from different WoW versions to communicate.
+                </li>
+                <li>Connected the entire system to a Discord channel for real-time updates and chat synchronization.
+                </li>
+                <li>Utilized multiple REST APIs to manage communication between game clients, the server, AI, and
+                  Discord.</li>
+                <li>Ensured seamless interaction between players, AI, and different platforms through this advanced chat
+                  system.</li>
+              </ul>
+            </div>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website35.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">Unity Advanced AI</h4>
+              <ul>
+                <li><strong>AI Zombie System in Unity</strong></li>
+                <li>Developed an advanced AI system for a zombie creature in Unity.</li>
+                <li>The AI can behave as a friend or an enemy, dynamically adapting to the situation.</li>
+                <li>Implemented multiple states: Idle, Patrol, Alert, Chase, and more.</li>
+                <li>The zombie reacts to environmental factors like smell, sound, and light.</li>
+                <li>Designed to track and chase players based on their actions and surroundings.</li>
+                <li>Realistic AI behavior.</li>
+              </ul>
+            </div>
+            <!-- Video Container -->
+            <div class="mt-5" style="display: flex; justify-content: center; align-items: center;">
+              <video width="500" height="500" controls
+                style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <source src="/assets/videos/zombie_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">Unity Advanced AI</h4>
+              <ul>
+                <h4>AI Bot for World of Warcraft (MaNGOS)</h4>
+                <ul>
+                  <li>Developed an advanced AI bot for World of Warcraft using the MaNGOS server.</li>
+                  <li>The bot can patrol cities, automatically grind for experience, and interact with NPCs.</li>
+                  <li>Conversations are powered by ChatGPT, making the bot capable of dynamic dialogues.</li>
+                  <li>NPCs also respond using AI, creating a more immersive experience.</li>
+                  <li>Fully automated gameplay with decision-making based on real-time events.</li>
+                </ul>
+              </ul>
+            </div>
+            <!-- Video Container -->
+            <div class="mt-5" style="display: flex; justify-content: center; align-items: center;">
+              <video width="500" height="500" controls
+                style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <source src="/assets/videos/bot_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
