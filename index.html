@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<html lang="en" translate="no">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emil Hrisca</title>
@@ -11,6 +11,28 @@
   <script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
   <script defer src="/assets/fontawesome/js/brands.min.js"></script>
   <script src="/assets/alpineJs/alpine.min.js" defer></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      new Swiper(".swiper", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    });
+  </script>
+
 </head>
 
 <body class="bg-et-primary-bg text-et-primary-muted">
@@ -30,20 +52,22 @@
         </div>
         <!-- desktop -->
         <div id="primary-menu" x-show="open || window.innerWidth >= 1024" x-transition
-          @resize.window="open = window.innerWidth >= 1024"
-          @click.away="open = false"> <!-- Închide meniul dacă dai click în afară -->
+          @resize.window="open = window.innerWidth >= 1024" @click.away="open = false">
+          <!-- Închide meniul dacă dai click în afară -->
           <a href="#" @click="currentPage = 'home'; open = false" :class="{'text-et-orange': currentPage === 'home'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Home</h5>
           </a>
-          <a href="#" @click="currentPage = 'services'; open = false" :class="{'text-et-orange': currentPage === 'services'}">
+          <a href="#" @click="currentPage = 'services'; open = false"
+            :class="{'text-et-orange': currentPage === 'services'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Services</h5>
           </a>
           <a href="#" @click="currentPage = 'about'; open = false" :class="{'text-et-orange': currentPage === 'about'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">About me</h5>
           </a>
-          <!-- <a href="#" @click="currentPage = 'portofolio'; open = false" :class="{'text-et-orange': currentPage === 'portofolio'}">
-            <h5 class="hover-effect opacity-90 hover:opacity-100">Portofolio</h5>
-          </a> -->
+          <a href="#" @click="currentPage = 'portofolio'; open = false"
+            :class="{'text-et-orange': currentPage === 'portofolio'}">
+            <h5 class="hover-effect opacity-90 hover:opacity-100">Projects</h5>
+          </a>
         </div>
         <div @click="showOverlay = true"
           class="flex py-3 px-8 items-center justify-center bg-et-orange text-white rounded-xl hover-effect opacity-90 hover:opacity-100">
@@ -52,7 +76,7 @@
       </div>
 
       <!-- Content Sections -->
-      <div class="w-full my-20">
+      <div class="w-full my-14">
         <div x-show="currentPage === 'home'" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div class="flex flex-col gap-14">
             <div class="flex flex-col gap-3">
@@ -328,10 +352,150 @@
           </div>
         </div>
 
-        <div x-show="currentPage === 'portofolio'" class="">
-          <h2>Portofolio</h2>
-          <p>This is the portofolio content.</p>
+        <div x-show="currentPage === 'portofolio'" class="flex flex-col gap-4 w-full max-w-4xl mx-auto text-center">
+          <div class="border p-6 rounded-2xl border-white/10">
+            <div class="text-left">
+              <h4 class="text-2xl font-semibold mb-4">FullStack Responsive ASP Net + Angular Social Media Platform</h4>
+              <p>
+                This platform is a fully functional dating app, built with a solid tech stack. The backend uses
+                <strong>ASP.NET</strong> for reliable performance, while the frontend is developed with
+                <strong>Angular</strong> to ensure a smooth and responsive user experience.
+              </p>
+
+              <p><strong>Key features include:</strong></p>
+
+              <ul class="list-disc ml-5">
+                <li><strong>Photo Upload:</strong> Users can easily upload and manage their photos via
+                  <strong>Cloudinary</strong>, providing fast and secure media handling.</li>
+                <li><strong>Real-Time Messaging:</strong> With <strong>SignalR</strong>, users can send live messages
+                  and see who's online, creating a more interactive experience.</li>
+                <li><strong>Responsive Design:</strong> The app uses <strong>TailwindCSS 4</strong> for a clean and
+                  modern look, making it user-friendly across devices.</li>
+                <li><strong>Theme Support:</strong> Users can switch between light and dark modes, and the app
+                  automatically adjusts based on their system settings.</li>
+              </ul>
+
+              <p>
+                Overall, the platform is designed to make it easy for users to connect, chat, and share images while
+                enjoying a clean and engaging interface.
+              </p>
+            </div>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website1.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website2.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website3.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website4.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website5.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website6.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website7.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website8.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website9.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website10.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website11.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website12.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website13.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Descriere -->
+            <p class="mt-2 text-sm">
+              <a href="https://chat-ty-app.onrender.com" target="_blank"
+                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
+                Try Live Application here
+              </a>
+            </p>
+          </div>
+          <div class="border p-6 rounded-2xl border-white/10">
+            <h4 class="text-2xl font-semibold mb-4">Figma to HTML pixel perfect implementaiton</h4>
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website14.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website15.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website16.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website17.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website18.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website19.png" alt="Project 2"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+              </div>
+
+              <!-- Butoane navigare -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
         </div>
+
+
+
+
+
 
         <div x-show="showOverlay" x-transition.opacity style="display: none;"
           class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
