@@ -354,42 +354,43 @@
         <div x-show="currentPage === 'portofolio'" class="flex flex-col gap-4 w-full max-w-4xl mx-auto text-center">
           <div class="border p-6 rounded-2xl border-white/10">
             <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">FullStack JavaScript Pet Posting App</h4>
+              <h4 class="text-2xl font-semibold mb-4">FullStack JavaScript Pet Adoption App</h4>
               <p>
-                This is a simple yet effective full-stack web application that allows users to post pets with descriptions and 
-                upload their photos to the cloud. Built using **pure JavaScript**, this project demonstrates how to manage 
-                serverless functions with **Netlify** and store data in **MongoDB Cloud**.
+                This project is available in **two different versions**, showcasing different full-stack approaches:
               </p>
-            
-              <p><strong>Key features include:</strong></p>
-            
+
               <ul class="list-disc ml-5">
-                <li><strong>Full CRUD Operations:</strong> Users can Create, Read, Update, and Delete pet listings, stored in a 
-                  **MongoDB Cloud** database.</li>
-                <li><strong>Cloudinary Integration:</strong> Pet photos are uploaded securely and efficiently to **Cloudinary**, 
-                  allowing fast image handling.</li>
-                <li><strong>Serverless Backend with Netlify:</strong> The backend logic runs on **Netlify Functions**, handling 
-                  database operations and image uploads without requiring a traditional server.</li>
-                <li><strong>Hardcoded Admin Login:</strong> The app has a simple hardcoded admin login (**admin/admin**), 
-                  allowing basic access control without authentication complexity.</li>
-                <li><strong>Pure JavaScript Frontend:</strong> No frameworks—just **vanilla JavaScript** and **CSS** for a clean, 
-                  lightweight user experience.</li>
-                <li><strong>Fully Responsive Design:</strong> The UI is designed with standard CSS to ensure usability across 
-                  mobile and desktop devices.</li>
+                <li><strong>Version 1 (Pure JavaScript & CSS - Deployed on Netlify):</strong> A lightweight
+                  implementation using only
+                  **vanilla JavaScript** and **CSS**, with **Netlify Functions** handling the backend logic.</li>
+                <li><strong>Version 2 (Full-Stack with React, Next.js & Node.js - Deployed on Render):</strong> A more
+                  advanced version using
+                  **React** and **Next.js** for the frontend, with a **Node.js backend** for improved scalability.</li>
               </ul>
-            
-              <p>
-                This project showcases a lightweight approach to building a full-stack application with modern cloud-based tools. 
-                Using **MongoDB Cloud** for database management, **Netlify Functions** for backend logic, and **Cloudinary** for 
-                image storage, it efficiently handles pet postings in a scalable way.
-              </p>
-              <div class="text-center mt-6">
+
+              <p><strong>Key Features:</strong></p>
+
+              <ul class="list-disc ml-5">
+                <li><strong>Full CRUD Operations:</strong> Admins can **Create, Read, Update, and Delete** pet listings
+                  stored in **MongoDB Cloud**.</li>
+                <li><strong>Cloudinary Integration:</strong> Pet photos are securely uploaded to **Cloudinary** for
+                  efficient storage and fast access.</li>
+                <li><strong>Serverless Backend (Netlify) & Node.js Backend (Render):</strong>
+                  - **Netlify Version:** Uses **Netlify Functions** for backend logic.
+                  - **Render Version:** Uses a **Node.js backend** with REST API.</li>
+                <li><strong>Live Chat System (Render Version Only):</strong> Customers can chat **live with admins** for
+                  support.</li>
+                <li><strong>Responsive UI:</strong> Both versions ensure smooth user experience on desktop & mobile.
+                </li>
+              </ul>
+
+              <div class="text-center mt-10">
                 <p class="text-lg font-bold">🔐 Admin Login Credentials 🔐</p>
                 <p><strong>Username:</strong> admin</p>
                 <p><strong>Password:</strong> admin</p>
               </div>
             </div>
-            
+
 
             <!-- Swiper Container -->
             <div class="swiper mySwiper">
@@ -424,10 +425,18 @@
             </div>
 
             <!-- Descriere -->
+            <!-- Live Demo Links -->
             <p class="mt-2 text-sm">
-              <a href="https://rainbow-tiramisu-28065d.netlify.app/" target="_blank"
+              <strong>🌐 Try Live Application:</strong>
+              <br>
+              🔹 <a href="https://rainbow-tiramisu-28065d.netlify.app/" target="_blank"
                 class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Try Live Application here
+                Netlify Version (Pure JavaScript & CSS)
+              </a>
+              <br>
+              🔹 <a href="https://pet-adoption-5d4f.onrender.com/" target="_blank"
+                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
+                Render Version (React, Next.js & Node.js)
               </a>
             </p>
           </div>
