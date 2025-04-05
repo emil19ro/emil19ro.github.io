@@ -353,49 +353,58 @@
 
         <div x-show="currentPage === 'portofolio'" class="flex flex-col gap-4 w-full max-w-4xl mx-auto text-center">
           <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">FullStack JavaScript Pet Adoption App</h4>
-              <p>
-                This project is available in **two different versions**, showcasing different full-stack approaches:
+            <div className="text-left">
+              <h4 className="text-2xl font-semibold mb-4">FullStack JavaScript Pet Adoption App</h4>
+            
+              <p className="mb-4">
+                This project comes in <strong>two versions</strong>, demonstrating different full-stack approaches:
               </p>
-
-              <ul class="list-disc ml-5">
-                <li><strong>Version 1 (Pure JavaScript & CSS - Deployed on Netlify):</strong> A lightweight
-                  implementation using only
-                  **vanilla JavaScript** and **CSS**, with **Netlify Functions** handling the backend logic.</li>
-                <li><strong>Version 2 (Full-Stack with React, Next.js & Node.js - Deployed on Render):</strong> A more
-                  advanced version using
-                  **React** and **Next.js** for the frontend, with a **Node.js backend** for improved scalability.</li>
-              </ul>
-
-              <p><strong>Key Features:</strong></p>
-
-              <ul class="list-disc ml-5">
-                <li><strong>Full CRUD Operations:</strong> Admins can **Create, Read, Update, and Delete** pet listings
-                  stored in **MongoDB Cloud**.</li>
-                <li><strong>Cloudinary Integration:</strong> Pet photos are securely uploaded to **Cloudinary** for
-                  efficient storage and fast access.</li>
-                <li><strong>Serverless Backend (Netlify) & Node.js Backend (Render):</strong>
-                  - **Netlify Version:** Uses **Netlify Functions** for backend logic.
-                  - **Render Version:** Uses a **Node.js backend** with REST API.</li>
-                <li><strong>Live Chat System (Render Version Only):</strong> Customers can chat **live with admins** for
-                  support.</li>
-                <li><strong>Responsive UI:</strong> Both versions ensure smooth user experience on desktop & mobile.
+            
+              <ul className="list-disc ml-5 mb-4">
+                <li>
+                  <strong>Version 1 (Vanilla JS & CSS - Netlify):</strong> A lightweight implementation using plain JavaScript and CSS. Backend logic runs through <strong>Netlify Functions</strong>.
+                </li>
+                <li>
+                  <strong>Version 2 (React & Next.js - Render):</strong> A full-stack version using <strong>React</strong> and <strong>Next.js</strong> for the frontend, with a <strong>Node.js backend</strong> deployed on <strong>Render</strong>.
                 </li>
               </ul>
-
-              <div class="text-center mt-10">
-                <p class="text-lg font-bold">🔐 Admin Login Credentials 🔐</p>
+            
+              <p className="mb-2"><strong>Main Features:</strong></p>
+            
+              <ul className="list-disc ml-5 mb-4">
+                <li><strong>CRUD Pet Management:</strong> Admins can manage pet listings stored in <strong>MongoDB Cloud</strong>.</li>
+                <li><strong>Cloudinary Integration:</strong> Pet photos are uploaded and served efficiently via <strong>Cloudinary</strong>.</li>
+                <li><strong>Backend Options:</strong> 
+                  <ul className="list-disc ml-5">
+                    <li><strong>Netlify:</strong> Uses serverless functions.</li>
+                    <li><strong>Render:</strong> Uses a full Node.js REST API.</li>
+                  </ul>
+                </li>
+                <li><strong>Live Admin Chat (Render Version):</strong> A real-time internal chat between admins, built with <strong>Pusher</strong> and integrated into the <strong>React & Next.js</strong> frontend.</li>
+                <li><strong>Responsive UI:</strong> Optimized for both desktop and mobile.</li>
+              </ul>
+            
+              <div className="text-center mt-10">
+                <p className="text-lg font-bold">🔐 Admin Login Credentials 🔐</p>
                 <p><strong>Username:</strong> admin</p>
                 <p><strong>Password:</strong> admin</p>
               </div>
             </div>
+            
 
 
             <!-- Swiper Container -->
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
 
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website41.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
+                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
+                  <img src="/assets/images/website42.png" alt="Project 1"
+                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                </div>
                 <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
                   <img src="/assets/images/website36.png" alt="Project 1"
                     style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
