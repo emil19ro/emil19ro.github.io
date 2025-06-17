@@ -29,6 +29,7 @@ export default [
       ...reactHooks.configs.recommended.rules,
 
       // reguli suplimentare stricte:
+      "react/no-unknown-property": "off",
       'react/props-types': 'off',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off', // Nu e necesar în React 17+

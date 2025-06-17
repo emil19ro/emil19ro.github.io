@@ -1,10 +1,28 @@
+import LogoSection from "./sections/LogoSection.jsx";
+import NavBar from "./components/NavBar.jsx";
+import Hero from "./sections/Hero.jsx";
+import ShowcaseSection from "./sections/ShowcaseSection.jsx";
+import FeatureCards from "./sections/FeatureCards.jsx";
+import ExperiencesSection from "./sections/ExperiencesSection.jsx";
+import TechStack from "./sections/TechStack.jsx";
+import Testimonials from "./sections/Testimonials.jsx";
+import Contact from "./sections/Contact.jsx";
+import Footer from "./sections/Footer.jsx";
+
 const App = () => {
   return (
-    <main>
-      <div>
-        <h1>Welcome to my 3d Portofolio!</h1>
-      </div>
-    </main>
+    <>
+      <NavBar />
+      <Hero />
+      <ShowcaseSection />
+      <LogoSection />
+      <FeatureCards />
+      <ExperiencesSection />
+      <TechStack />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </>
   );
 };
 export default App;
