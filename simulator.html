@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulateur d'opération</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-accent: radial-gradient(circle at top left, rgba(15, 23, 42, 0.09), transparent 30%),
+                   radial-gradient(circle at top right, rgba(245, 158, 11, 0.12), transparent 22%),
+                   linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+      --card: rgba(255, 255, 255, 0.86);
+      --card-strong: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(148, 163, 184, 0.22);
+      --primary: #0f2b57;
+      --primary-soft: #1e3a8a;
+      --accent: #f4b400;
+      --accent-dark: #d99a00;
+      --danger: #ef4444;
+      --success: #0f766e;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-accent);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 28px;
+    }
+
+    .app {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f2b57 0%, #183b73 55%, #10244b 100%);
+      color: white;
+      border-radius: 32px;
+      padding: 34px 34px 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 26px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -110px -110px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(244, 180, 0, 0.25), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.92rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      max-width: 860px;
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.02rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      backdrop-filter: blur(14px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(244, 180, 0, 0.18), rgba(244, 180, 0, 0.34));
+      color: #8a5d00;
+      font-size: 1.35rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field,
+    .field-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-stack {
+      gap: 16px;
+    }
+
+    label,
+    .label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #17315d;
+    }
+
+    .hint {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 15px;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(59, 130, 246, 0.45);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input[readonly] {
+      background: #f8fafc;
+      color: #0f2b57;
+      font-weight: 700;
+    }
+
+    .field-inline {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 140px;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field-inline-3 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 120px 120px;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mini-stat {
+      background: rgba(15, 43, 87, 0.05);
+      border: 1px solid rgba(15, 43, 87, 0.08);
+      border-radius: 20px;
+      padding: 16px 18px;
+    }
+
+    .mini-stat .name {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+    }
+
+    .mini-stat .value {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+    }
+
+    .repeat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .repeat-row {
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(255, 255, 255, 0.84);
+      border-radius: 24px;
+      padding: 18px;
+    }
+
+    .repeat-row-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .repeat-row-title {
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .row-grid-lot {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1.15fr 1fr 0.8fr 0.9fr 1fr 0.8fr;
+    }
+
+    .row-grid-expense {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1.15fr 0.95fr 0.8fr 0.95fr 0.95fr;
+      margin-bottom: 14px;
+    }
+
+    .lot-assignments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    .choice-chip {
+      position: relative;
+    }
+
+    .choice-chip input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .choice-chip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(241, 245, 249, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: #23406d;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.18s ease;
+    }
+
+    .choice-chip input:checked + span {
+      background: rgba(244, 180, 0, 0.16);
+      border-color: rgba(244, 180, 0, 0.6);
+      color: #8a5d00;
+      box-shadow: 0 8px 18px rgba(244, 180, 0, 0.12);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffcf5a);
+      color: #5f4200;
+      box-shadow: 0 16px 30px rgba(244, 180, 0, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 43, 87, 0.08);
+      color: var(--primary);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary);
+      border: 1px solid rgba(15, 43, 87, 0.12);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.08);
+      color: var(--danger);
+      padding: 10px 14px;
+      border-radius: 14px;
+    }
+
+    .results {
+      position: sticky;
+      bottom: 18px;
+      background: linear-gradient(160deg, #0f2b57 0%, #102448 60%, #0b1b35 100%);
+      color: white;
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+    }
+
+    .results::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -90px -90px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 180, 0, 0.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .results-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      z-index: 1;
+    }
+
+    .results-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .results-title .section-icon {
+      background: linear-gradient(135deg, rgba(244, 180, 0, 0.18), rgba(244, 180, 0, 0.85));
+      color: white;
+    }
+
+    .results-title h2,
+    .results-title p {
+      margin: 0;
+    }
+
+    .results-title p {
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 6px;
+      font-size: 0.95rem;
+    }
+
+    .result-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .result-card {
+      border-radius: 24px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .result-card.highlight {
+      background: linear-gradient(145deg, rgba(244, 180, 0, 0.95), rgba(212, 148, 0, 0.95));
+      color: white;
+      box-shadow: 0 20px 40px rgba(244, 180, 0, 0.18);
+    }
+
+    .result-card .name {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .result-card.highlight .name {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .result-card .value {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .result-meta {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .result-meta .mini-stat {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .result-meta .mini-stat .name {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .result-meta .mini-stat .value {
+      color: white;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .spacer-top {
+      margin-top: 14px;
+    }
+
+    .positive {
+      color: #16a34a !important;
+    }
+
+    .negative {
+      color: #ef4444 !important;
+    }
+
+    .results .positive,
+    .results .negative {
+      color: white !important;
+    }
+
+    @media (max-width: 1100px) {
+      .grid-3,
+      .grid-4,
+      .grid-2,
+      .result-grid,
+      .result-meta,
+      .stat-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .row-grid-lot,
+      .row-grid-expense {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 14px;
+      }
+
+      .hero,
+      .card,
+      .results {
+        border-radius: 24px;
+        padding: 20px;
+      }
+
+      .grid-3,
+      .grid-4,
+      .grid-2,
+      .result-grid,
+      .result-meta,
+      .stat-strip,
+      .row-grid-lot,
+      .row-grid-expense,
+      .field-inline,
+      .field-inline-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .results {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="pill">Single file HTML + CSS + JS</div>
+        <div class="pill">Compatible GitHub Pages</div>
+      </div>
+      <h1>Simulateur d'opération immobilière</h1>
+      <p>
+        Un simulateur autonome, moderne et prêt pour un hébergement statique. Tous les calculs sont faits côté navigateur,
+        sans backend ni build step.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">01</div>
+            <div>
+              <h2>Informations du projet</h2>
+              <p>Contexte général de l'opération.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="projectName">Nom du projet</label>
+            <input id="projectName" type="text" placeholder="Ex : Marchand de biens - Marseille" />
+          </div>
+          <div class="field">
+            <label for="projectAddress">Adresse</label>
+            <input id="projectAddress" type="text" placeholder="Ex : 12 rue Exemple, Marseille" />
+          </div>
+          <div class="field">
+            <label for="operationType">Type d'opération</label>
+            <select id="operationType">
+              <option value="achat-revente">Achat / Revente</option>
+              <option value="division">Division</option>
+              <option value="renovation">Rénovation</option>
+              <option value="promotion">Promotion</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field spacer-top">
+          <label for="projectNotes">Notes du projet</label>
+          <textarea id="projectNotes" placeholder="Hypothèses, contraintes, stratégie de revente, notes de fiscalité, etc."></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">€</div>
+            <div>
+              <h2>Achat</h2>
+              <p>Coût d'acquisition, base de calcul et total d'achat.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="netSellerPrice">Prix net vendeur</label>
+            <input id="netSellerPrice" type="number" min="0" step="0.01" value="0" />
+          </div>
+          <div class="field">
+            <label for="agencyFees">Frais d'agence</label>
+            <div class="field-inline">
+              <input id="agencyFees" type="number" min="0" step="0.01" value="0" />
+              <select id="agencyFeePayer">
+                <option value="buyer">À charge acquéreur</option>
+                <option value="seller">À charge vendeur</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="faiPrice">Prix FAI</label>
+            <input id="faiPrice" type="text" readonly />
+          </div>
+          <div class="field">
+            <label for="acquisitionRate">Frais d'acquisition</label>
+            <div class="field-inline">
+              <input id="acquisitionFees" type="text" readonly />
+              <input id="acquisitionRate" type="number" min="0" step="0.01" value="3" />
+            </div>
+            <div class="hint">Base utilisée : net vendeur si les frais d'agence sont à charge acquéreur, sinon prix FAI.</div>
+          </div>
+        </div>
+
+        <div class="stat-strip">
+          <div class="mini-stat">
+            <span class="name">Base frais d'acquisition</span>
+            <span class="value" id="acquisitionBaseDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Prix FAI</span>
+            <span class="value" id="purchaseFaiDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Frais d'acquisition</span>
+            <span class="value" id="purchaseAcqDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Coût total d'achat</span>
+            <span class="value" id="purchaseTotalDisplay">0 €</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">L</div>
+            <div>
+              <h2>Lots</h2>
+              <p>Prix de revente, surface, TVA sur vente et pondération.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="lotsContainer" class="repeat-list"></div>
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button id="addLotBtn" class="btn btn-primary" type="button">+ Ajouter un lot</button>
+          </div>
+          <div class="toolbar-right">
+            <div class="mini-stat">
+              <span class="name">Total ventes pondérées</span>
+              <span class="value" id="lotsTotalDisplay">0 €</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">D</div>
+            <div>
+              <h2>Dépenses</h2>
+              <p>Travaux, honoraires, coûts de structure et TVA déductible.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="expensesContainer" class="repeat-list"></div>
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button id="addExpenseBtn" class="btn btn-primary" type="button">+ Ajouter une dépense</button>
+          </div>
+          <div class="toolbar-right">
+            <div class="mini-stat">
+              <span class="name">Total dépenses TTC</span>
+              <span class="value" id="expensesTotalDisplay">0 €</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon">F</div>
+            <div>
+              <h2>Financement</h2>
+              <p>Apport, crédit, intérêts, commission, hypothèque et frais de dossier.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field-stack">
+            <div class="field">
+              <label for="downPaymentPercent">Apport</label>
+              <div class="field-inline">
+                <input id="downPaymentAmount" type="text" readonly />
+                <input id="downPaymentPercent" type="number" min="0" step="0.01" value="20" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="commitmentRate">Commission d'engagement</label>
+              <div class="field-inline-3">
+                <input id="commitmentAmount" type="text" readonly />
+                <input id="commitmentRate" type="number" min="0" step="0.01" value="1" />
+                <input id="commitmentMonths" type="number" min="0" step="1" value="12" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="fileFees">Frais de dossier</label>
+              <input id="fileFees" type="number" min="0" step="0.01" value="3000" />
+            </div>
+          </div>
+
+          <div class="field-stack">
+            <div class="field">
+              <label for="interestRate">Intérêts d'emprunt</label>
+              <div class="field-inline-3">
+                <input id="interestAmount" type="text" readonly />
+                <input id="interestRate" type="number" min="0" step="0.01" value="7" />
+                <input id="interestMonths" type="number" min="0" step="1" value="12" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="mortgageRate">Hypothèque</label>
+              <div class="field-inline">
+                <input id="mortgageAmount" type="text" readonly />
+                <input id="mortgageRate" type="number" min="0" step="0.01" value="1" />
+              </div>
+            </div>
+
+            <div class="mini-stat">
+              <span class="name">Montant emprunté estimé</span>
+              <span class="value" id="loanAmountDisplay">0 €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-strip">
+          <div class="mini-stat">
+            <span class="name">Apport estimé</span>
+            <span class="value" id="financeDownDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Intérêts</span>
+            <span class="value" id="financeInterestDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Autres frais de financement</span>
+            <span class="value" id="financeOtherDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Coût total financement</span>
+            <span class="value" id="financeTotalDisplay">0 €</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="results">
+        <div class="results-header">
+          <div class="results-title">
+            <div class="section-icon">✓</div>
+            <div>
+              <h2>Résultat</h2>
+              <p>Le simulateur recalcule automatiquement dès que vous modifiez une valeur.</p>
+            </div>
+          </div>
+          <button id="calculateBtn" class="btn btn-primary" type="button">Calculer le résultat</button>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <div class="name">Chiffre d'affaires</div>
+            <div class="value" id="resultRevenue">0 €</div>
+          </div>
+          <div class="result-card">
+            <div class="name">Coût total</div>
+            <div class="value" id="resultTotalCost">0 €</div>
+          </div>
+          <div class="result-card">
+            <div class="name">Marge</div>
+            <div class="value" id="resultMargin">0 €</div>
+          </div>
+          <div class="result-card">
+            <div class="name">TVA nette</div>
+            <div class="value" id="resultVat">0 €</div>
+          </div>
+          <div class="result-card">
+            <div class="name">Marge nette de TVA</div>
+            <div class="value" id="resultNetMargin">0 €</div>
+          </div>
+          <div class="result-card highlight">
+            <div class="name">Rentabilité</div>
+            <div class="value" id="resultProfitability">0 %</div>
+          </div>
+        </div>
+
+        <div class="result-meta">
+          <div class="mini-stat">
+            <span class="name">TVA collectée ventes</span>
+            <span class="value" id="salesVatDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">TVA déductible dépenses</span>
+            <span class="value" id="expenseVatDisplay">0 €</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Nombre de lots</span>
+            <span class="value" id="lotsCountDisplay">0</span>
+          </div>
+          <div class="mini-stat">
+            <span class="name">Nombre de dépenses</span>
+            <span class="value" id="expensesCountDisplay">0</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Hypothèses intégrées dans cette version : le prix de revente d'un lot est considéré TTC, la TVA sur vente est calculée selon le taux choisi sur le lot,
+        et la TVA nette correspond à la TVA collectée moins la TVA déductible des dépenses. Les frais de financement sont estimés sur le montant emprunté calculé à partir du coût d'achat + dépenses, diminué de l'apport.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'operation-simulator-v1';
+    let lotCounter = 0;
+    let expenseCounter = 0;
+
+    const el = {
+      projectName: document.getElementById('projectName'),
+      projectAddress: document.getElementById('projectAddress'),
+      operationType: document.getElementById('operationType'),
+      projectNotes: document.getElementById('projectNotes'),
+      netSellerPrice: document.getElementById('netSellerPrice'),
+      agencyFees: document.getElementById('agencyFees'),
+      agencyFeePayer: document.getElementById('agencyFeePayer'),
+      faiPrice: document.getElementById('faiPrice'),
+      acquisitionRate: document.getElementById('acquisitionRate'),
+      acquisitionFees: document.getElementById('acquisitionFees'),
+      acquisitionBaseDisplay: document.getElementById('acquisitionBaseDisplay'),
+      purchaseFaiDisplay: document.getElementById('purchaseFaiDisplay'),
+      purchaseAcqDisplay: document.getElementById('purchaseAcqDisplay'),
+      purchaseTotalDisplay: document.getElementById('purchaseTotalDisplay'),
+      lotsContainer: document.getElementById('lotsContainer'),
+      addLotBtn: document.getElementById('addLotBtn'),
+      lotsTotalDisplay: document.getElementById('lotsTotalDisplay'),
+      expensesContainer: document.getElementById('expensesContainer'),
+      addExpenseBtn: document.getElementById('addExpenseBtn'),
+      expensesTotalDisplay: document.getElementById('expensesTotalDisplay'),
+      downPaymentAmount: document.getElementById('downPaymentAmount'),
+      downPaymentPercent: document.getElementById('downPaymentPercent'),
+      interestAmount: document.getElementById('interestAmount'),
+      interestRate: document.getElementById('interestRate'),
+      interestMonths: document.getElementById('interestMonths'),
+      commitmentAmount: document.getElementById('commitmentAmount'),
+      commitmentRate: document.getElementById('commitmentRate'),
+      commitmentMonths: document.getElementById('commitmentMonths'),
+      mortgageAmount: document.getElementById('mortgageAmount'),
+      mortgageRate: document.getElementById('mortgageRate'),
+      fileFees: document.getElementById('fileFees'),
+      loanAmountDisplay: document.getElementById('loanAmountDisplay'),
+      financeDownDisplay: document.getElementById('financeDownDisplay'),
+      financeInterestDisplay: document.getElementById('financeInterestDisplay'),
+      financeOtherDisplay: document.getElementById('financeOtherDisplay'),
+      financeTotalDisplay: document.getElementById('financeTotalDisplay'),
+      calculateBtn: document.getElementById('calculateBtn'),
+      resultRevenue: document.getElementById('resultRevenue'),
+      resultTotalCost: document.getElementById('resultTotalCost'),
+      resultMargin: document.getElementById('resultMargin'),
+      resultVat: document.getElementById('resultVat'),
+      resultNetMargin: document.getElementById('resultNetMargin'),
+      resultProfitability: document.getElementById('resultProfitability'),
+      salesVatDisplay: document.getElementById('salesVatDisplay'),
+      expenseVatDisplay: document.getElementById('expenseVatDisplay'),
+      lotsCountDisplay: document.getElementById('lotsCountDisplay'),
+      expensesCountDisplay: document.getElementById('expensesCountDisplay')
+    };
+
+    const currencyFormatter = new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    const percentFormatter = new Intl.NumberFormat('fr-FR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    function parseNumber(value) {
+      if (value === null || value === undefined || value === '') return 0;
+      const normalized = String(value).replace(/\s+/g, '').replace(',', '.');
+      const num = Number(normalized);
+      return Number.isFinite(num) ? num : 0;
+    }
+
+    function formatCurrency(value) {
+      return currencyFormatter.format(Number.isFinite(value) ? value : 0);
+    }
+
+    function formatPercent(value) {
+      return `${percentFormatter.format(Number.isFinite(value) ? value : 0)} %`;
+    }
+
+    function setText(element, value) {
+      element.textContent = value;
+    }
+
+    function getLotRows() {
+      return Array.from(el.lotsContainer.querySelectorAll('.lot-row'));
+    }
+
+    function getExpenseRows() {
+      return Array.from(el.expensesContainer.querySelectorAll('.expense-row'));
+    }
+
+    function lotLabelFromRow(row, index) {
+      const titleInput = row.querySelector('[data-field="designation"]');
+      const customLabel = titleInput.value.trim();
+      return customLabel || `Lot n°${index + 1}`;
+    }
+
+    function addLot(data = {}) {
+      lotCounter += 1;
+      const row = document.createElement('div');
+      row.className = 'repeat-row lot-row';
+      row.dataset.id = data.id || `lot-${lotCounter}`;
+      row.innerHTML = `
+        <div class="repeat-row-head">
+          <div class="repeat-row-title">Lot</div>
+          <button class="btn btn-danger" type="button" data-action="remove-lot">Supprimer</button>
+        </div>
+        <div class="row-grid-lot">
+          <div class="field">
+            <label>Désignation</label>
+            <input type="text" data-field="designation" placeholder="Ex : Maison / Appartement / Garage" value="${escapeHtml(data.designation || '')}" />
+          </div>
+          <div class="field">
+            <label>Prix de revente</label>
+            <input type="number" min="0" step="0.01" data-field="resalePrice" value="${safeNumberValue(data.resalePrice, 0)}" />
+          </div>
+          <div class="field">
+            <label>Surface</label>
+            <input type="number" min="0" step="0.01" data-field="surface" value="${safeNumberValue(data.surface, 0)}" />
+          </div>
+          <div class="field">
+            <label>Prix au m²</label>
+            <input type="text" data-field="pricePerSqm" readonly />
+          </div>
+          <div class="field">
+            <label>TVA sur vente</label>
+            <select data-field="vatMode">
+              <option value="none">Aucune TVA</option>
+              <option value="full20">TVA intégrale 20%</option>
+              <option value="full10">TVA réduite 10%</option>
+              <option value="full55">TVA réduite 5,5%</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Pondération (%)</label>
+            <input type="number" min="0" step="0.01" data-field="weight" value="${safeNumberValue(data.weight, 100)}" />
+          </div>
+        </div>
+      `;
+
+      row.querySelector('[data-field="vatMode"]').value = data.vatMode || 'full20';
+      bindRowAutoUpdate(row);
+      el.lotsContainer.appendChild(row);
+      updateLotRowHeader();
+      refreshExpenseLotOptions();
+      computeAll();
+    }
+
+    function addExpense(data = {}) {
+      expenseCounter += 1;
+      const row = document.createElement('div');
+      row.className = 'repeat-row expense-row';
+      row.dataset.id = data.id || `expense-${expenseCounter}`;
+      row.dataset.selectedLots = JSON.stringify(Array.isArray(data.selectedLots) ? data.selectedLots : []);
+      row.innerHTML = `
+        <div class="repeat-row-head">
+          <div class="repeat-row-title">Dépense</div>
+          <button class="btn btn-danger" type="button" data-action="remove-expense">Supprimer</button>
+        </div>
+        <div class="row-grid-expense">
+          <div class="field">
+            <label>Nature</label>
+            <input type="text" data-field="nature" placeholder="Ex : Travaux, architecte, assurance" value="${escapeHtml(data.nature || '')}" />
+          </div>
+          <div class="field">
+            <label>Prix HT</label>
+            <input type="number" min="0" step="0.01" data-field="priceHt" value="${safeNumberValue(data.priceHt, 0)}" />
+          </div>
+          <div class="field">
+            <label>Taux de TVA</label>
+            <select data-field="vatRate">
+              <option value="0">0%</option>
+              <option value="5.5">5,5%</option>
+              <option value="10">10%</option>
+              <option value="20">20%</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>TVA</label>
+            <input type="text" data-field="vatAmount" readonly />
+          </div>
+          <div class="field">
+            <label>Prix TTC</label>
+            <input type="text" data-field="priceTtc" readonly />
+          </div>
+        </div>
+        <div class="field">
+          <div class="label">Lot(s) concerné(s)</div>
+          <div class="lot-assignments" data-field="lotAssignments"></div>
+          <div class="hint">Les lots cochés sont mémorisés pour votre suivi. Dans cette version, la dépense est comptée une seule fois dans le total projet.</div>
+        </div>
+      `;
+
+      row.querySelector('[data-field="vatRate"]').value = String(data.vatRate ?? 20);
+      bindRowAutoUpdate(row);
+      el.expensesContainer.appendChild(row);
+      refreshExpenseLotOptions();
+      computeAll();
+    }
+
+    function bindRowAutoUpdate(row) {
+      row.addEventListener('input', (event) => {
+        if (event.target.closest('[data-field="lotAssignments"]')) return;
+        if (row.classList.contains('lot-row')) updateLotRowHeader();
+        if (row.classList.contains('expense-row') && event.target.matches('[data-field="nature"]')) {
+          // no-op, only to keep local state and recompute
+        }
+        computeAll();
+      });
+
+      row.addEventListener('change', (event) => {
+        if (event.target.matches('input[type="checkbox"][data-lot-id]')) {
+          const selectedIds = Array.from(row.querySelectorAll('input[type="checkbox"][data-lot-id]:checked')).map((item) => item.dataset.lotId);
+          row.dataset.selectedLots = JSON.stringify(selectedIds);
+        }
+        computeAll();
+      });
+
+      row.addEventListener('click', (event) => {
+        const action = event.target.getAttribute('data-action');
+        if (!action) return;
+
+        if (action === 'remove-lot') {
+          row.remove();
+          updateLotRowHeader();
+          refreshExpenseLotOptions();
+          if (getLotRows().length === 0) addLot();
+          computeAll();
+        }
+
+        if (action === 'remove-expense') {
+          row.remove();
+          if (getExpenseRows().length === 0) addExpense();
+          computeAll();
+        }
+      });
+    }
+
+    function updateLotRowHeader() {
+      getLotRows().forEach((row, index) => {
+        const title = row.querySelector('.repeat-row-title');
+        title.textContent = lotLabelFromRow(row, index);
+      });
+    }
+
+    function refreshExpenseLotOptions() {
+      const lotRows = getLotRows();
+      const lots = lotRows.map((row, index) => ({
+        id: row.dataset.id,
+        label: lotLabelFromRow(row, index)
+      }));
+
+      getExpenseRows().forEach((expenseRow) => {
+        const container = expenseRow.querySelector('[data-field="lotAssignments"]');
+        const selected = parseSelectedLots(expenseRow.dataset.selectedLots);
+        container.innerHTML = '';
+
+        if (lots.length === 0) {
+          const empty = document.createElement('div');
+          empty.className = 'hint';
+          empty.textContent = 'Ajoutez au moins un lot pour attribuer cette dépense.';
+          container.appendChild(empty);
+          return;
+        }
+
+        const validSelection = selected.filter((id) => lots.some((lot) => lot.id === id));
+        expenseRow.dataset.selectedLots = JSON.stringify(validSelection);
+
+        lots.forEach((lot) => {
+          const chip = document.createElement('label');
+          chip.className = 'choice-chip';
+          chip.innerHTML = `
+            <input type="checkbox" data-lot-id="${lot.id}" ${validSelection.includes(lot.id) ? 'checked' : ''} />
+            <span>${escapeHtml(lot.label)}</span>
+          `;
+          container.appendChild(chip);
+        });
+      });
+    }
+
+    function parseSelectedLots(value) {
+      try {
+        const parsed = JSON.parse(value || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function getLotVatRate(vatMode) {
+      switch (vatMode) {
+        case 'full20':
+          return 20;
+        case 'full10':
+          return 10;
+        case 'full55':
+          return 5.5;
+        default:
+          return 0;
+      }
+    }
+
+    function computePurchase() {
+      const netSeller = parseNumber(el.netSellerPrice.value);
+      const agencyFees = parseNumber(el.agencyFees.value);
+      const acquisitionRate = parseNumber(el.acquisitionRate.value);
+      const fai = netSeller + agencyFees;
+      const acquisitionBase = el.agencyFeePayer.value === 'buyer' ? netSeller : fai;
+      const acquisitionFees = acquisitionBase * (acquisitionRate / 100);
+      const total = fai + acquisitionFees;
+
+      el.faiPrice.value = formatCurrency(fai);
+      el.acquisitionFees.value = formatCurrency(acquisitionFees);
+      setText(el.acquisitionBaseDisplay, formatCurrency(acquisitionBase));
+      setText(el.purchaseFaiDisplay, formatCurrency(fai));
+      setText(el.purchaseAcqDisplay, formatCurrency(acquisitionFees));
+      setText(el.purchaseTotalDisplay, formatCurrency(total));
+
+      return { netSeller, agencyFees, acquisitionRate, fai, acquisitionBase, acquisitionFees, total };
+    }
+
+    function computeLots() {
+      const rows = getLotRows();
+      let totalRevenue = 0;
+      let totalSalesVat = 0;
+
+      rows.forEach((row) => {
+        const resalePrice = parseNumber(row.querySelector('[data-field="resalePrice"]').value);
+        const surface = parseNumber(row.querySelector('[data-field="surface"]').value);
+        const weight = parseNumber(row.querySelector('[data-field="weight"]').value);
+        const vatMode = row.querySelector('[data-field="vatMode"]').value;
+        const pricePerSqm = surface > 0 ? resalePrice / surface : 0;
+        const weightedRevenue = resalePrice * (weight / 100);
+        const vatRate = getLotVatRate(vatMode);
+        const vatAmount = vatRate > 0 ? weightedRevenue * (vatRate / (100 + vatRate)) : 0;
+
+        row.querySelector('[data-field="pricePerSqm"]').value = surface > 0 ? formatCurrency(pricePerSqm) : '';
+
+        totalRevenue += weightedRevenue;
+        totalSalesVat += vatAmount;
+      });
+
+      setText(el.lotsTotalDisplay, formatCurrency(totalRevenue));
+      setText(el.lotsCountDisplay, String(rows.length));
+
+      return { totalRevenue, totalSalesVat, count: rows.length };
+    }
+
+    function computeExpenses() {
+      const rows = getExpenseRows();
+      let totalHt = 0;
+      let totalVat = 0;
+      let totalTtc = 0;
+
+      rows.forEach((row) => {
+        const priceHt = parseNumber(row.querySelector('[data-field="priceHt"]').value);
+        const vatRate = parseNumber(row.querySelector('[data-field="vatRate"]').value);
+        const vatAmount = priceHt * (vatRate / 100);
+        const priceTtc = priceHt + vatAmount;
+
+        row.querySelector('[data-field="vatAmount"]').value = formatCurrency(vatAmount);
+        row.querySelector('[data-field="priceTtc"]').value = formatCurrency(priceTtc);
+
+        totalHt += priceHt;
+        totalVat += vatAmount;
+        totalTtc += priceTtc;
+      });
+
+      setText(el.expensesTotalDisplay, formatCurrency(totalTtc));
+      setText(el.expensesCountDisplay, String(rows.length));
+
+      return { totalHt, totalVat, totalTtc, count: rows.length };
+    }
+
+    function computeFinancing(baseCost) {
+      const downPaymentPercent = parseNumber(el.downPaymentPercent.value);
+      const downPaymentAmount = baseCost * (downPaymentPercent / 100);
+      const loanAmount = Math.max(baseCost - downPaymentAmount, 0);
+
+      const interestRate = parseNumber(el.interestRate.value);
+      const interestMonths = parseNumber(el.interestMonths.value);
+      const interestAmount = loanAmount * (interestRate / 100) * (interestMonths / 12);
+
+      const commitmentRate = parseNumber(el.commitmentRate.value);
+      const commitmentMonths = parseNumber(el.commitmentMonths.value);
+      const commitmentAmount = loanAmount * (commitmentRate / 100) * (commitmentMonths / 12);
+
+      const mortgageRate = parseNumber(el.mortgageRate.value);
+      const mortgageAmount = loanAmount * (mortgageRate / 100);
+
+      const fileFees = parseNumber(el.fileFees.value);
+      const total = interestAmount + commitmentAmount + mortgageAmount + fileFees;
+      const otherCosts = commitmentAmount + mortgageAmount + fileFees;
+
+      el.downPaymentAmount.value = formatCurrency(downPaymentAmount);
+      el.interestAmount.value = formatCurrency(interestAmount);
+      el.commitmentAmount.value = formatCurrency(commitmentAmount);
+      el.mortgageAmount.value = formatCurrency(mortgageAmount);
+      setText(el.loanAmountDisplay, formatCurrency(loanAmount));
+      setText(el.financeDownDisplay, formatCurrency(downPaymentAmount));
+      setText(el.financeInterestDisplay, formatCurrency(interestAmount));
+      setText(el.financeOtherDisplay, formatCurrency(otherCosts));
+      setText(el.financeTotalDisplay, formatCurrency(total));
+
+      return {
+        downPaymentPercent,
+        downPaymentAmount,
+        loanAmount,
+        interestRate,
+        interestMonths,
+        interestAmount,
+        commitmentRate,
+        commitmentMonths,
+        commitmentAmount,
+        mortgageRate,
+        mortgageAmount,
+        fileFees,
+        total,
+        otherCosts
+      };
+    }
+
+    function applySignedStyle(element, value, asPercent = false) {
+      element.classList.remove('positive', 'negative');
+      if (value > 0) element.classList.add('positive');
+      if (value < 0) element.classList.add('negative');
+      element.textContent = asPercent ? formatPercent(value) : formatCurrency(value);
+    }
+
+    function computeAll() {
+      const purchase = computePurchase();
+      const lots = computeLots();
+      const expenses = computeExpenses();
+      const financingBase = purchase.total + expenses.totalTtc;
+      const financing = computeFinancing(financingBase);
+
+      const totalCost = purchase.total + expenses.totalTtc + financing.total;
+      const margin = lots.totalRevenue - totalCost;
+      const vatNet = lots.totalSalesVat - expenses.totalVat;
+      const netMargin = margin - vatNet;
+      const profitability = totalCost > 0 ? (netMargin / totalCost) * 100 : 0;
+
+      setText(el.resultRevenue, formatCurrency(lots.totalRevenue));
+      setText(el.resultTotalCost, formatCurrency(totalCost));
+      applySignedStyle(el.resultMargin, margin);
+      applySignedStyle(el.resultVat, vatNet);
+      applySignedStyle(el.resultNetMargin, netMargin);
+      applySignedStyle(el.resultProfitability, profitability, true);
+      setText(el.salesVatDisplay, formatCurrency(lots.totalSalesVat));
+      setText(el.expenseVatDisplay, formatCurrency(expenses.totalVat));
+
+      saveState();
+
+      return { purchase, lots, expenses, financing, totalCost, margin, vatNet, netMargin, profitability };
+    }
+
+    function saveState() {
+      const state = {
+        project: {
+          name: el.projectName.value,
+          address: el.projectAddress.value,
+          type: el.operationType.value,
+          notes: el.projectNotes.value
+        },
+        purchase: {
+          netSellerPrice: el.netSellerPrice.value,
+          agencyFees: el.agencyFees.value,
+          agencyFeePayer: el.agencyFeePayer.value,
+          acquisitionRate: el.acquisitionRate.value
+        },
+        lots: getLotRows().map((row) => ({
+          id: row.dataset.id,
+          designation: row.querySelector('[data-field="designation"]').value,
+          resalePrice: row.querySelector('[data-field="resalePrice"]').value,
+          surface: row.querySelector('[data-field="surface"]').value,
+          vatMode: row.querySelector('[data-field="vatMode"]').value,
+          weight: row.querySelector('[data-field="weight"]').value
+        })),
+        expenses: getExpenseRows().map((row) => ({
+          id: row.dataset.id,
+          nature: row.querySelector('[data-field="nature"]').value,
+          priceHt: row.querySelector('[data-field="priceHt"]').value,
+          vatRate: row.querySelector('[data-field="vatRate"]').value,
+          selectedLots: parseSelectedLots(row.dataset.selectedLots)
+        })),
+        financing: {
+          downPaymentPercent: el.downPaymentPercent.value,
+          interestRate: el.interestRate.value,
+          interestMonths: el.interestMonths.value,
+          commitmentRate: el.commitmentRate.value,
+          commitmentMonths: el.commitmentMonths.value,
+          mortgageRate: el.mortgageRate.value,
+          fileFees: el.fileFees.value
+        }
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        addLot({ designation: 'Lot n°1', vatMode: 'full20', weight: 100 });
+        addExpense({ nature: 'Travaux', vatRate: 20 });
+        return;
+      }
+
+      try {
+        const state = JSON.parse(raw);
+        el.projectName.value = state.project?.name || '';
+        el.projectAddress.value = state.project?.address || '';
+        el.operationType.value = state.project?.type || 'achat-revente';
+        el.projectNotes.value = state.project?.notes || '';
+
+        el.netSellerPrice.value = state.purchase?.netSellerPrice ?? 0;
+        el.agencyFees.value = state.purchase?.agencyFees ?? 0;
+        el.agencyFeePayer.value = state.purchase?.agencyFeePayer || 'buyer';
+        el.acquisitionRate.value = state.purchase?.acquisitionRate ?? 3;
+
+        el.downPaymentPercent.value = state.financing?.downPaymentPercent ?? 20;
+        el.interestRate.value = state.financing?.interestRate ?? 7;
+        el.interestMonths.value = state.financing?.interestMonths ?? 12;
+        el.commitmentRate.value = state.financing?.commitmentRate ?? 1;
+        el.commitmentMonths.value = state.financing?.commitmentMonths ?? 12;
+        el.mortgageRate.value = state.financing?.mortgageRate ?? 1;
+        el.fileFees.value = state.financing?.fileFees ?? 3000;
+
+        el.lotsContainer.innerHTML = '';
+        el.expensesContainer.innerHTML = '';
+
+        const lots = Array.isArray(state.lots) && state.lots.length > 0 ? state.lots : [{ designation: 'Lot n°1', vatMode: 'full20', weight: 100 }];
+        const expenses = Array.isArray(state.expenses) && state.expenses.length > 0 ? state.expenses : [{ nature: 'Travaux', vatRate: 20 }];
+
+        lots.forEach(addLot);
+        expenses.forEach(addExpense);
+      } catch (error) {
+        localStorage.removeItem(STORAGE_KEY);
+        addLot({ designation: 'Lot n°1', vatMode: 'full20', weight: 100 });
+        addExpense({ nature: 'Travaux', vatRate: 20 });
+      }
+    }
+
+    function safeNumberValue(value, fallback) {
+      const num = parseNumber(value);
+      return Number.isFinite(num) ? num : fallback;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function attachGlobalListeners() {
+      [
+        el.projectName,
+        el.projectAddress,
+        el.operationType,
+        el.projectNotes,
+        el.netSellerPrice,
+        el.agencyFees,
+        el.agencyFeePayer,
+        el.acquisitionRate,
+        el.downPaymentPercent,
+        el.interestRate,
+        el.interestMonths,
+        el.commitmentRate,
+        el.commitmentMonths,
+        el.mortgageRate,
+        el.fileFees
+      ].forEach((input) => {
+        input.addEventListener('input', computeAll);
+        input.addEventListener('change', computeAll);
+      });
+
+      el.addLotBtn.addEventListener('click', () => addLot({ vatMode: 'full20', weight: 100 }));
+      el.addExpenseBtn.addEventListener('click', () => addExpense({ vatRate: 20 }));
+      el.calculateBtn.addEventListener('click', () => {
+        el.calculateBtn.animate(
+          [
+            { transform: 'scale(1)' },
+            { transform: 'scale(0.98)' },
+            { transform: 'scale(1)' }
+          ],
+          { duration: 180, easing: 'ease-out' }
+        );
+        computeAll();
+      });
+    }
+
+    attachGlobalListeners();
+    loadState();
+    computeAll();
+  </script>
+</body>
+</html>

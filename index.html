@@ -62,6 +62,10 @@
             :class="{'text-et-orange': currentPage === 'services'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Services</h5>
           </a>
+          <a href="#" @click="currentPage = 'simulation'; open = false"
+            :class="{'text-et-orange': currentPage === 'services'}">
+            <h5 class="hover-effect opacity-90 hover:opacity-100">Simulation</h5>
+          </a>
           <a href="#" @click="currentPage = 'about'; open = false" :class="{'text-et-orange': currentPage === 'about'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">About me</h5>
           </a>
@@ -96,6 +100,12 @@
 
       <!-- Content Sections -->
       <div class="w-full my-14">
+        <div x-show="currentPage === 'simulation'">
+            <iframe
+                src="./simulator.html"
+                style="width: 100%; min-height: 100vh; border: none; border-radius: 16px;"
+            ></iframe>
+        </div>
         <div x-show="currentPage === 'home'" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div class="flex flex-col gap-14">
             <div class="flex flex-col gap-3">
