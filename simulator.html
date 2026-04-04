@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulateur d'opération</title>
+  <title>Simulateur d'opération immobilière</title>
   <style>
     :root {
-      --bg: #f5f7fb;
-      --bg-accent: radial-gradient(circle at top left, rgba(15, 23, 42, 0.09), transparent 30%),
-                   radial-gradient(circle at top right, rgba(245, 158, 11, 0.12), transparent 22%),
-                   linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-      --card: rgba(255, 255, 255, 0.86);
-      --card-strong: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: rgba(148, 163, 184, 0.22);
-      --primary: #0f2b57;
-      --primary-soft: #1e3a8a;
-      --accent: #f4b400;
-      --accent-dark: #d99a00;
-      --danger: #ef4444;
-      --success: #0f766e;
-      --shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+      --bg: #f3f5fb;
+      --bg-2: #eef2ff;
+      --card: #ffffff;
+      --card-soft: #f8fafc;
+      --line: #dbe4f0;
+      --line-strong: #c7d4e6;
+      --text: #10233f;
+      --muted: #5d6f88;
+      --primary: #173765;
+      --primary-strong: #102a50;
+      --accent: #e3a500;
+      --accent-soft: #fff5cf;
+      --success: #127a5b;
+      --success-soft: #e8f8f2;
+      --danger: #be2e2e;
+      --danger-soft: #fff1f1;
+      --info-soft: #edf5ff;
+      --shadow: 0 18px 48px rgba(16, 35, 63, 0.08);
       --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
     }
 
     * {
@@ -35,137 +38,227 @@
       margin: 0;
       padding: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg-accent);
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(23, 55, 101, 0.10), transparent 24%),
+        radial-gradient(circle at top right, rgba(227, 165, 0, 0.10), transparent 20%),
+        linear-gradient(180deg, #f9fbff 0%, var(--bg) 58%, #edf2f8 100%);
     }
 
     body {
-      min-height: 100vh;
-      padding: 28px;
+      padding: 26px;
     }
 
     .app {
-      max-width: 1320px;
+      max-width: 1380px;
       margin: 0 auto;
     }
 
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #0f2b57 0%, #183b73 55%, #10244b 100%);
-      color: white;
-      border-radius: 32px;
-      padding: 34px 34px 30px;
+      background: linear-gradient(140deg, #102a50 0%, #173765 55%, #122a4d 100%);
+      color: #ffffff;
+      border-radius: 34px;
+      padding: 34px;
       box-shadow: var(--shadow);
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      inset: auto -110px -110px auto;
-      width: 280px;
-      height: 280px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(244, 180, 0, 0.25), transparent 65%);
+      right: -100px;
+      bottom: -100px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(227, 165, 0, 0.32), transparent 70%);
       pointer-events: none;
     }
 
-    .hero-top {
+    .hero-top,
+    .hero-actions,
+    .toolbar,
+    .section-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 0.92rem;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(6px);
+    .hero-top {
+      margin-bottom: 14px;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      line-height: 1.02;
     }
 
     .hero p {
-      max-width: 860px;
       margin: 12px 0 0;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.02rem;
+      max-width: 980px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.6;
+    }
+
+    .pill,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .tag-input {
+      background: var(--info-soft);
+      color: var(--primary);
+      border: 1px solid #cfe0ff;
+    }
+
+    .tag-auto {
+      background: var(--accent-soft);
+      color: #8f6300;
+      border: 1px solid #efd17a;
+    }
+
+    .tag-warning {
+      background: #fff6db;
+      color: #8d6300;
+      border: 1px solid #efd27f;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0 0;
+    }
+
+    .legend-card,
+    .summary-card,
+    .stat-card,
+    .result-card,
+    .formula-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px 18px;
+    }
+
+    .legend-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .legend-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+
+    .legend-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
       gap: 22px;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(199, 212, 230, 0.85);
       border-radius: var(--radius-xl);
+      padding: 28px;
       box-shadow: var(--shadow);
-      padding: 26px;
       backdrop-filter: blur(14px);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
     }
 
     .section-title {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
     }
 
     .section-icon {
       width: 52px;
       height: 52px;
-      border-radius: 16px;
+      border-radius: 18px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(244, 180, 0, 0.18), rgba(244, 180, 0, 0.34));
-      color: #8a5d00;
-      font-size: 1.35rem;
-      font-weight: 700;
       flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(23, 55, 101, 0.14), rgba(23, 55, 101, 0.24));
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 1.1rem;
     }
 
     .section-title h2 {
       margin: 0;
-      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      font-size: clamp(1.4rem, 2.5vw, 2.05rem);
       letter-spacing: -0.03em;
     }
 
-    .section-title p {
-      margin: 4px 0 0;
+    .section-title p,
+    .intro-copy,
+    .small-note,
+    .hint,
+    .formula-list li,
+    .bullet-list li {
       color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .section-title p,
+    .intro-copy,
+    .small-note {
+      margin: 6px 0 0;
       font-size: 0.95rem;
+    }
+
+    .intro-copy {
+      margin-top: 10px;
+      max-width: 1020px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 0.84rem;
+    }
+
+    .small-note {
+      font-size: 0.88rem;
     }
 
     .grid {
       display: grid;
       gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .grid-3 {
@@ -176,32 +269,37 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .field,
-    .field-stack {
+    .stack {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .field-stack {
-      gap: 16px;
+    .stack {
+      gap: 18px;
     }
 
-    label,
-    .label {
+    .label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .label-row label,
+    .label-row .plain-label {
       font-size: 0.95rem;
-      font-weight: 700;
-      color: #17315d;
+      font-weight: 800;
+      color: var(--primary-strong);
     }
 
-    .hint {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.45;
+    .field-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: var(--card-soft);
     }
 
     input,
@@ -215,11 +313,11 @@
     select,
     textarea {
       width: 100%;
-      border: 1px solid rgba(148, 163, 184, 0.24);
-      background: rgba(255, 255, 255, 0.92);
-      color: var(--text);
-      border-radius: 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
       padding: 14px 15px;
+      color: var(--text);
+      background: #ffffff;
       outline: none;
       transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
@@ -227,157 +325,60 @@
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: rgba(59, 130, 246, 0.45);
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+      border-color: #7ea5e2;
+      box-shadow: 0 0 0 4px rgba(126, 165, 226, 0.18);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #94a3b8;
     }
 
     textarea {
-      min-height: 120px;
+      min-height: 126px;
       resize: vertical;
     }
 
-    input[readonly] {
-      background: #f8fafc;
-      color: #0f2b57;
-      font-weight: 700;
+    .generated {
+      background: #fffdf5;
+      border-color: #e8d394;
+      color: var(--primary-strong);
+      font-weight: 800;
+    }
+
+    .generated:focus {
+      box-shadow: none;
+      border-color: #e8d394;
     }
 
     .field-inline {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 140px;
-      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 12px;
       align-items: end;
     }
 
     .field-inline-3 {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 120px 120px;
-      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) 120px 130px;
+      gap: 12px;
       align-items: end;
     }
 
-    .stat-strip {
+    .field-inline-4 {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .mini-stat {
-      background: rgba(15, 43, 87, 0.05);
-      border: 1px solid rgba(15, 43, 87, 0.08);
-      border-radius: 20px;
-      padding: 16px 18px;
-    }
-
-    .mini-stat .name {
-      display: block;
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 8px;
-    }
-
-    .mini-stat .value {
-      display: block;
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--primary);
-    }
-
-    .repeat-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .repeat-row {
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      background: rgba(255, 255, 255, 0.84);
-      border-radius: 24px;
-      padding: 18px;
-    }
-
-    .repeat-row-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      grid-template-columns: minmax(0, 1fr) 120px 130px 150px;
       gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .repeat-row-title {
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-
-    .row-grid-lot {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: 1.15fr 1fr 0.8fr 0.9fr 1fr 0.8fr;
-    }
-
-    .row-grid-expense {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: 1.15fr 0.95fr 0.8fr 0.95fr 0.95fr;
-      margin-bottom: 14px;
-    }
-
-    .lot-assignments {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding-top: 2px;
-    }
-
-    .choice-chip {
-      position: relative;
-    }
-
-    .choice-chip input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .choice-chip span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 40px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(241, 245, 249, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      color: #23406d;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.18s ease;
-    }
-
-    .choice-chip input:checked + span {
-      background: rgba(244, 180, 0, 0.16);
-      border-color: rgba(244, 180, 0, 0.6);
-      color: #8a5d00;
-      box-shadow: 0 8px 18px rgba(244, 180, 0, 0.12);
+      align-items: end;
     }
 
     .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
       margin-top: 18px;
     }
 
     .toolbar-left,
-    .toolbar-right {
+    .toolbar-right,
+    .actions-row {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -388,9 +389,10 @@
       border: none;
       cursor: pointer;
       border-radius: 999px;
-      padding: 13px 18px;
+      padding: 12px 18px;
       font-weight: 800;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+      letter-spacing: 0.01em;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
 
     .btn:hover {
@@ -398,196 +400,277 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ffcf5a);
-      color: #5f4200;
-      box-shadow: 0 16px 30px rgba(244, 180, 0, 0.22);
+      background: linear-gradient(135deg, #efb109, #ffcf58);
+      color: #634500;
+      box-shadow: 0 14px 30px rgba(227, 165, 0, 0.22);
     }
 
     .btn-secondary {
-      background: rgba(15, 43, 87, 0.08);
+      background: rgba(23, 55, 101, 0.08);
       color: var(--primary);
+      border: 1px solid rgba(23, 55, 101, 0.08);
     }
 
     .btn-ghost {
-      background: rgba(255, 255, 255, 0.9);
+      background: #ffffff;
       color: var(--primary);
-      border: 1px solid rgba(15, 43, 87, 0.12);
+      border: 1px solid var(--line);
     }
 
     .btn-danger {
-      background: rgba(239, 68, 68, 0.08);
+      background: var(--danger-soft);
       color: var(--danger);
-      padding: 10px 14px;
-      border-radius: 14px;
+      border: 1px solid #f3c7c7;
     }
 
-    .results {
-      position: sticky;
-      bottom: 18px;
-      background: linear-gradient(160deg, #0f2b57 0%, #102448 60%, #0b1b35 100%);
-      color: white;
-      border-radius: 32px;
-      padding: 28px;
-      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.25);
-      overflow: hidden;
-    }
-
-    .results::before {
-      content: "";
-      position: absolute;
-      inset: auto auto -90px -90px;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(244, 180, 0, 0.24), transparent 70%);
-      pointer-events: none;
-    }
-
-    .results-header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-      z-index: 1;
-    }
-
-    .results-title {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .results-title .section-icon {
-      background: linear-gradient(135deg, rgba(244, 180, 0, 0.18), rgba(244, 180, 0, 0.85));
-      color: white;
-    }
-
-    .results-title h2,
-    .results-title p {
-      margin: 0;
-    }
-
-    .results-title p {
-      color: rgba(255, 255, 255, 0.72);
-      margin-top: 6px;
-      font-size: 0.95rem;
-    }
-
-    .result-grid {
-      position: relative;
-      z-index: 1;
+    .summary-grid,
+    .stats-grid,
+    .results-grid,
+    .formula-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin-bottom: 22px;
     }
 
-    .result-card {
-      border-radius: 24px;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-height: 132px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      backdrop-filter: blur(10px);
+    .summary-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
     }
 
-    .result-card.highlight {
-      background: linear-gradient(145deg, rgba(244, 180, 0, 0.95), rgba(212, 148, 0, 0.95));
-      color: white;
-      box-shadow: 0 20px 40px rgba(244, 180, 0, 0.18);
+    .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    .results-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .formula-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .summary-card .name,
+    .stat-card .name,
     .result-card .name {
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
       font-weight: 700;
+      color: var(--muted);
     }
 
-    .result-card.highlight .name {
-      color: rgba(255, 255, 255, 0.92);
+    .summary-card .value,
+    .stat-card .value,
+    .result-card .value {
+      display: block;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--primary-strong);
+    }
+
+    .summary-card .value,
+    .stat-card .value {
+      font-size: 1.28rem;
     }
 
     .result-card .value {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      text-align: right;
-      word-break: break-word;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
     }
 
-    .result-meta {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+    .result-card {
+      min-height: 142px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
-    .result-meta .mini-stat {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.06);
+    .result-card.highlight {
+      background: linear-gradient(145deg, #173765 0%, #102a50 100%);
+      border-color: rgba(16, 42, 80, 0.2);
+      box-shadow: 0 18px 36px rgba(16, 42, 80, 0.18);
     }
 
-    .result-meta .mini-stat .name {
-      color: rgba(255, 255, 255, 0.62);
-    }
-
-    .result-meta .mini-stat .value {
-      color: white;
-    }
-
-    .footer-note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .text-right {
-      text-align: right;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .spacer-top {
-      margin-top: 14px;
+    .result-card.highlight .name,
+    .result-card.highlight .value {
+      color: #ffffff;
     }
 
     .positive {
-      color: #16a34a !important;
+      color: var(--success) !important;
     }
 
     .negative {
-      color: #ef4444 !important;
+      color: var(--danger) !important;
     }
 
-    .results .positive,
-    .results .negative {
-      color: white !important;
+    .result-card.highlight .positive,
+    .result-card.highlight .negative {
+      color: #ffffff !important;
     }
 
-    @media (max-width: 1100px) {
-      .grid-3,
+    .repeat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .repeat-row {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      padding: 20px;
+    }
+
+    .repeat-row-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #edf1f7;
+    }
+
+    .repeat-row-title {
+      font-size: 1.02rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .row-grid-lot {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .row-grid-expense {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .assignments {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .chip {
+      position: relative;
+    }
+
+    .chip input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chip span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #f8fbff;
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .chip input:checked + span {
+      background: var(--accent-soft);
+      border-color: #efd27f;
+      color: #8f6300;
+      box-shadow: 0 12px 24px rgba(227, 165, 0, 0.12);
+    }
+
+    .callout,
+    .formula-card {
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .callout {
+      background: #f8fbff;
+      border: 1px solid #d9e6f7;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-strong);
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .formula-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+
+    .formula-card h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--primary-strong);
+    }
+
+    .formula-list,
+    .bullet-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .formula-list li,
+    .bullet-list li {
+      margin-bottom: 8px;
+      font-size: 0.94rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e8eef6;
+      margin: 18px 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 1180px) {
       .grid-4,
-      .grid-2,
-      .result-grid,
-      .result-meta,
-      .stat-strip {
+      .summary-grid,
+      .stats-grid,
+      .results-grid,
+      .legend,
+      .formula-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+    }
 
+    @media (max-width: 900px) {
+      .grid-3,
+      .grid-2,
       .row-grid-lot,
-      .row-grid-expense {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .row-grid-expense,
+      .field-inline,
+      .field-inline-3,
+      .field-inline-4,
+      .summary-grid,
+      .stats-grid,
+      .results-grid,
+      .legend,
+      .formula-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -598,26 +681,9 @@
 
       .hero,
       .card,
-      .results {
+      .repeat-row {
         border-radius: 24px;
         padding: 20px;
-      }
-
-      .grid-3,
-      .grid-4,
-      .grid-2,
-      .result-grid,
-      .result-meta,
-      .stat-strip,
-      .row-grid-lot,
-      .row-grid-expense,
-      .field-inline,
-      .field-inline-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .results {
-        position: static;
       }
     }
   </style>
@@ -626,39 +692,77 @@
   <div class="app">
     <header class="hero">
       <div class="hero-top">
-        <div class="pill">Single file HTML + CSS + JS</div>
-        <div class="pill">Compatible GitHub Pages</div>
+        <div class="actions-row">
+          <span class="pill">Single file HTML + CSS + JS</span>
+          <span class="pill">Compatible GitHub Pages</span>
+          <span class="pill">Calcul automatique</span>
+        </div>
       </div>
+
       <h1>Simulateur d'opération immobilière</h1>
       <p>
-        Un simulateur autonome, moderne et prêt pour un hébergement statique. Tous les calculs sont faits côté navigateur,
-        sans backend ni build step.
+        Cette version est pensée pour être beaucoup plus claire à remplir : les champs à compléter sont visuellement séparés
+        des champs calculés, les pourcentages sont indiqués explicitement, chaque zone a un exemple, et le bloc résultat est
+        placé à la fin de la page pour ne plus masquer le formulaire.
       </p>
+
+      <div class="legend">
+        <div class="legend-card">
+          <strong>Champs à compléter</strong>
+          <p>Ils portent le badge « Saisie utilisateur ». Ce sont les valeurs de ton opération réelle.</p>
+        </div>
+        <div class="legend-card">
+          <strong>Champs calculés</strong>
+          <p>Ils portent le badge « Calcul automatique ». Ils sont en lecture seule et se mettent à jour dès qu'une valeur change.</p>
+        </div>
+        <div class="legend-card">
+          <strong>Pourcentages</strong>
+          <p>Les taux TVA, l'apport, les frais d'acquisition, la pondération, l'intérêt, la commission et l'hypothèque sont des pourcentages.</p>
+        </div>
+      </div>
     </header>
 
     <main class="layout">
       <section class="card">
-        <div class="section-header">
+        <div class="section-head">
           <div class="section-title">
             <div class="section-icon">01</div>
             <div>
               <h2>Informations du projet</h2>
-              <p>Contexte général de l'opération.</p>
+              <p>Contexte général. Ces champs sont libres et servent à documenter ton opération.</p>
             </div>
           </div>
         </div>
 
+        <p class="intro-copy">
+          Commence par décrire l'opération. Tu peux ensuite passer à l'achat, aux lots, aux dépenses et au financement.
+          Tout ce qui est saisi ici est sauvegardé automatiquement dans le navigateur.
+        </p>
+
         <div class="grid grid-3">
-          <div class="field">
-            <label for="projectName">Nom du projet</label>
-            <input id="projectName" type="text" placeholder="Ex : Marchand de biens - Marseille" />
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="projectName">Nom du projet</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input id="projectName" type="text" placeholder="Ex : Division de 2 appartements - Marseille" />
+            <div class="hint">Donne un nom simple et identifiable à l'opération.</div>
           </div>
-          <div class="field">
-            <label for="projectAddress">Adresse</label>
-            <input id="projectAddress" type="text" placeholder="Ex : 12 rue Exemple, Marseille" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="projectAddress">Adresse</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input id="projectAddress" type="text" placeholder="Ex : 12 rue des Oliviers, 13006 Marseille" />
+            <div class="hint">Adresse réelle ou adresse de travail si tu n'as pas encore l'adresse définitive.</div>
           </div>
-          <div class="field">
-            <label for="operationType">Type d'opération</label>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="operationType">Type d'opération</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
             <select id="operationType">
               <option value="achat-revente">Achat / Revente</option>
               <option value="division">Division</option>
@@ -666,276 +770,463 @@
               <option value="promotion">Promotion</option>
               <option value="autre">Autre</option>
             </select>
+            <div class="hint">Choisis la catégorie qui se rapproche le plus de ton projet.</div>
           </div>
         </div>
 
-        <div class="field spacer-top">
-          <label for="projectNotes">Notes du projet</label>
-          <textarea id="projectNotes" placeholder="Hypothèses, contraintes, stratégie de revente, notes de fiscalité, etc."></textarea>
+        <div class="field field-box" style="margin-top: 18px;">
+          <div class="label-row">
+            <label for="projectNotes">Notes du projet</label>
+            <span class="tag tag-input">Saisie utilisateur</span>
+          </div>
+          <textarea id="projectNotes" placeholder="Ex : Achat d'un immeuble, division en 2 lots, travaux légers, revente sous 12 mois, marge visée 15 %." ></textarea>
+          <div class="hint">Utilise cet espace pour noter tes hypothèses, contraintes, risques, stratégie de revente et points fiscaux.</div>
         </div>
       </section>
 
       <section class="card">
-        <div class="section-header">
+        <div class="section-head">
           <div class="section-title">
-            <div class="section-icon">€</div>
+            <div class="section-icon">02</div>
             <div>
               <h2>Achat</h2>
-              <p>Coût d'acquisition, base de calcul et total d'achat.</p>
+              <p>Tu saisis le coût de départ. Le simulateur calcule ensuite le FAI, les frais d'acquisition et le total achat.</p>
             </div>
           </div>
         </div>
 
         <div class="grid grid-2">
-          <div class="field">
-            <label for="netSellerPrice">Prix net vendeur</label>
-            <input id="netSellerPrice" type="number" min="0" step="0.01" value="0" />
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="netSellerPrice">Prix net vendeur</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input id="netSellerPrice" type="number" min="0" step="0.01" placeholder="Ex : 220000" />
+            <div class="hint">Prix du bien hors frais d'agence. Saisis le montant en euros.</div>
           </div>
-          <div class="field">
-            <label for="agencyFees">Frais d'agence</label>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="agencyFees">Frais d'agence</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
             <div class="field-inline">
-              <input id="agencyFees" type="number" min="0" step="0.01" value="0" />
+              <input id="agencyFees" type="number" min="0" step="0.01" placeholder="Ex : 12000" />
               <select id="agencyFeePayer">
                 <option value="buyer">À charge acquéreur</option>
                 <option value="seller">À charge vendeur</option>
               </select>
             </div>
+            <div class="hint">Indique le montant des honoraires d'agence puis précise qui les supporte. Cela change la base des frais d'acquisition.</div>
           </div>
-          <div class="field">
-            <label for="faiPrice">Prix FAI</label>
-            <input id="faiPrice" type="text" readonly />
-          </div>
-          <div class="field">
-            <label for="acquisitionRate">Frais d'acquisition</label>
-            <div class="field-inline">
-              <input id="acquisitionFees" type="text" readonly />
-              <input id="acquisitionRate" type="number" min="0" step="0.01" value="3" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="faiPrice">Prix FAI</label>
+              <span class="tag tag-auto">Calcul automatique</span>
             </div>
-            <div class="hint">Base utilisée : net vendeur si les frais d'agence sont à charge acquéreur, sinon prix FAI.</div>
+            <input id="faiPrice" class="generated" type="text" readonly placeholder="Calculé automatiquement" />
+            <div class="hint">FAI = Prix net vendeur + frais d'agence.</div>
+          </div>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label for="acquisitionRate">Frais d'acquisition (%)</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <div class="field-inline">
+              <input id="acquisitionRate" type="number" min="0" step="0.01" placeholder="Ex : 3" value="3" />
+              <input id="acquisitionFees" class="generated" type="text" readonly placeholder="Calcul automatique" />
+            </div>
+            <div class="hint">Oui, c'est bien un pourcentage. Le montant calculé apparaît à droite.</div>
           </div>
         </div>
 
-        <div class="stat-strip">
-          <div class="mini-stat">
+        <div class="summary-grid">
+          <div class="summary-card">
             <span class="name">Base frais d'acquisition</span>
             <span class="value" id="acquisitionBaseDisplay">0 €</span>
           </div>
-          <div class="mini-stat">
+          <div class="summary-card">
             <span class="name">Prix FAI</span>
             <span class="value" id="purchaseFaiDisplay">0 €</span>
           </div>
-          <div class="mini-stat">
+          <div class="summary-card">
             <span class="name">Frais d'acquisition</span>
             <span class="value" id="purchaseAcqDisplay">0 €</span>
           </div>
-          <div class="mini-stat">
-            <span class="name">Coût total d'achat</span>
+          <div class="summary-card">
+            <span class="name">Coût total achat</span>
             <span class="value" id="purchaseTotalDisplay">0 €</span>
           </div>
         </div>
+
+        <div class="callout" style="margin-top: 18px;">
+          <strong>Base utilisée pour les frais d'acquisition</strong>
+          <p>
+            Si les frais d'agence sont à charge acquéreur, la base retenue est le prix net vendeur. S'ils sont à charge vendeur,
+            la base retenue est le prix FAI.
+          </p>
+        </div>
       </section>
 
       <section class="card">
-        <div class="section-header">
+        <div class="section-head">
           <div class="section-title">
-            <div class="section-icon">L</div>
+            <div class="section-icon">03</div>
             <div>
-              <h2>Lots</h2>
-              <p>Prix de revente, surface, TVA sur vente et pondération.</p>
+              <h2>Lots à la revente</h2>
+              <p>Chaque lot représente une sortie potentielle. Le prix de revente est traité comme un prix TTC.</p>
             </div>
-          </div>
-        </div>
-
-        <div id="lotsContainer" class="repeat-list"></div>
-
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <button id="addLotBtn" class="btn btn-primary" type="button">+ Ajouter un lot</button>
           </div>
           <div class="toolbar-right">
-            <div class="mini-stat">
-              <span class="name">Total ventes pondérées</span>
-              <span class="value" id="lotsTotalDisplay">0 €</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-header">
-          <div class="section-title">
-            <div class="section-icon">D</div>
-            <div>
-              <h2>Dépenses</h2>
-              <p>Travaux, honoraires, coûts de structure et TVA déductible.</p>
-            </div>
+            <button id="addLotBtn" class="btn btn-primary" type="button">Ajouter un lot</button>
           </div>
         </div>
 
-        <div id="expensesContainer" class="repeat-list"></div>
-
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <button id="addExpenseBtn" class="btn btn-primary" type="button">+ Ajouter une dépense</button>
-          </div>
-          <div class="toolbar-right">
-            <div class="mini-stat">
-              <span class="name">Total dépenses TTC</span>
-              <span class="value" id="expensesTotalDisplay">0 €</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-header">
-          <div class="section-title">
-            <div class="section-icon">F</div>
-            <div>
-              <h2>Financement</h2>
-              <p>Apport, crédit, intérêts, commission, hypothèque et frais de dossier.</p>
-            </div>
-          </div>
+        <div class="callout">
+          <strong>Comment remplir un lot</strong>
+          <p>
+            Saisis la désignation, le prix de revente TTC, la surface, le régime de TVA sur vente et une pondération. La pondération est un pourcentage :
+            100 % pour un scénario certain, 80 % pour un scénario plus prudent, etc.
+          </p>
         </div>
 
-        <div class="grid grid-2">
-          <div class="field-stack">
-            <div class="field">
-              <label for="downPaymentPercent">Apport</label>
-              <div class="field-inline">
-                <input id="downPaymentAmount" type="text" readonly />
-                <input id="downPaymentPercent" type="number" min="0" step="0.01" value="20" />
-              </div>
-            </div>
+        <div id="lotsContainer" class="repeat-list" style="margin-top: 18px;"></div>
 
-            <div class="field">
-              <label for="commitmentRate">Commission d'engagement</label>
-              <div class="field-inline-3">
-                <input id="commitmentAmount" type="text" readonly />
-                <input id="commitmentRate" type="number" min="0" step="0.01" value="1" />
-                <input id="commitmentMonths" type="number" min="0" step="1" value="12" />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="fileFees">Frais de dossier</label>
-              <input id="fileFees" type="number" min="0" step="0.01" value="3000" />
-            </div>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="name">Total ventes pondérées</span>
+            <span class="value" id="lotsTotalDisplay">0 €</span>
           </div>
-
-          <div class="field-stack">
-            <div class="field">
-              <label for="interestRate">Intérêts d'emprunt</label>
-              <div class="field-inline-3">
-                <input id="interestAmount" type="text" readonly />
-                <input id="interestRate" type="number" min="0" step="0.01" value="7" />
-                <input id="interestMonths" type="number" min="0" step="1" value="12" />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="mortgageRate">Hypothèque</label>
-              <div class="field-inline">
-                <input id="mortgageAmount" type="text" readonly />
-                <input id="mortgageRate" type="number" min="0" step="0.01" value="1" />
-              </div>
-            </div>
-
-            <div class="mini-stat">
-              <span class="name">Montant emprunté estimé</span>
-              <span class="value" id="loanAmountDisplay">0 €</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="stat-strip">
-          <div class="mini-stat">
-            <span class="name">Apport estimé</span>
-            <span class="value" id="financeDownDisplay">0 €</span>
-          </div>
-          <div class="mini-stat">
-            <span class="name">Intérêts</span>
-            <span class="value" id="financeInterestDisplay">0 €</span>
-          </div>
-          <div class="mini-stat">
-            <span class="name">Autres frais de financement</span>
-            <span class="value" id="financeOtherDisplay">0 €</span>
-          </div>
-          <div class="mini-stat">
-            <span class="name">Coût total financement</span>
-            <span class="value" id="financeTotalDisplay">0 €</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="results">
-        <div class="results-header">
-          <div class="results-title">
-            <div class="section-icon">✓</div>
-            <div>
-              <h2>Résultat</h2>
-              <p>Le simulateur recalcule automatiquement dès que vous modifiez une valeur.</p>
-            </div>
-          </div>
-          <button id="calculateBtn" class="btn btn-primary" type="button">Calculer le résultat</button>
-        </div>
-
-        <div class="result-grid">
-          <div class="result-card">
-            <div class="name">Chiffre d'affaires</div>
-            <div class="value" id="resultRevenue">0 €</div>
-          </div>
-          <div class="result-card">
-            <div class="name">Coût total</div>
-            <div class="value" id="resultTotalCost">0 €</div>
-          </div>
-          <div class="result-card">
-            <div class="name">Marge</div>
-            <div class="value" id="resultMargin">0 €</div>
-          </div>
-          <div class="result-card">
-            <div class="name">TVA nette</div>
-            <div class="value" id="resultVat">0 €</div>
-          </div>
-          <div class="result-card">
-            <div class="name">Marge nette de TVA</div>
-            <div class="value" id="resultNetMargin">0 €</div>
-          </div>
-          <div class="result-card highlight">
-            <div class="name">Rentabilité</div>
-            <div class="value" id="resultProfitability">0 %</div>
-          </div>
-        </div>
-
-        <div class="result-meta">
-          <div class="mini-stat">
-            <span class="name">TVA collectée ventes</span>
+          <div class="summary-card">
+            <span class="name">TVA collectée sur ventes</span>
             <span class="value" id="salesVatDisplay">0 €</span>
           </div>
-          <div class="mini-stat">
-            <span class="name">TVA déductible dépenses</span>
-            <span class="value" id="expenseVatDisplay">0 €</span>
-          </div>
-          <div class="mini-stat">
+          <div class="summary-card">
             <span class="name">Nombre de lots</span>
             <span class="value" id="lotsCountDisplay">0</span>
           </div>
-          <div class="mini-stat">
+          <div class="summary-card">
+            <span class="name">Prix moyen pondéré au m²</span>
+            <span class="value" id="avgPricePerSqmDisplay">0 €</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title">
+            <div class="section-icon">04</div>
+            <div>
+              <h2>Dépenses</h2>
+              <p>Tu saisis les dépenses HT et leur TVA. Le simulateur calcule la TVA déductible et le TTC.</p>
+            </div>
+          </div>
+          <div class="toolbar-right">
+            <button id="addExpenseBtn" class="btn btn-primary" type="button">Ajouter une dépense</button>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Conseil pratique</strong>
+          <p>
+            N'oublie pas les travaux, honoraires, diagnostics, assurance, commercialisation, charges, frais juridiques et autres coûts de structure.
+            Une simulation réaliste dépend surtout de l'exhaustivité des dépenses.
+          </p>
+        </div>
+
+        <div id="expensesContainer" class="repeat-list" style="margin-top: 18px;"></div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="name">Total dépenses HT</span>
+            <span class="value" id="expensesHtDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
+            <span class="name">TVA déductible dépenses</span>
+            <span class="value" id="expenseVatDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
+            <span class="name">Total dépenses TTC</span>
+            <span class="value" id="expensesTotalDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
             <span class="name">Nombre de dépenses</span>
             <span class="value" id="expensesCountDisplay">0</span>
           </div>
         </div>
       </section>
 
-      <div class="footer-note">
-        Hypothèses intégrées dans cette version : le prix de revente d'un lot est considéré TTC, la TVA sur vente est calculée selon le taux choisi sur le lot,
-        et la TVA nette correspond à la TVA collectée moins la TVA déductible des dépenses. Les frais de financement sont estimés sur le montant emprunté calculé à partir du coût d'achat + dépenses, diminué de l'apport.
-      </div>
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title">
+            <div class="section-icon">05</div>
+            <div>
+              <h2>Financement</h2>
+              <p>Presque tous les champs de cette section sont des pourcentages. Les montants correspondants sont calculés automatiquement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Oui : ces champs sont des pourcentages</strong>
+          <p>
+            Apport (%), intérêt annuel (%), commission d'engagement (%), hypothèque (%) et taux TVA sont saisis en pourcentage.
+            Les durées sont saisies en mois. Les montants calculés apparaissent toujours dans les champs en lecture seule.
+          </p>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 18px;">
+          <div class="stack">
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="downPaymentPercent">Apport (%)</label>
+                <span class="tag tag-input">Saisie utilisateur</span>
+              </div>
+              <div class="field-inline">
+                <input id="downPaymentPercent" type="number" min="0" step="0.01" placeholder="Ex : 20" value="20" />
+                <input id="downPaymentAmount" class="generated" type="text" readonly placeholder="Montant calculé" />
+              </div>
+              <div class="hint">Pourcentage d'apport personnel. Le montant d'apport calculé apparaît à droite.</div>
+            </div>
+
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="interestRate">Intérêt annuel (%)</label>
+                <span class="tag tag-input">Saisie utilisateur</span>
+              </div>
+              <div class="field-inline-3">
+                <input id="interestRate" type="number" min="0" step="0.01" placeholder="Ex : 7" value="7" />
+                <input id="interestMonths" type="number" min="0" step="1" placeholder="Ex : 12" value="12" />
+                <input id="interestAmount" class="generated" type="text" readonly placeholder="Montant calculé" />
+              </div>
+              <div class="hint">De gauche à droite : taux annuel, durée en mois, puis montant des intérêts calculé.</div>
+            </div>
+
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="commitmentRate">Commission d'engagement (%)</label>
+                <span class="tag tag-input">Saisie utilisateur</span>
+              </div>
+              <div class="field-inline-3">
+                <input id="commitmentRate" type="number" min="0" step="0.01" placeholder="Ex : 1" value="1" />
+                <input id="commitmentMonths" type="number" min="0" step="1" placeholder="Ex : 12" value="12" />
+                <input id="commitmentAmount" class="generated" type="text" readonly placeholder="Montant calculé" />
+              </div>
+              <div class="hint">Commission annualisée sur la durée saisie. Si chez toi c'est un forfait, tu pourras facilement changer la formule.</div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="mortgageRate">Hypothèque (%)</label>
+                <span class="tag tag-input">Saisie utilisateur</span>
+              </div>
+              <div class="field-inline">
+                <input id="mortgageRate" type="number" min="0" step="0.01" placeholder="Ex : 1" value="1" />
+                <input id="mortgageAmount" class="generated" type="text" readonly placeholder="Montant calculé" />
+              </div>
+              <div class="hint">Pourcentage appliqué au montant emprunté estimé.</div>
+            </div>
+
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="fileFees">Frais de dossier</label>
+                <span class="tag tag-input">Saisie utilisateur</span>
+              </div>
+              <input id="fileFees" type="number" min="0" step="0.01" placeholder="Ex : 3000" value="3000" />
+              <div class="hint">Montant fixe ajouté aux frais de financement.</div>
+            </div>
+
+            <div class="field field-box">
+              <div class="label-row">
+                <label for="loanAmount">Montant emprunté estimé</label>
+                <span class="tag tag-auto">Calcul automatique</span>
+              </div>
+              <input id="loanAmount" class="generated" type="text" readonly placeholder="Calcul automatique" />
+              <div class="hint">Montant financé après déduction de l'apport, sur la base achat + dépenses TTC.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="name">Apport estimé</span>
+            <span class="value" id="financeDownDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
+            <span class="name">Intérêts</span>
+            <span class="value" id="financeInterestDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
+            <span class="name">Autres frais financement</span>
+            <span class="value" id="financeOtherDisplay">0 €</span>
+          </div>
+          <div class="summary-card">
+            <span class="name">Coût total financement</span>
+            <span class="value" id="financeTotalDisplay">0 €</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title">
+            <div class="section-icon">06</div>
+            <div>
+              <h2>Actions rapides</h2>
+              <p>Pour tester le formulaire plus vite, tu peux charger un exemple réaliste ou repartir de zéro.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button id="loadExampleBtn" class="btn btn-primary" type="button">Charger un exemple réaliste</button>
+          <button id="recalculateBtn" class="btn btn-secondary" type="button">Recalculer</button>
+          <button id="resetBtn" class="btn btn-ghost" type="button">Réinitialiser le formulaire</button>
+        </div>
+
+        <div class="small-note" style="margin-top: 12px;">
+          L'exemple charge un cas simple d'achat / revente avec 2 lots, plusieurs dépenses et un financement sur 12 mois.
+        </div>
+      </section>
+
+      <section class="card" id="resultsSection">
+        <div class="section-head">
+          <div class="section-title">
+            <div class="section-icon">07</div>
+            <div>
+              <h2>Résultat final</h2>
+              <p>Le résultat est maintenant en bas de la page, donc il ne recouvre plus le formulaire.</p>
+            </div>
+          </div>
+          <span class="tag tag-auto">Bloc non fixe</span>
+        </div>
+
+        <p class="intro-copy">
+          Les indicateurs ci-dessous sont recalculés automatiquement. La marge nette après TVA correspond ici à : marge brute - TVA nette à reverser.
+        </p>
+
+        <div class="results-grid" style="margin-top: 18px;">
+          <div class="result-card">
+            <span class="name">Chiffre d'affaires pondéré</span>
+            <span class="value" id="resultRevenue">0 €</span>
+          </div>
+          <div class="result-card">
+            <span class="name">Coût total projet</span>
+            <span class="value" id="resultTotalCost">0 €</span>
+          </div>
+          <div class="result-card">
+            <span class="name">Marge brute</span>
+            <span class="value" id="resultMargin">0 €</span>
+          </div>
+          <div class="result-card">
+            <span class="name">TVA nette</span>
+            <span class="value" id="resultVat">0 €</span>
+          </div>
+          <div class="result-card">
+            <span class="name">Marge nette après TVA</span>
+            <span class="value" id="resultNetMargin">0 €</span>
+          </div>
+          <div class="result-card highlight">
+            <span class="name">Rentabilité</span>
+            <span class="value" id="resultProfitability">0 %</span>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 18px;">
+          <div class="stat-card">
+            <span class="name">Achat total</span>
+            <span class="value" id="resultPurchaseTotal">0 €</span>
+          </div>
+          <div class="stat-card">
+            <span class="name">Dépenses TTC</span>
+            <span class="value" id="resultExpensesTotal">0 €</span>
+          </div>
+          <div class="stat-card">
+            <span class="name">Financement total</span>
+            <span class="value" id="resultFinancingTotal">0 €</span>
+          </div>
+          <div class="stat-card">
+            <span class="name">Montant emprunté</span>
+            <span class="value" id="resultLoanAmount">0 €</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div class="section-title">
+            <div class="section-icon">08</div>
+            <div>
+              <h2>Formules et hypothèses utilisées</h2>
+              <p>Je les ai rendues visibles pour que le formulaire soit plus compréhensible et plus facile à ajuster ensuite.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-grid">
+          <div class="formula-card">
+            <h3>Achat</h3>
+            <ul class="formula-list">
+              <li>Prix FAI = Prix net vendeur + frais d'agence</li>
+              <li>Base frais acquisition = Net vendeur si agence à charge acquéreur, sinon Prix FAI</li>
+              <li>Frais acquisition = Base × taux (%)</li>
+              <li>Coût total achat = Prix FAI + frais acquisition</li>
+            </ul>
+          </div>
+
+          <div class="formula-card">
+            <h3>Lots</h3>
+            <ul class="formula-list">
+              <li>Revenu pondéré lot = Prix de revente TTC × pondération (%)</li>
+              <li>Prix au m² = Prix de revente TTC / surface</li>
+              <li>TVA vente = extraite du prix TTC selon le taux choisi sur le lot</li>
+            </ul>
+          </div>
+
+          <div class="formula-card">
+            <h3>Dépenses</h3>
+            <ul class="formula-list">
+              <li>TVA dépense = Prix HT × taux TVA (%)</li>
+              <li>Prix TTC dépense = HT + TVA</li>
+              <li>TVA déductible totale = somme des TVA des dépenses</li>
+            </ul>
+          </div>
+
+          <div class="formula-card">
+            <h3>Financement et résultat</h3>
+            <ul class="formula-list">
+              <li>Base financement = Achat total + dépenses TTC</li>
+              <li>Apport = Base financement × apport (%)</li>
+              <li>Emprunt = Base financement - apport</li>
+              <li>Intérêts = Emprunt × taux annuel (%) × durée / 12</li>
+              <li>Commission = Emprunt × taux (%) × durée / 12</li>
+              <li>Hypothèque = Emprunt × taux (%)</li>
+              <li>Coût total projet = Achat total + dépenses TTC + financement total</li>
+              <li>Marge brute = Chiffre d'affaires - coût total projet</li>
+              <li>TVA nette = TVA ventes - TVA dépenses</li>
+              <li>Marge nette après TVA = Marge brute - TVA nette</li>
+              <li>Rentabilité = Marge nette après TVA / coût total projet</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footer-note">
+          Si ta logique métier est différente, par exemple TVA sur marge, commission non annualisée, hypothèque forfaitaire,
+          frais d'acquisition sur une autre base, ou ventilation des dépenses par lot avec impact sur le reporting,
+          le code est structuré pour être modifié facilement dans les fonctions de calcul JavaScript.
+        </div>
+      </section>
     </main>
   </div>
 
   <script>
-    const STORAGE_KEY = 'operation-simulator-v1';
+    const STORAGE_KEY = 'operation-simulator-v2-clear';
     let lotCounter = 0;
     let expenseCounter = 0;
 
@@ -957,32 +1248,40 @@
       lotsContainer: document.getElementById('lotsContainer'),
       addLotBtn: document.getElementById('addLotBtn'),
       lotsTotalDisplay: document.getElementById('lotsTotalDisplay'),
+      avgPricePerSqmDisplay: document.getElementById('avgPricePerSqmDisplay'),
       expensesContainer: document.getElementById('expensesContainer'),
       addExpenseBtn: document.getElementById('addExpenseBtn'),
+      expensesHtDisplay: document.getElementById('expensesHtDisplay'),
       expensesTotalDisplay: document.getElementById('expensesTotalDisplay'),
-      downPaymentAmount: document.getElementById('downPaymentAmount'),
       downPaymentPercent: document.getElementById('downPaymentPercent'),
-      interestAmount: document.getElementById('interestAmount'),
+      downPaymentAmount: document.getElementById('downPaymentAmount'),
       interestRate: document.getElementById('interestRate'),
       interestMonths: document.getElementById('interestMonths'),
-      commitmentAmount: document.getElementById('commitmentAmount'),
+      interestAmount: document.getElementById('interestAmount'),
       commitmentRate: document.getElementById('commitmentRate'),
       commitmentMonths: document.getElementById('commitmentMonths'),
-      mortgageAmount: document.getElementById('mortgageAmount'),
+      commitmentAmount: document.getElementById('commitmentAmount'),
       mortgageRate: document.getElementById('mortgageRate'),
+      mortgageAmount: document.getElementById('mortgageAmount'),
       fileFees: document.getElementById('fileFees'),
-      loanAmountDisplay: document.getElementById('loanAmountDisplay'),
+      loanAmount: document.getElementById('loanAmount'),
       financeDownDisplay: document.getElementById('financeDownDisplay'),
       financeInterestDisplay: document.getElementById('financeInterestDisplay'),
       financeOtherDisplay: document.getElementById('financeOtherDisplay'),
       financeTotalDisplay: document.getElementById('financeTotalDisplay'),
-      calculateBtn: document.getElementById('calculateBtn'),
+      loadExampleBtn: document.getElementById('loadExampleBtn'),
+      recalculateBtn: document.getElementById('recalculateBtn'),
+      resetBtn: document.getElementById('resetBtn'),
       resultRevenue: document.getElementById('resultRevenue'),
       resultTotalCost: document.getElementById('resultTotalCost'),
       resultMargin: document.getElementById('resultMargin'),
       resultVat: document.getElementById('resultVat'),
       resultNetMargin: document.getElementById('resultNetMargin'),
       resultProfitability: document.getElementById('resultProfitability'),
+      resultPurchaseTotal: document.getElementById('resultPurchaseTotal'),
+      resultExpensesTotal: document.getElementById('resultExpensesTotal'),
+      resultFinancingTotal: document.getElementById('resultFinancingTotal'),
+      resultLoanAmount: document.getElementById('resultLoanAmount'),
       salesVatDisplay: document.getElementById('salesVatDisplay'),
       expenseVatDisplay: document.getElementById('expenseVatDisplay'),
       lotsCountDisplay: document.getElementById('lotsCountDisplay'),
@@ -1020,6 +1319,20 @@
       element.textContent = value;
     }
 
+    function safeNumberValue(value, fallback) {
+      const num = parseNumber(value);
+      return Number.isFinite(num) ? num : fallback;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     function getLotRows() {
       return Array.from(el.lotsContainer.querySelectorAll('.lot-row'));
     }
@@ -1034,6 +1347,28 @@
       return customLabel || `Lot n°${index + 1}`;
     }
 
+    function getLotVatRate(vatMode) {
+      switch (vatMode) {
+        case 'full20':
+          return 20;
+        case 'full10':
+          return 10;
+        case 'full55':
+          return 5.5;
+        default:
+          return 0;
+      }
+    }
+
+    function parseSelectedLots(value) {
+      try {
+        const parsed = JSON.parse(value || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
     function addLot(data = {}) {
       lotCounter += 1;
       const row = document.createElement('div');
@@ -1042,42 +1377,90 @@
       row.innerHTML = `
         <div class="repeat-row-head">
           <div class="repeat-row-title">Lot</div>
-          <button class="btn btn-danger" type="button" data-action="remove-lot">Supprimer</button>
+          <button class="btn btn-danger" type="button" data-action="remove-lot">Supprimer le lot</button>
         </div>
+
         <div class="row-grid-lot">
-          <div class="field">
-            <label>Désignation</label>
-            <input type="text" data-field="designation" placeholder="Ex : Maison / Appartement / Garage" value="${escapeHtml(data.designation || '')}" />
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Désignation</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="text" data-field="designation" placeholder="Ex : Appartement T2 / Maison / Garage" value="${escapeHtml(data.designation || '')}" />
+            <div class="hint">Nom commercial ou description du lot.</div>
           </div>
-          <div class="field">
-            <label>Prix de revente</label>
-            <input type="number" min="0" step="0.01" data-field="resalePrice" value="${safeNumberValue(data.resalePrice, 0)}" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Prix de revente TTC</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="number" min="0" step="0.01" data-field="resalePrice" placeholder="Ex : 185000" value="${data.resalePrice !== undefined ? escapeHtml(String(data.resalePrice)) : ''}" />
+            <div class="hint">Prix final de vente envisagé, TTC.</div>
           </div>
-          <div class="field">
-            <label>Surface</label>
-            <input type="number" min="0" step="0.01" data-field="surface" value="${safeNumberValue(data.surface, 0)}" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Surface (m²)</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="number" min="0" step="0.01" data-field="surface" placeholder="Ex : 60" value="${data.surface !== undefined ? escapeHtml(String(data.surface)) : ''}" />
+            <div class="hint">Surface du lot utilisée pour calculer le prix au m².</div>
           </div>
-          <div class="field">
-            <label>Prix au m²</label>
-            <input type="text" data-field="pricePerSqm" readonly />
-          </div>
-          <div class="field">
-            <label>TVA sur vente</label>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>TVA sur vente</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
             <select data-field="vatMode">
               <option value="none">Aucune TVA</option>
-              <option value="full20">TVA intégrale 20%</option>
-              <option value="full10">TVA réduite 10%</option>
-              <option value="full55">TVA réduite 5,5%</option>
+              <option value="full20">TVA intégrale 20 %</option>
+              <option value="full10">TVA réduite 10 %</option>
+              <option value="full55">TVA réduite 5,5 %</option>
             </select>
+            <div class="hint">Sélectionne le régime de TVA à appliquer à ce lot.</div>
           </div>
-          <div class="field">
-            <label>Pondération (%)</label>
-            <input type="number" min="0" step="0.01" data-field="weight" value="${safeNumberValue(data.weight, 100)}" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Pondération (%)</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="number" min="0" step="0.01" data-field="weight" placeholder="Ex : 100" value="${data.weight !== undefined ? escapeHtml(String(data.weight)) : '100'}" />
+            <div class="hint">Oui, c'est un pourcentage. 100 % = scénario certain, 80 % = scénario prudent.</div>
+          </div>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Prix au m²</label>
+              <span class="tag tag-auto">Calcul automatique</span>
+            </div>
+            <input type="text" class="generated" data-field="pricePerSqm" readonly placeholder="Calcul automatique" />
+            <div class="hint">Prix TTC divisé par la surface du lot.</div>
+          </div>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Revenu pondéré</label>
+              <span class="tag tag-auto">Calcul automatique</span>
+            </div>
+            <input type="text" class="generated" data-field="weightedRevenue" readonly placeholder="Calcul automatique" />
+            <div class="hint">Prix de revente TTC multiplié par la pondération.</div>
+          </div>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>TVA vente estimée</label>
+              <span class="tag tag-auto">Calcul automatique</span>
+            </div>
+            <input type="text" class="generated" data-field="vatAmount" readonly placeholder="Calcul automatique" />
+            <div class="hint">TVA extraite du prix TTC selon le régime choisi.</div>
           </div>
         </div>
       `;
 
-      row.querySelector('[data-field="vatMode"]').value = data.vatMode || 'full20';
+      row.querySelector('[data-field="vatMode"]').value = data.vatMode || 'none';
       bindRowAutoUpdate(row);
       el.lotsContainer.appendChild(row);
       updateLotRowHeader();
@@ -1094,39 +1477,68 @@
       row.innerHTML = `
         <div class="repeat-row-head">
           <div class="repeat-row-title">Dépense</div>
-          <button class="btn btn-danger" type="button" data-action="remove-expense">Supprimer</button>
+          <button class="btn btn-danger" type="button" data-action="remove-expense">Supprimer la dépense</button>
         </div>
+
         <div class="row-grid-expense">
-          <div class="field">
-            <label>Nature</label>
-            <input type="text" data-field="nature" placeholder="Ex : Travaux, architecte, assurance" value="${escapeHtml(data.nature || '')}" />
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Nature</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="text" data-field="nature" placeholder="Ex : Travaux / Architecte / Assurance" value="${escapeHtml(data.nature || '')}" />
+            <div class="hint">Nom de la dépense ou du poste de coût.</div>
           </div>
-          <div class="field">
-            <label>Prix HT</label>
-            <input type="number" min="0" step="0.01" data-field="priceHt" value="${safeNumberValue(data.priceHt, 0)}" />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Prix HT</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
+            <input type="number" min="0" step="0.01" data-field="priceHt" placeholder="Ex : 38000" value="${data.priceHt !== undefined ? escapeHtml(String(data.priceHt)) : ''}" />
+            <div class="hint">Montant hors taxes de la dépense.</div>
           </div>
-          <div class="field">
-            <label>Taux de TVA</label>
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Taux TVA (%)</label>
+              <span class="tag tag-input">Saisie utilisateur</span>
+            </div>
             <select data-field="vatRate">
-              <option value="0">0%</option>
-              <option value="5.5">5,5%</option>
-              <option value="10">10%</option>
-              <option value="20">20%</option>
+              <option value="0">0 %</option>
+              <option value="5.5">5,5 %</option>
+              <option value="10">10 %</option>
+              <option value="20">20 %</option>
             </select>
+            <div class="hint">Oui, c'est un pourcentage. Sélectionne le taux applicable à la dépense.</div>
           </div>
-          <div class="field">
-            <label>TVA</label>
-            <input type="text" data-field="vatAmount" readonly />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>TVA</label>
+              <span class="tag tag-auto">Calcul automatique</span>
+            </div>
+            <input type="text" class="generated" data-field="vatAmount" readonly placeholder="Calcul automatique" />
+            <div class="hint">Montant de TVA généré à partir du HT et du taux.</div>
           </div>
-          <div class="field">
-            <label>Prix TTC</label>
-            <input type="text" data-field="priceTtc" readonly />
+
+          <div class="field field-box">
+            <div class="label-row">
+              <label>Prix TTC</label>
+              <span class="tag tag-auto">Calcul automatique</span>
+            </div>
+            <input type="text" class="generated" data-field="priceTtc" readonly placeholder="Calcul automatique" />
+            <div class="hint">Total HT + TVA.</div>
           </div>
         </div>
-        <div class="field">
-          <div class="label">Lot(s) concerné(s)</div>
-          <div class="lot-assignments" data-field="lotAssignments"></div>
-          <div class="hint">Les lots cochés sont mémorisés pour votre suivi. Dans cette version, la dépense est comptée une seule fois dans le total projet.</div>
+
+        <div class="field field-box" style="margin-top: 14px;">
+          <div class="label-row">
+            <span class="plain-label">Lots concernés</span>
+            <span class="tag tag-input">Saisie utilisateur</span>
+          </div>
+          <div class="assignments" data-field="lotAssignments"></div>
+          <div class="hint">Aide au suivi. Dans cette version, la dépense reste comptée une seule fois dans le total projet.</div>
         </div>
       `;
 
@@ -1141,9 +1553,6 @@
       row.addEventListener('input', (event) => {
         if (event.target.closest('[data-field="lotAssignments"]')) return;
         if (row.classList.contains('lot-row')) updateLotRowHeader();
-        if (row.classList.contains('expense-row') && event.target.matches('[data-field="nature"]')) {
-          // no-op, only to keep local state and recompute
-        }
         computeAll();
       });
 
@@ -1177,14 +1586,12 @@
 
     function updateLotRowHeader() {
       getLotRows().forEach((row, index) => {
-        const title = row.querySelector('.repeat-row-title');
-        title.textContent = lotLabelFromRow(row, index);
+        row.querySelector('.repeat-row-title').textContent = lotLabelFromRow(row, index);
       });
     }
 
     function refreshExpenseLotOptions() {
-      const lotRows = getLotRows();
-      const lots = lotRows.map((row, index) => ({
+      const lots = getLotRows().map((row, index) => ({
         id: row.dataset.id,
         label: lotLabelFromRow(row, index)
       }));
@@ -1197,7 +1604,7 @@
         if (lots.length === 0) {
           const empty = document.createElement('div');
           empty.className = 'hint';
-          empty.textContent = 'Ajoutez au moins un lot pour attribuer cette dépense.';
+          empty.textContent = 'Ajoute au moins un lot pour pouvoir associer cette dépense.';
           container.appendChild(empty);
           return;
         }
@@ -1207,7 +1614,7 @@
 
         lots.forEach((lot) => {
           const chip = document.createElement('label');
-          chip.className = 'choice-chip';
+          chip.className = 'chip';
           chip.innerHTML = `
             <input type="checkbox" data-lot-id="${lot.id}" ${validSelection.includes(lot.id) ? 'checked' : ''} />
             <span>${escapeHtml(lot.label)}</span>
@@ -1215,28 +1622,6 @@
           container.appendChild(chip);
         });
       });
-    }
-
-    function parseSelectedLots(value) {
-      try {
-        const parsed = JSON.parse(value || '[]');
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function getLotVatRate(vatMode) {
-      switch (vatMode) {
-        case 'full20':
-          return 20;
-        case 'full10':
-          return 10;
-        case 'full55':
-          return 5.5;
-        default:
-          return 0;
-      }
     }
 
     function computePurchase() {
@@ -1262,6 +1647,7 @@
       const rows = getLotRows();
       let totalRevenue = 0;
       let totalSalesVat = 0;
+      let weightedSurface = 0;
 
       rows.forEach((row) => {
         const resalePrice = parseNumber(row.querySelector('[data-field="resalePrice"]').value);
@@ -1274,15 +1660,21 @@
         const vatAmount = vatRate > 0 ? weightedRevenue * (vatRate / (100 + vatRate)) : 0;
 
         row.querySelector('[data-field="pricePerSqm"]').value = surface > 0 ? formatCurrency(pricePerSqm) : '';
+        row.querySelector('[data-field="weightedRevenue"]').value = formatCurrency(weightedRevenue);
+        row.querySelector('[data-field="vatAmount"]').value = formatCurrency(vatAmount);
 
         totalRevenue += weightedRevenue;
         totalSalesVat += vatAmount;
+        weightedSurface += surface * (weight / 100);
       });
 
+      const avgPricePerSqm = weightedSurface > 0 ? totalRevenue / weightedSurface : 0;
       setText(el.lotsTotalDisplay, formatCurrency(totalRevenue));
+      setText(el.salesVatDisplay, formatCurrency(totalSalesVat));
       setText(el.lotsCountDisplay, String(rows.length));
+      setText(el.avgPricePerSqmDisplay, formatCurrency(avgPricePerSqm));
 
-      return { totalRevenue, totalSalesVat, count: rows.length };
+      return { totalRevenue, totalSalesVat, count: rows.length, avgPricePerSqm };
     }
 
     function computeExpenses() {
@@ -1305,6 +1697,8 @@
         totalTtc += priceTtc;
       });
 
+      setText(el.expensesHtDisplay, formatCurrency(totalHt));
+      setText(el.expenseVatDisplay, formatCurrency(totalVat));
       setText(el.expensesTotalDisplay, formatCurrency(totalTtc));
       setText(el.expensesCountDisplay, String(rows.length));
 
@@ -1335,7 +1729,7 @@
       el.interestAmount.value = formatCurrency(interestAmount);
       el.commitmentAmount.value = formatCurrency(commitmentAmount);
       el.mortgageAmount.value = formatCurrency(mortgageAmount);
-      setText(el.loanAmountDisplay, formatCurrency(loanAmount));
+      el.loanAmount.value = formatCurrency(loanAmount);
       setText(el.financeDownDisplay, formatCurrency(downPaymentAmount));
       setText(el.financeInterestDisplay, formatCurrency(interestAmount));
       setText(el.financeOtherDisplay, formatCurrency(otherCosts));
@@ -1359,11 +1753,11 @@
       };
     }
 
-    function applySignedStyle(element, value, asPercent = false) {
+    function applySignedStyle(element, value, isPercent = false) {
       element.classList.remove('positive', 'negative');
       if (value > 0) element.classList.add('positive');
       if (value < 0) element.classList.add('negative');
-      element.textContent = asPercent ? formatPercent(value) : formatCurrency(value);
+      element.textContent = isPercent ? formatPercent(value) : formatCurrency(value);
     }
 
     function computeAll() {
@@ -1385,8 +1779,10 @@
       applySignedStyle(el.resultVat, vatNet);
       applySignedStyle(el.resultNetMargin, netMargin);
       applySignedStyle(el.resultProfitability, profitability, true);
-      setText(el.salesVatDisplay, formatCurrency(lots.totalSalesVat));
-      setText(el.expenseVatDisplay, formatCurrency(expenses.totalVat));
+      setText(el.resultPurchaseTotal, formatCurrency(purchase.total));
+      setText(el.resultExpensesTotal, formatCurrency(expenses.totalTtc));
+      setText(el.resultFinancingTotal, formatCurrency(financing.total));
+      setText(el.resultLoanAmount, formatCurrency(financing.loanAmount));
 
       saveState();
 
@@ -1436,61 +1832,161 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
+    function clearRows() {
+      el.lotsContainer.innerHTML = '';
+      el.expensesContainer.innerHTML = '';
+      lotCounter = 0;
+      expenseCounter = 0;
+    }
+
+    function applyState(state) {
+      el.projectName.value = state.project?.name || '';
+      el.projectAddress.value = state.project?.address || '';
+      el.operationType.value = state.project?.type || 'achat-revente';
+      el.projectNotes.value = state.project?.notes || '';
+
+      el.netSellerPrice.value = state.purchase?.netSellerPrice ?? '';
+      el.agencyFees.value = state.purchase?.agencyFees ?? '';
+      el.agencyFeePayer.value = state.purchase?.agencyFeePayer || 'buyer';
+      el.acquisitionRate.value = state.purchase?.acquisitionRate ?? 3;
+
+      el.downPaymentPercent.value = state.financing?.downPaymentPercent ?? 20;
+      el.interestRate.value = state.financing?.interestRate ?? 7;
+      el.interestMonths.value = state.financing?.interestMonths ?? 12;
+      el.commitmentRate.value = state.financing?.commitmentRate ?? 1;
+      el.commitmentMonths.value = state.financing?.commitmentMonths ?? 12;
+      el.mortgageRate.value = state.financing?.mortgageRate ?? 1;
+      el.fileFees.value = state.financing?.fileFees ?? 3000;
+
+      clearRows();
+
+      const lots = Array.isArray(state.lots) && state.lots.length > 0 ? state.lots : [{ designation: '', vatMode: 'none', weight: 100 }];
+      const expenses = Array.isArray(state.expenses) && state.expenses.length > 0 ? state.expenses : [{ nature: '', vatRate: 20 }];
+
+      lots.forEach(addLot);
+      expenses.forEach(addExpense);
+      computeAll();
+    }
+
+    function getExampleState() {
+      return {
+        project: {
+          name: 'Division de 2 lots - Marseille',
+          address: '12 rue des Oliviers, 13006 Marseille',
+          type: 'division',
+          notes: 'Achat d\'un bien à diviser en 2 appartements. Travaux de remise à niveau, revente visée sous 12 mois sur un scénario prudent.'
+        },
+        purchase: {
+          netSellerPrice: 220000,
+          agencyFees: 12000,
+          agencyFeePayer: 'buyer',
+          acquisitionRate: 3
+        },
+        lots: [
+          {
+            designation: 'Appartement T2',
+            resalePrice: 185000,
+            surface: 60,
+            vatMode: 'none',
+            weight: 100
+          },
+          {
+            designation: 'Appartement T3',
+            resalePrice: 172000,
+            surface: 55,
+            vatMode: 'none',
+            weight: 100
+          }
+        ],
+        expenses: [
+          {
+            nature: 'Travaux',
+            priceHt: 38000,
+            vatRate: 20,
+            selectedLots: []
+          },
+          {
+            nature: 'Architecte / maîtrise d\'oeuvre',
+            priceHt: 6000,
+            vatRate: 20,
+            selectedLots: []
+          },
+          {
+            nature: 'Diagnostics / assurance / divers',
+            priceHt: 2500,
+            vatRate: 20,
+            selectedLots: []
+          }
+        ],
+        financing: {
+          downPaymentPercent: 20,
+          interestRate: 7,
+          interestMonths: 12,
+          commitmentRate: 1,
+          commitmentMonths: 12,
+          mortgageRate: 1,
+          fileFees: 3000
+        }
+      };
+    }
+
+    function getDefaultState() {
+      return {
+        project: {
+          name: '',
+          address: '',
+          type: 'achat-revente',
+          notes: ''
+        },
+        purchase: {
+          netSellerPrice: '',
+          agencyFees: '',
+          agencyFeePayer: 'buyer',
+          acquisitionRate: 3
+        },
+        lots: [
+          {
+            designation: '',
+            resalePrice: '',
+            surface: '',
+            vatMode: 'none',
+            weight: 100
+          }
+        ],
+        expenses: [
+          {
+            nature: '',
+            priceHt: '',
+            vatRate: 20,
+            selectedLots: []
+          }
+        ],
+        financing: {
+          downPaymentPercent: 20,
+          interestRate: 7,
+          interestMonths: 12,
+          commitmentRate: 1,
+          commitmentMonths: 12,
+          mortgageRate: 1,
+          fileFees: 3000
+        }
+      };
+    }
+
     function loadState() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) {
-        addLot({ designation: 'Lot n°1', vatMode: 'full20', weight: 100 });
-        addExpense({ nature: 'Travaux', vatRate: 20 });
+        applyState(getDefaultState());
         return;
       }
 
       try {
         const state = JSON.parse(raw);
-        el.projectName.value = state.project?.name || '';
-        el.projectAddress.value = state.project?.address || '';
-        el.operationType.value = state.project?.type || 'achat-revente';
-        el.projectNotes.value = state.project?.notes || '';
-
-        el.netSellerPrice.value = state.purchase?.netSellerPrice ?? 0;
-        el.agencyFees.value = state.purchase?.agencyFees ?? 0;
-        el.agencyFeePayer.value = state.purchase?.agencyFeePayer || 'buyer';
-        el.acquisitionRate.value = state.purchase?.acquisitionRate ?? 3;
-
-        el.downPaymentPercent.value = state.financing?.downPaymentPercent ?? 20;
-        el.interestRate.value = state.financing?.interestRate ?? 7;
-        el.interestMonths.value = state.financing?.interestMonths ?? 12;
-        el.commitmentRate.value = state.financing?.commitmentRate ?? 1;
-        el.commitmentMonths.value = state.financing?.commitmentMonths ?? 12;
-        el.mortgageRate.value = state.financing?.mortgageRate ?? 1;
-        el.fileFees.value = state.financing?.fileFees ?? 3000;
-
-        el.lotsContainer.innerHTML = '';
-        el.expensesContainer.innerHTML = '';
-
-        const lots = Array.isArray(state.lots) && state.lots.length > 0 ? state.lots : [{ designation: 'Lot n°1', vatMode: 'full20', weight: 100 }];
-        const expenses = Array.isArray(state.expenses) && state.expenses.length > 0 ? state.expenses : [{ nature: 'Travaux', vatRate: 20 }];
-
-        lots.forEach(addLot);
-        expenses.forEach(addExpense);
+        applyState(state);
       } catch (error) {
         localStorage.removeItem(STORAGE_KEY);
-        addLot({ designation: 'Lot n°1', vatMode: 'full20', weight: 100 });
-        addExpense({ nature: 'Travaux', vatRate: 20 });
+        applyState(getDefaultState());
       }
-    }
-
-    function safeNumberValue(value, fallback) {
-      const num = parseNumber(value);
-      return Number.isFinite(num) ? num : fallback;
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
     }
 
     function attachGlobalListeners() {
@@ -1515,10 +2011,10 @@
         input.addEventListener('change', computeAll);
       });
 
-      el.addLotBtn.addEventListener('click', () => addLot({ vatMode: 'full20', weight: 100 }));
+      el.addLotBtn.addEventListener('click', () => addLot({ vatMode: 'none', weight: 100 }));
       el.addExpenseBtn.addEventListener('click', () => addExpense({ vatRate: 20 }));
-      el.calculateBtn.addEventListener('click', () => {
-        el.calculateBtn.animate(
+      el.recalculateBtn.addEventListener('click', () => {
+        el.recalculateBtn.animate(
           [
             { transform: 'scale(1)' },
             { transform: 'scale(0.98)' },
@@ -1527,6 +2023,17 @@
           { duration: 180, easing: 'ease-out' }
         );
         computeAll();
+      });
+
+      el.loadExampleBtn.addEventListener('click', () => {
+        applyState(getExampleState());
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      el.resetBtn.addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        applyState(getDefaultState());
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
 
