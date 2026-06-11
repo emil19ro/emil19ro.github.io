@@ -10,28 +10,12 @@
 <script defer src="/assets/fontawesome/js/solid.min.js"></script>
 <script defer src="/assets/fontawesome/js/fontawesome.min.js"></script>
 <script defer src="/assets/fontawesome/js/brands.min.js"></script>
+<!-- Portfolio (projects) feature: standalone CSS + JS, independent of the Tailwind build -->
+<link rel="stylesheet" href="/assets/css/portfolio.css" />
+<script defer src="/assets/js/config.js"></script>
+<script defer src="/assets/js/portfolio.js"></script>
+<!-- Alpine 3 (loaded last so portfolio.js can register its alpine:init listener first) -->
 <script src="/assets/alpineJs/alpine.min.js" defer></script>
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    new Swiper(".swiper", {
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  });
-</script>
 
 </head>
 
@@ -63,7 +47,7 @@
             <h5 class="hover-effect opacity-90 hover:opacity-100">Services</h5>
           </a>
           <a href="#" @click="currentPage = 'simulation'; open = false"
-            :class="{'text-et-orange': currentPage === 'services'}">
+            :class="{'text-et-orange': currentPage === 'simulation'}">
             <h5 class="hover-effect opacity-90 hover:opacity-100">Simulation</h5>
           </a>
           <a href="#" @click="currentPage = 'about'; open = false" :class="{'text-et-orange': currentPage === 'about'}">
@@ -358,876 +342,236 @@
           </div>
         </div>
 
-        <div x-show="currentPage === 'portofolio'" class="flex flex-col gap-4 w-full max-w-4xl mx-auto text-center">
+        <div x-show="currentPage === 'portofolio'" x-data="portfolio" class="pf-wrap"
+          @pf-zoom="openLightbox($event.detail.images, $event.detail.index)">
 
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">HarmonyHub - Music School Web Platform</h4>
-
-              <p class="mb-4">
-                This project is a full-stack web application developed for a local <strong>music school</strong>,
-                offering an elegant and modern online presence. Built with the <strong>MERN stack</strong>
-                (MongoDB, Express, React, Node.js), the platform provides students, parents, and instructors with
-                a smooth and interactive experience.
-              </p>
-
-              <ul class="list-disc ml-5 mb-4">
-                <li><strong>Courses & Scheduling:</strong> Browse available music courses (instrumental, vocal, theory)
-                  and book lessons directly through the platform.</li>
-                <li><strong>Photo Gallery:</strong> A visual collection of classes, events, student recitals, and
-                  behind-the-scenes moments from the school.</li>
-                <li><strong>Teacher Profiles:</strong> Meet the team of experienced instructors with detailed bios,
-                  expertise, and contact options.</li>
-                <li><strong>Student Dashboard:</strong> Personalized portal for students to manage schedules,
-                  track progress, and view upcoming lessons or events.</li>
-                <li><strong>Admin Panel:</strong> Full backend control over courses, student accounts, and content
-                  updates through a secure interface.</li>
-                <li><strong>Secure Authentication:</strong> Account creation and login features for both students
-                  and staff with protected routes and session management.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website67.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website68.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website69.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website70.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website71.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website71.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website73.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website74.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website75.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website76.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website77.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website78.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website79.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website80.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website81.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website82.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website83.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website84.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website85.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website86.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website87.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website88.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-                          <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://www.armoniaacademy.ro/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Armonia Academy
-              </a>
-            </p>
-
-              <!-- Navigation Buttons -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-            <!-- Live Demo Link -->
-            <!-- <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://rimini-mochete.ro/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Rimini Mochete Reghin Romania
-              </a>
-            </p> -->
+          <!-- Admin bar -->
+          <div class="pf-adminbar">
+            <span class="pf-spacer" x-show="isOwner && hasDraft">
+              ● Modificări <strong>nepublicate</strong> — Export JSON &amp; commit pentru a le publica.
+            </span>
+            <template x-if="!isOwner">
+              <button class="pf-btn pf-btn-ghost pf-btn-sm" @click="openLogin()">
+                <i class="fa-solid fa-lock"></i> Admin
+              </button>
+            </template>
+            <template x-if="isOwner">
+              <span style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                <button class="pf-btn pf-btn-primary pf-btn-sm" @click="openAdd()"><i class="fa-solid fa-plus"></i> Adaugă proiect</button>
+                <button class="pf-btn pf-btn-ghost pf-btn-sm" @click="exportJson()" title="Descarcă projects.json"><i class="fa-solid fa-download"></i> Export JSON</button>
+                <button class="pf-btn pf-btn-ghost pf-btn-sm" @click="copyJson()" title="Copiază JSON"><i class="fa-solid fa-copy"></i></button>
+                <button class="pf-btn pf-btn-ghost pf-btn-sm" x-show="hasDraft" @click="resetDraft()" title="Revino la versiunea publicată"><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="pf-btn pf-btn-ghost pf-btn-sm" @click="logout()" title="Ieși din admin"><i class="fa-solid fa-right-from-bracket"></i></button>
+              </span>
+            </template>
           </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">CovorFix - Carpet Repair & Sales Platform</h4>
 
-              <p class="mb-4">
-                This project is a web platform for a local business based in <strong>Reghin, Romania</strong>,
-                specializing in <strong>carpet and rug repair</strong> services, as well as the <strong>sale of new
-                  carpets and rugs</strong>. Built with the <strong>MERN stack</strong> (MongoDB, Express, React,
-                Node.js), the platform offers a modern and user-friendly experience for customers.
-              </p>
+          <!-- States -->
+          <template x-if="loading"><p class="pf-empty">Se încarcă proiectele…</p></template>
+          <template x-if="loadError"><p class="pf-empty" x-text="loadError"></p></template>
 
-              <ul class="list-disc ml-5 mb-4">
-                <li><strong>Interactive Catalog:</strong> Browse through a dynamic collection of available carpets and
-                  rugs with detailed product descriptions and high-quality images.</li>
-                <li><strong>Repair Service Scheduling:</strong> Customers can easily request pickup and schedule repair
-                  services online.</li>
-                <li><strong>Admin Dashboard:</strong> Manage orders, service requests, and product listings from a
-                  secure backend panel.</li>
-                <li><strong>Authentication & Security:</strong> User accounts with secure login and order tracking
-                  capabilities.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website60.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website61.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website62.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website63.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website64.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website65.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website66.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
+          <!-- Project list -->
+          <div class="pf-grid">
+            <template x-for="(project, pi) in projects" :key="project.id + '-' + pi">
+              <article class="pf-card">
 
-              <!-- Navigation Buttons -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-            <!-- Live Demo Link -->
-            <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://rimini-mochete.ro/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Rimini Mochete Reghin Romania
-              </a>
-            </p>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">Next.js Discord Clone</h4>
-
-              <p class="mb-4">
-                This project is a modern Discord clone built with <strong>Next.js</strong>, <strong>Prisma</strong>, and
-                <strong>MySQL</strong>. It features real-time chat, audio/video channels, and server management — all
-                styled with <strong>Tailwind CSS</strong> for a responsive and sleek user interface.
-              </p>
-
-              <ul class="list-disc ml-5 mb-4">
-                <li><strong>Real-time Chat:</strong> Instantly send and receive messages using WebSockets with support
-                  for text and media channels.</li>
-                <li><strong>Server & Channel Management:</strong> Create servers, organize channels, and manage members
-                  with ease.</li>
-                <li><strong>Audio/Video Rooms:</strong> Join voice or video calls via integrated WebRTC-based media
-                  rooms.</li>
-                <li><strong>Secure Authentication:</strong> Seamless login experience powered by Clerk and
-                  session-protected routes.</li>
-              </ul>
-            </div>
-
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website50.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website51.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website52.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website53.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website54.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website55.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website56.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website57.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website58.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website59.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Navigation Buttons -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div className="text-left">
-              <h4 className="text-2xl font-semibold mb-4">MERN Real-Time Chat App</h4>
-
-              <p className="mb-4">
-                This application enables users to communicate in real-time with a sleek and modern interface. It
-                supports <strong>user registration, login, and real-time messaging</strong> powered by Socket.io. Users
-                can also send images directly through the clipboard or upload them manually, which are then stored
-                securely on <strong>Cloudinary</strong>.
-              </p>
-
-              <ul className="list-disc ml-5 mb-4">
-                <li><strong>Real-Time Messaging:</strong> Chat with others instantly using Socket.io for a fast and
-                  dynamic experience.</li>
-                <li><strong>User Authentication:</strong> Register and login securely using JWT-based authentication.
-                </li>
-                <li><strong>Image Sharing:</strong> Send images directly from your clipboard or upload files, with
-                  automatic Cloudinary integration.</li>
-                <li><strong>Responsive UI:</strong> Designed with DaisyUi UI to ensure a seamless experience across all
-                  devices.</li>
-                <li><strong>32 diferent Themes:</strong> Support 32 different themes.</li>
-              </ul>
-            </div>
-
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website45.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website46.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website47.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website48.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website49.png" alt="Real-Time Chat App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Navigation Buttons -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-
-            <!-- Live Demo Link -->
-            <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://chatme-app.onrender.com/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Live Demo (MERN Real-Time Chat App)
-              </a>
-            </p>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div className="text-left">
-              <h4 className="text-2xl font-semibold mb-4">MERN(MongoDB/Express/React/Node.js) Product Management App
-              </h4>
-
-              <p className="mb-4">
-                This app allows to manage products in a seamless way, providing an easy-to-use interface to <strong>add,
-                  update, and delete</strong> products. It includes two themes for better customization:
-                <strong>Dark</strong> and <strong>Light</strong> modes. Chakra UI is used for a smooth and responsive
-                user experience.
-              </p>
-
-              <ul className="list-disc ml-5 mb-4">
-                <li><strong>Dark and Light Themes:</strong> Switch between dark and light themes with ease to fit your
-                  preference.</li>
-                <li><strong>CRUD Product Management:</strong> Admins can efficiently add, update, or delete products
-                  stored in a <strong>MongoDB database</strong>.</li>
-                <li><strong>Responsive UI:</strong> Chakra UI ensures a smooth user interface, optimized for both
-                  desktop and mobile devices.</li>
-              </ul>
-            </div>
-
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website43.png" alt="Product Management App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website44.png" alt="Product Management App"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-
-            <!-- Descriere -->
-            <!-- Live Demo Links -->
-            <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://mern-crud-app-sn8r.onrender.com" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Live Demo (MERN Product Management App)
-              </a>
-            </p>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div className="text-left">
-              <h4 className="text-2xl font-semibold mb-4">FullStack JavaScript Pet Adoption App</h4>
-
-              <p className="mb-4">
-                This project comes in <strong>two versions</strong>, demonstrating different full-stack approaches:
-              </p>
-
-              <ul className="list-disc ml-5 mb-4">
-                <li>
-                  <strong>Version 1 (Vanilla JS & CSS - Netlify):</strong> A lightweight implementation using plain
-                  JavaScript and CSS. Backend logic runs through <strong>Netlify Functions</strong>.
-                </li>
-                <li>
-                  <strong>Version 2 (React & Next.js - Render and Vercel):</strong> A full-stack version using
-                  <strong>React</strong> and <strong>Next.js</strong> deployed on <strong>Render and Vercel</strong>.
-                </li>
-              </ul>
-
-              <p className="mb-2"><strong>Main Features:</strong></p>
-
-              <ul className="list-disc ml-5 mb-4">
-                <li><strong>CRUD Pet Management:</strong> Admins can manage pet listings stored in <strong>MongoDB
-                    Cloud</strong>.</li>
-                <li><strong>Cloudinary Integration:</strong> Pet photos are uploaded and served efficiently via
-                  <strong>Cloudinary</strong>.
-                </li>
-                <li><strong>Backend Options:</strong>
-                  <ul className="list-disc ml-5">
-                    <li><strong>Netlify:</strong> Uses serverless functions.</li>
-                    <li><strong>Render:</strong> Uses a full Node.js REST API.</li>
-                  </ul>
-                </li>
-                <li><strong>Live Admin Chat (Render Version):</strong> A real-time internal chat between admins, built
-                  with <strong>Pusher</strong> and integrated into the <strong>React & Next.js</strong> frontend.</li>
-                <li><strong>Responsive UI:</strong> Optimized for both desktop and mobile.</li>
-              </ul>
-
-              <div className="text-center mt-10">
-                <p className="text-lg font-bold">🔐 Admin Login Credentials 🔐</p>
-                <p><strong>Username:</strong> admin</p>
-                <p><strong>Password:</strong> admin</p>
-              </div>
-            </div>
-
-
-
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website41.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website42.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website36.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website37.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website38.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website39.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website40.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-
-            <!-- Descriere -->
-            <!-- Live Demo Links -->
-            <p class="mt-2 text-sm">
-              <strong>🌐 Try Live Application:</strong>
-              <br>
-              🔹 <a href="https://rainbow-tiramisu-28065d.netlify.app/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Netlify Version (Pure JavaScript & CSS)
-              </a>
-              <br>
-              🔹 <a href="https://pet-adoption-5d4f.onrender.com/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Render Version (React, Next.js & Node.js)
-              </a>
-              <br>
-              🔹 <a href="https://nextjs-pets-sable.vercel.app/" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Vercel Version (React, Next.js & Node.js)
-              </a>
-            </p>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">FullStack Responsive ASP Net + Angular Social Media Platform</h4>
-              <p>
-                This platform is a fully functional dating app, built with a solid tech stack. The backend uses
-                <strong>ASP.NET</strong> for reliable performance, while the frontend is developed with
-                <strong>Angular</strong> to ensure a smooth and responsive user experience.
-              </p>
-
-              <p><strong>Key features include:</strong></p>
-
-              <ul class="list-disc ml-5">
-                <li><strong>Photo Upload:</strong> Users can easily upload and manage their photos via
-                  <strong>Cloudinary</strong>, providing fast and secure media handling.
-                </li>
-                <li><strong>Real-Time Messaging:</strong> With <strong>SignalR</strong>, users can send live messages
-                  and see who's online, creating a more interactive experience.</li>
-                <li><strong>Responsive Design:</strong> The app uses <strong>TailwindCSS 4</strong> for a clean and
-                  modern look, making it user-friendly across devices.</li>
-                <li><strong>Theme Support:</strong> Users can switch between light and dark modes, and the app
-                  automatically adjusts based on their system settings.</li>
-              </ul>
-
-              <p>
-                Overall, the platform is designed to make it easy for users to connect, chat, and share images while
-                enjoying a clean and engaging interface.
-              </p>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website1.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website2.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website3.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website4.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website5.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website6.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website7.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website8.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website9.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website10.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website11.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website12.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website13.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                <div class="pf-card-actions" x-show="isOwner">
+                  <button class="pf-btn pf-btn-ghost pf-btn-sm" @click="openEdit(pi)"><i class="fa-solid fa-pen"></i></button>
+                  <button class="pf-btn pf-btn-danger pf-btn-sm" @click="deleteProject(pi)"><i class="fa-solid fa-trash"></i></button>
                 </div>
 
-              </div>
+                <h4 class="pf-title" x-text="project.title"></h4>
 
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
+                <div class="pf-tags" x-show="project.tags && project.tags.length">
+                  <template x-for="tag in project.tags" :key="tag"><span class="pf-tag" x-text="tag"></span></template>
+                </div>
 
-            <!-- Descriere -->
-            <p class="mt-2 text-sm">
-              <a href="https://chat-ty-app.onrender.com" target="_blank"
-                class="text-blue-500 hover:text-blue-700 underline font-semibold transition-all duration-300">
-                Try Live Application here
-              </a>
-            </p>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">Fullstack WoW Registration & Donation System (OLD, NOT ONLINE
-                ANYMORE)</h4>
-              <ul class="list-disc ml-5">
-                <li>Built with ASP.NET for the backend and Angular for the frontend.</li>
-                <li>Allows users to register and manage their World of Warcraft accounts.</li>
-                <li>Secure payment integration for donations.</li>
-                <li>Modern and responsive UI for a smooth user experience.</li>
-                <li>Admin panel for managing users and transactions.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website20.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
+                <div class="pf-desc">
+                  <template x-for="(para, i) in (project.description||[])" :key="i"><p x-html="para"></p></template>
                 </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website21.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website22.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website23.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website24.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website25.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
 
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <h4 class="text-2xl font-semibold mb-4 text-left">Figma to HTML pixel perfect implementaiton</h4>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website26.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website27.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website28.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website29.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website30.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website31.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <h4 class="text-2xl font-semibold mb-4 text-left">Figma to HTML pixel perfect implementaiton</h4>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website14.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website15.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website16.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website17.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website18.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website19.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">VS Code Extension</h4>
-              <ul class="list-disc ml-5">
-                <li><strong>VS Code Extension: PHP Tag Background Highlighter</strong></li>
-                <li>Enhances the visibility of PHP code inside HTML files.</li>
-                <li>Changes the background color of PHP tags for better readability.</li>
-                <li>Customizable themes to match your preferred coding style.</li>
-                <li>Lightweight and optimized for smooth performance.</li>
-                <li>Perfect for developers working with mixed HTML and PHP files.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website32.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website33.png" alt="Project 2"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">Personal Needed TODO app</h4>
-              <ul class="list-disc ml-5">
-                <li><strong>Personal To-Do App in Python</strong></li>
-                <li>Designed to fit my personal workflow and productivity needs.</li>
-                <li>Simple, fast, and lightweight—no unnecessary features.</li>
-                <li>Built with Python for flexibility and customization.</li>
-                <li>Helps me organize tasks efficiently in a way that suits me best.</li>
-                <li>A personal project that improves my daily productivity.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website34.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">Python Rest Api's communications Network</h4>
-              <ul class="list-disc ml-5">
-                <li><strong>World of Warcraft & Discord AI Chat Integration</strong></li>
-                <li>Developed a Python script that links in-game chat from two different World of Warcraft clients
-                  through a server.</li>
-                <li>Integrated ChatGPT to allow AI-powered responses to player messages directly in the game.</li>
-                <li>Implemented a cross-version world chat, enabling players from different WoW versions to communicate.
-                </li>
-                <li>Connected the entire system to a Discord channel for real-time updates and chat synchronization.
-                </li>
-                <li>Utilized multiple REST APIs to manage communication between game clients, the server, AI, and
-                  Discord.</li>
-                <li>Ensured seamless interaction between players, AI, and different platforms through this advanced chat
-                  system.</li>
-              </ul>
-            </div>
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="display: flex; justify-content: center; align-items: center;">
-                  <img src="/assets/images/website35.png" alt="Project 1"
-                    style="object-fit: contain; width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); pointer-events: none; user-select: none;">
-                </div>
-              </div>
-
-              <!-- Butoane navigare -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <h4 class="text-2xl font-semibold mb-4">Unity Advanced AI</h4>
-              <ul>
-                <li><strong>AI Zombie System in Unity</strong></li>
-                <li>Developed an advanced AI system for a zombie creature in Unity.</li>
-                <li>The AI can behave as a friend or an enemy, dynamically adapting to the situation.</li>
-                <li>Implemented multiple states: Idle, Patrol, Alert, Chase, and more.</li>
-                <li>The zombie reacts to environmental factors like smell, sound, and light.</li>
-                <li>Designed to track and chase players based on their actions and surroundings.</li>
-                <li>Realistic AI behavior.</li>
-              </ul>
-            </div>
-            <!-- Video Container -->
-            <div class="mt-5" style="display: flex; justify-content: center; align-items: center;">
-              <video width="500" height="500" controls
-                style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                <source src="/assets/videos/zombie_demo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div class="border p-6 rounded-2xl border-white/10">
-            <div class="text-left">
-              <ul>
-                <h4>AI Bot for World of Warcraft (MaNGOS)</h4>
-                <ul>
-                  <li>Developed an advanced AI bot for World of Warcraft using the MaNGOS server.</li>
-                  <li>The bot can patrol cities, automatically grind for experience, and interact with NPCs.</li>
-                  <li>Conversations are powered by ChatGPT, making the bot capable of dynamic dialogues.</li>
-                  <li>NPCs also respond using AI, creating a more immersive experience.</li>
-                  <li>Fully automated gameplay with decision-making based on real-time events.</li>
+                <ul class="pf-features" x-show="project.features && project.features.length">
+                  <template x-for="(f, i) in (project.features||[])" :key="i"><li x-html="f"></li></template>
                 </ul>
-              </ul>
-            </div>
-            <!-- Video Container -->
-            <div class="mt-5" style="display: flex; justify-content: center; align-items: center;">
-              <video width="500" height="500" controls
-                style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                <source src="/assets/videos/bot_demo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
+
+                <div class="pf-note" x-show="project.note" x-html="project.note"></div>
+
+                <!-- Video -->
+                <template x-if="project.video">
+                  <div class="pf-carousel">
+                    <div class="pf-slide"><video controls :src="project.video"></video></div>
+                  </div>
+                </template>
+
+                <!-- Carousel -->
+                <template x-if="!project.video && project.images && project.images.length">
+                  <div class="pf-carousel" x-data="pfCarousel(project)"
+                       @touchstart="touchStart($event)" @touchend="touchEnd($event)">
+                    <div class="pf-viewport">
+                      <div class="pf-track" :style="`transform: translateX(-${active*100}%)`">
+                        <template x-for="(img, ii) in project.images" :key="ii">
+                          <div class="pf-slide">
+                            <img :src="img" :alt="project.title + ' #' + (ii+1)" loading="lazy" @click="zoom()">
+                          </div>
+                        </template>
+                      </div>
+                    </div>
+                    <span class="pf-counter" x-show="count>1" x-text="(active+1)+' / '+count"></span>
+                    <span class="pf-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> click = zoom</span>
+                    <button class="pf-nav pf-prev" @click="prev()" :disabled="active===0" x-show="count>1"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="pf-nav pf-next" @click="next()" :disabled="active===count-1" x-show="count>1"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="pf-dots" x-show="count>1">
+                      <template x-for="(img, ii) in project.images" :key="ii">
+                        <button class="pf-dot" :class="{'is-active': ii===active}" @click="go(ii)"></button>
+                      </template>
+                    </div>
+                  </div>
+                </template>
+
+                <!-- Links -->
+                <div class="pf-links" x-show="project.links && project.links.length">
+                  <span class="pf-links-label">🌐 Try Live Application:</span>
+                  <template x-for="(lnk, i) in project.links" :key="i">
+                    <a class="pf-link" :href="lnk.url" target="_blank" rel="noopener" x-text="lnk.label"></a>
+                  </template>
+                </div>
+              </article>
+            </template>
           </div>
+
+          <!-- ===== Lightbox ===== -->
+          <template x-if="lb.open">
+            <div class="pf-lightbox" @click.self="closeLightbox()">
+              <div class="pf-lb-caption" x-text="(lb.idx+1)+' / '+lb.images.length"></div>
+              <button class="pf-lb-close" @click="closeLightbox()">&times;</button>
+              <button class="pf-lb-nav pf-lb-prev" @click="lbPrev()" x-show="lb.images.length>1" :disabled="lb.idx===0"><i class="fa-solid fa-chevron-left"></i></button>
+              <div class="pf-lb-stage" @wheel.prevent="onWheel($event)"
+                   @mousedown="panStart($event)" @mousemove="panMove($event)" @mouseup="panEnd()" @mouseleave="panEnd()"
+                   @touchstart="panStart($event)" @touchmove.prevent="panMove($event)" @touchend="panEnd()">
+                <img class="pf-lb-img" :class="{'is-panning': lb.panning}" :src="lb.images[lb.idx]"
+                     :style="lbTransform()" @dblclick="toggleZoom()" @click.stop draggable="false">
+              </div>
+              <button class="pf-lb-nav pf-lb-next" @click="lbNext()" x-show="lb.images.length>1" :disabled="lb.idx===lb.images.length-1"><i class="fa-solid fa-chevron-right"></i></button>
+              <div class="pf-lb-toolbar">
+                <button @click="zoomOut()" title="Micșorează"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                <span class="pf-lb-zoomval" x-text="Math.round(lb.scale*100)+'%'"></span>
+                <button @click="zoomIn()" title="Mărește"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                <button @click="resetZoom()" title="Resetează"><i class="fa-solid fa-arrows-rotate"></i></button>
+              </div>
+            </div>
+          </template>
+
+          <!-- ===== Login modal ===== -->
+          <template x-if="showLogin">
+            <div class="pf-modal" @click.self="showLogin=false">
+              <div class="pf-dialog">
+                <div class="pf-dialog-head">
+                  <h3>Autentificare admin</h3>
+                  <button class="pf-x" @click="showLogin=false">&times;</button>
+                </div>
+                <p class="pf-hint" style="margin-bottom:1rem;">Doar proprietarul poate adăuga/edita proiecte. Poartă cosmetică — publicarea reală se face prin commit.</p>
+                <form @submit.prevent="doLogin()">
+                  <div class="pf-field">
+                    <label>Email</label>
+                    <input class="pf-input" type="email" x-model="loginEmail" autocomplete="username" placeholder="emil19ro@gmail.com">
+                  </div>
+                  <div class="pf-field">
+                    <label>Parolă</label>
+                    <input class="pf-input" type="password" x-model="loginPassword" autocomplete="current-password">
+                  </div>
+                  <p class="pf-error" x-show="loginError" x-text="loginError"></p>
+                  <div class="pf-dialog-foot">
+                    <button type="button" class="pf-btn pf-btn-ghost" @click="showLogin=false">Anulează</button>
+                    <button type="submit" class="pf-btn pf-btn-primary" :disabled="loggingIn"><span x-text="loggingIn?'…':'Intră'"></span></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </template>
+
+          <!-- ===== Project form modal ===== -->
+          <template x-if="showForm">
+            <div class="pf-modal" @click.self="showForm=false">
+              <div class="pf-dialog pf-dialog-wide">
+                <div class="pf-dialog-head">
+                  <h3 x-text="editingIndex===null ? 'Adaugă proiect' : 'Editează proiect'"></h3>
+                  <button class="pf-x" @click="showForm=false">&times;</button>
+                </div>
+
+                <div class="pf-field">
+                  <label>Titlu *</label>
+                  <input class="pf-input" type="text" x-model="form.title" placeholder="Ex: HarmonyHub - Music School Platform">
+                </div>
+
+                <div class="pf-field">
+                  <label>Tehnologii (tag-uri, separate prin virgulă)</label>
+                  <input class="pf-input" type="text" x-model="form.tagsText" placeholder="React, Node.js, MongoDB">
+                </div>
+
+                <div class="pf-field">
+                  <label>Descriere</label>
+                  <textarea class="pf-textarea" x-model="form.descText" placeholder="Un paragraf. Lasă un rând gol între paragrafe."></textarea>
+                  <div class="pf-hint">Poți folosi &lt;strong&gt;text&lt;/strong&gt; pentru bold. Rând gol = paragraf nou.</div>
+                </div>
+
+                <div class="pf-field">
+                  <label>Funcționalități (câte una pe rând)</label>
+                  <textarea class="pf-textarea" x-model="form.featText" placeholder="Real-time chat&#10;Autentificare securizată&#10;Panou admin"></textarea>
+                </div>
+
+                <div class="pf-field">
+                  <label>Linkuri live</label>
+                  <template x-for="(lnk, i) in form.links" :key="i">
+                    <div class="pf-repeat-item">
+                      <input class="pf-input" type="text" x-model="lnk.label" placeholder="Etichetă (ex: Live Demo)">
+                      <input class="pf-input" type="url" x-model="lnk.url" placeholder="https://...">
+                      <button type="button" class="pf-icon-btn" @click="removeLink(i)">&times;</button>
+                    </div>
+                  </template>
+                  <button type="button" class="pf-btn pf-btn-ghost pf-btn-sm" @click="addLink()"><i class="fa-solid fa-plus"></i> Adaugă link</button>
+                </div>
+
+                <div class="pf-field">
+                  <label>Video (opțional, URL .mp4)</label>
+                  <input class="pf-input" type="url" x-model="form.video" placeholder="/assets/videos/demo.mp4 sau URL Cloudinary">
+                </div>
+
+                <div class="pf-field">
+                  <label>Poze</label>
+                  <div class="pf-dropzone" :class="{'is-drag': drag}"
+                       @click="$refs.fileInput.click()"
+                       @dragover.prevent="drag=true" @dragleave.prevent="drag=false" @drop.prevent="onDrop($event)">
+                    <p><strong>Trage poze aici</strong>, dă click pentru a alege, sau <strong>lipește cu Ctrl+V</strong>.</p>
+                    <p class="pf-hint">Se urcă automat pe Cloudinary.</p>
+                  </div>
+                  <input type="file" x-ref="fileInput" accept="image/*" multiple style="display:none" @change="onPickFiles($event)">
+
+                  <div class="pf-thumbs" x-show="form.images.length">
+                    <template x-for="(im, i) in form.images" :key="i">
+                      <div class="pf-thumb" :class="{'is-uploading': im.uploading}">
+                        <img :src="im.url" alt="">
+                        <template x-if="im.uploading"><div class="pf-thumb-spin"><span class="pf-spinner"></span></div></template>
+                        <button type="button" class="pf-thumb-rm" @click="removeImage(i)">&times;</button>
+                        <div class="pf-thumb-move">
+                          <button type="button" @click="moveImage(i,-1)" :disabled="i===0">‹</button>
+                          <button type="button" @click="moveImage(i,1)" :disabled="i===form.images.length-1">›</button>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+
+                <p class="pf-error" x-show="formError" x-text="formError"></p>
+
+                <div class="pf-dialog-foot">
+                  <span class="pf-spacer pf-hint">După salvare: <strong>Export JSON</strong> → înlocuiește data/projects.json → commit.</span>
+                  <button type="button" class="pf-btn pf-btn-ghost" @click="showForm=false">Anulează</button>
+                  <button type="button" class="pf-btn pf-btn-primary" @click="saveProject()"><i class="fa-solid fa-check"></i> Salvează</button>
+                </div>
+              </div>
+            </div>
+          </template>
+
         </div>
         <div x-show="showOverlay" x-transition.opacity style="display: none;"
           class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"

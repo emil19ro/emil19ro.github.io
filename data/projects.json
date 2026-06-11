@@ -1,0 +1,352 @@
+[
+  {
+    "id": "harmonyhub",
+    "title": "HarmonyHub - Music School Web Platform",
+    "tags": ["MERN", "MongoDB", "Express", "React", "Node.js"],
+    "description": [
+      "This project is a full-stack web application developed for a local <strong>music school</strong>, offering an elegant and modern online presence. Built with the <strong>MERN stack</strong> (MongoDB, Express, React, Node.js), the platform provides students, parents, and instructors with a smooth and interactive experience."
+    ],
+    "features": [
+      "<strong>Courses &amp; Scheduling:</strong> Browse available music courses (instrumental, vocal, theory) and book lessons directly through the platform.",
+      "<strong>Photo Gallery:</strong> A visual collection of classes, events, student recitals, and behind-the-scenes moments from the school.",
+      "<strong>Teacher Profiles:</strong> Meet the team of experienced instructors with detailed bios, expertise, and contact options.",
+      "<strong>Student Dashboard:</strong> Personalized portal for students to manage schedules, track progress, and view upcoming lessons or events.",
+      "<strong>Admin Panel:</strong> Full backend control over courses, student accounts, and content updates through a secure interface.",
+      "<strong>Secure Authentication:</strong> Account creation and login features for both students and staff with protected routes and session management."
+    ],
+    "links": [
+      { "label": "Armonia Academy", "url": "https://www.armoniaacademy.ro/" }
+    ],
+    "images": [
+      "/assets/images/website67.png",
+      "/assets/images/website68.png",
+      "/assets/images/website69.png",
+      "/assets/images/website70.png",
+      "/assets/images/website71.png",
+      "/assets/images/website73.png",
+      "/assets/images/website74.png",
+      "/assets/images/website75.png",
+      "/assets/images/website76.png",
+      "/assets/images/website77.png",
+      "/assets/images/website78.png",
+      "/assets/images/website79.png",
+      "/assets/images/website80.png",
+      "/assets/images/website81.png",
+      "/assets/images/website82.png",
+      "/assets/images/website83.png",
+      "/assets/images/website84.png",
+      "/assets/images/website85.png",
+      "/assets/images/website86.png",
+      "/assets/images/website87.png",
+      "/assets/images/website88.png"
+    ]
+  },
+  {
+    "id": "covorfix",
+    "title": "CovorFix - Carpet Repair & Sales Platform",
+    "tags": ["MERN", "MongoDB", "Express", "React", "Node.js"],
+    "description": [
+      "This project is a web platform for a local business based in <strong>Reghin, Romania</strong>, specializing in <strong>carpet and rug repair</strong> services, as well as the <strong>sale of new carpets and rugs</strong>. Built with the <strong>MERN stack</strong> (MongoDB, Express, React, Node.js), the platform offers a modern and user-friendly experience for customers."
+    ],
+    "features": [
+      "<strong>Interactive Catalog:</strong> Browse through a dynamic collection of available carpets and rugs with detailed product descriptions and high-quality images.",
+      "<strong>Repair Service Scheduling:</strong> Customers can easily request pickup and schedule repair services online.",
+      "<strong>Admin Dashboard:</strong> Manage orders, service requests, and product listings from a secure backend panel.",
+      "<strong>Authentication &amp; Security:</strong> User accounts with secure login and order tracking capabilities."
+    ],
+    "links": [
+      { "label": "Rimini Mochete Reghin Romania", "url": "https://rimini-mochete.ro/" }
+    ],
+    "images": [
+      "/assets/images/website60.png",
+      "/assets/images/website61.png",
+      "/assets/images/website62.png",
+      "/assets/images/website63.png",
+      "/assets/images/website64.png",
+      "/assets/images/website65.png",
+      "/assets/images/website66.png"
+    ]
+  },
+  {
+    "id": "discord-clone",
+    "title": "Next.js Discord Clone",
+    "tags": ["Next.js", "Prisma", "MySQL", "Tailwind CSS", "WebRTC", "Clerk"],
+    "description": [
+      "This project is a modern Discord clone built with <strong>Next.js</strong>, <strong>Prisma</strong>, and <strong>MySQL</strong>. It features real-time chat, audio/video channels, and server management — all styled with <strong>Tailwind CSS</strong> for a responsive and sleek user interface."
+    ],
+    "features": [
+      "<strong>Real-time Chat:</strong> Instantly send and receive messages using WebSockets with support for text and media channels.",
+      "<strong>Server &amp; Channel Management:</strong> Create servers, organize channels, and manage members with ease.",
+      "<strong>Audio/Video Rooms:</strong> Join voice or video calls via integrated WebRTC-based media rooms.",
+      "<strong>Secure Authentication:</strong> Seamless login experience powered by Clerk and session-protected routes."
+    ],
+    "links": [],
+    "images": [
+      "/assets/images/website50.png",
+      "/assets/images/website51.png",
+      "/assets/images/website52.png",
+      "/assets/images/website53.png",
+      "/assets/images/website54.png",
+      "/assets/images/website55.png",
+      "/assets/images/website56.png",
+      "/assets/images/website57.png",
+      "/assets/images/website58.png",
+      "/assets/images/website59.png"
+    ]
+  },
+  {
+    "id": "mern-chat",
+    "title": "MERN Real-Time Chat App",
+    "tags": ["MERN", "Socket.io", "JWT", "DaisyUI", "Cloudinary"],
+    "description": [
+      "This application enables users to communicate in real-time with a sleek and modern interface. It supports <strong>user registration, login, and real-time messaging</strong> powered by Socket.io. Users can also send images directly through the clipboard or upload them manually, which are then stored securely on <strong>Cloudinary</strong>."
+    ],
+    "features": [
+      "<strong>Real-Time Messaging:</strong> Chat with others instantly using Socket.io for a fast and dynamic experience.",
+      "<strong>User Authentication:</strong> Register and login securely using JWT-based authentication.",
+      "<strong>Image Sharing:</strong> Send images directly from your clipboard or upload files, with automatic Cloudinary integration.",
+      "<strong>Responsive UI:</strong> Designed with DaisyUI to ensure a seamless experience across all devices.",
+      "<strong>32 different Themes:</strong> Support 32 different themes."
+    ],
+    "links": [
+      { "label": "Live Demo (MERN Real-Time Chat App)", "url": "https://chatme-app.onrender.com/" }
+    ],
+    "images": [
+      "/assets/images/website45.png",
+      "/assets/images/website46.png",
+      "/assets/images/website47.png",
+      "/assets/images/website48.png",
+      "/assets/images/website49.png"
+    ]
+  },
+  {
+    "id": "mern-product-management",
+    "title": "MERN Product Management App",
+    "tags": ["MERN", "MongoDB", "Chakra UI", "React", "Node.js"],
+    "description": [
+      "This app allows to manage products in a seamless way, providing an easy-to-use interface to <strong>add, update, and delete</strong> products. It includes two themes for better customization: <strong>Dark</strong> and <strong>Light</strong> modes. Chakra UI is used for a smooth and responsive user experience."
+    ],
+    "features": [
+      "<strong>Dark and Light Themes:</strong> Switch between dark and light themes with ease to fit your preference.",
+      "<strong>CRUD Product Management:</strong> Admins can efficiently add, update, or delete products stored in a <strong>MongoDB database</strong>.",
+      "<strong>Responsive UI:</strong> Chakra UI ensures a smooth user interface, optimized for both desktop and mobile devices."
+    ],
+    "links": [
+      { "label": "Live Demo (MERN Product Management App)", "url": "https://mern-crud-app-sn8r.onrender.com" }
+    ],
+    "images": [
+      "/assets/images/website43.png",
+      "/assets/images/website44.png"
+    ]
+  },
+  {
+    "id": "pet-adoption",
+    "title": "FullStack JavaScript Pet Adoption App",
+    "tags": ["Vanilla JS", "React", "Next.js", "MongoDB", "Cloudinary", "Netlify", "Render", "Pusher"],
+    "description": [
+      "This project comes in <strong>two versions</strong>, demonstrating different full-stack approaches:"
+    ],
+    "features": [
+      "<strong>Version 1 (Vanilla JS &amp; CSS - Netlify):</strong> A lightweight implementation using plain JavaScript and CSS. Backend logic runs through <strong>Netlify Functions</strong>.",
+      "<strong>Version 2 (React &amp; Next.js - Render and Vercel):</strong> A full-stack version using <strong>React</strong> and <strong>Next.js</strong> deployed on <strong>Render and Vercel</strong>.",
+      "<strong>CRUD Pet Management:</strong> Admins can manage pet listings stored in <strong>MongoDB Cloud</strong>.",
+      "<strong>Cloudinary Integration:</strong> Pet photos are uploaded and served efficiently via <strong>Cloudinary</strong>.",
+      "<strong>Live Admin Chat (Render Version):</strong> A real-time internal chat between admins, built with <strong>Pusher</strong> and integrated into the React &amp; Next.js frontend.",
+      "<strong>Responsive UI:</strong> Optimized for both desktop and mobile."
+    ],
+    "note": "<strong>🔐 Admin Login Credentials</strong><br>Username: <strong>admin</strong> &nbsp;·&nbsp; Password: <strong>admin</strong>",
+    "links": [
+      { "label": "Netlify Version (Pure JavaScript & CSS)", "url": "https://rainbow-tiramisu-28065d.netlify.app/" },
+      { "label": "Render Version (React, Next.js & Node.js)", "url": "https://pet-adoption-5d4f.onrender.com/" },
+      { "label": "Vercel Version (React, Next.js & Node.js)", "url": "https://nextjs-pets-sable.vercel.app/" }
+    ],
+    "images": [
+      "/assets/images/website41.png",
+      "/assets/images/website42.png",
+      "/assets/images/website36.png",
+      "/assets/images/website37.png",
+      "/assets/images/website38.png",
+      "/assets/images/website39.png",
+      "/assets/images/website40.png"
+    ]
+  },
+  {
+    "id": "aspnet-angular-social",
+    "title": "FullStack Responsive ASP.NET + Angular Social Media Platform",
+    "tags": ["ASP.NET", "Angular", "SignalR", "Tailwind CSS", "Cloudinary"],
+    "description": [
+      "This platform is a fully functional dating app, built with a solid tech stack. The backend uses <strong>ASP.NET</strong> for reliable performance, while the frontend is developed with <strong>Angular</strong> to ensure a smooth and responsive user experience.",
+      "Overall, the platform is designed to make it easy for users to connect, chat, and share images while enjoying a clean and engaging interface."
+    ],
+    "features": [
+      "<strong>Photo Upload:</strong> Users can easily upload and manage their photos via <strong>Cloudinary</strong>, providing fast and secure media handling.",
+      "<strong>Real-Time Messaging:</strong> With <strong>SignalR</strong>, users can send live messages and see who's online, creating a more interactive experience.",
+      "<strong>Responsive Design:</strong> The app uses <strong>TailwindCSS 4</strong> for a clean and modern look, making it user-friendly across devices.",
+      "<strong>Theme Support:</strong> Users can switch between light and dark modes, and the app automatically adjusts based on their system settings."
+    ],
+    "links": [
+      { "label": "Try Live Application here", "url": "https://chat-ty-app.onrender.com" }
+    ],
+    "images": [
+      "/assets/images/website1.png",
+      "/assets/images/website2.png",
+      "/assets/images/website3.png",
+      "/assets/images/website4.png",
+      "/assets/images/website5.png",
+      "/assets/images/website6.png",
+      "/assets/images/website7.png",
+      "/assets/images/website8.png",
+      "/assets/images/website9.png",
+      "/assets/images/website10.png",
+      "/assets/images/website11.png",
+      "/assets/images/website12.png",
+      "/assets/images/website13.png"
+    ]
+  },
+  {
+    "id": "wow-registration",
+    "title": "Fullstack WoW Registration & Donation System",
+    "tags": ["ASP.NET", "Angular", "Offline"],
+    "description": [
+      "<em>(OLD project, not online anymore.)</em>"
+    ],
+    "features": [
+      "Built with ASP.NET for the backend and Angular for the frontend.",
+      "Allows users to register and manage their World of Warcraft accounts.",
+      "Secure payment integration for donations.",
+      "Modern and responsive UI for a smooth user experience.",
+      "Admin panel for managing users and transactions."
+    ],
+    "links": [],
+    "images": [
+      "/assets/images/website20.png",
+      "/assets/images/website21.png",
+      "/assets/images/website22.png",
+      "/assets/images/website23.png",
+      "/assets/images/website24.png",
+      "/assets/images/website25.png"
+    ]
+  },
+  {
+    "id": "figma-html-1",
+    "title": "Figma to HTML — Pixel Perfect Implementation",
+    "tags": ["HTML", "CSS", "Figma"],
+    "description": [],
+    "features": [],
+    "links": [],
+    "images": [
+      "/assets/images/website26.png",
+      "/assets/images/website27.png",
+      "/assets/images/website28.png",
+      "/assets/images/website29.png",
+      "/assets/images/website30.png",
+      "/assets/images/website31.png"
+    ]
+  },
+  {
+    "id": "figma-html-2",
+    "title": "Figma to HTML — Pixel Perfect Implementation",
+    "tags": ["HTML", "CSS", "Figma"],
+    "description": [],
+    "features": [],
+    "links": [],
+    "images": [
+      "/assets/images/website14.png",
+      "/assets/images/website15.png",
+      "/assets/images/website16.png",
+      "/assets/images/website17.png",
+      "/assets/images/website18.png",
+      "/assets/images/website19.png"
+    ]
+  },
+  {
+    "id": "vscode-extension",
+    "title": "VS Code Extension — PHP Tag Background Highlighter",
+    "tags": ["VS Code", "TypeScript", "Extension"],
+    "description": [],
+    "features": [
+      "Enhances the visibility of PHP code inside HTML files.",
+      "Changes the background color of PHP tags for better readability.",
+      "Customizable themes to match your preferred coding style.",
+      "Lightweight and optimized for smooth performance.",
+      "Perfect for developers working with mixed HTML and PHP files."
+    ],
+    "links": [],
+    "images": [
+      "/assets/images/website32.png",
+      "/assets/images/website33.png"
+    ]
+  },
+  {
+    "id": "python-todo",
+    "title": "Personal To-Do App in Python",
+    "tags": ["Python"],
+    "description": [],
+    "features": [
+      "Designed to fit my personal workflow and productivity needs.",
+      "Simple, fast, and lightweight — no unnecessary features.",
+      "Built with Python for flexibility and customization.",
+      "Helps me organize tasks efficiently in a way that suits me best.",
+      "A personal project that improves my daily productivity."
+    ],
+    "links": [],
+    "images": [
+      "/assets/images/website34.png"
+    ]
+  },
+  {
+    "id": "python-rest-network",
+    "title": "Python REST API Communications Network",
+    "tags": ["Python", "REST API", "ChatGPT", "Discord"],
+    "description": [
+      "<strong>World of Warcraft &amp; Discord AI Chat Integration</strong>"
+    ],
+    "features": [
+      "Developed a Python script that links in-game chat from two different World of Warcraft clients through a server.",
+      "Integrated ChatGPT to allow AI-powered responses to player messages directly in the game.",
+      "Implemented a cross-version world chat, enabling players from different WoW versions to communicate.",
+      "Connected the entire system to a Discord channel for real-time updates and chat synchronization.",
+      "Utilized multiple REST APIs to manage communication between game clients, the server, AI, and Discord.",
+      "Ensured seamless interaction between players, AI, and different platforms through this advanced chat system."
+    ],
+    "links": [],
+    "images": [
+      "/assets/images/website35.png"
+    ]
+  },
+  {
+    "id": "unity-advanced-ai",
+    "title": "Unity Advanced AI — Zombie System",
+    "tags": ["Unity", "C#", "AI"],
+    "description": [
+      "<strong>AI Zombie System in Unity</strong>"
+    ],
+    "features": [
+      "Developed an advanced AI system for a zombie creature in Unity.",
+      "The AI can behave as a friend or an enemy, dynamically adapting to the situation.",
+      "Implemented multiple states: Idle, Patrol, Alert, Chase, and more.",
+      "The zombie reacts to environmental factors like smell, sound, and light.",
+      "Designed to track and chase players based on their actions and surroundings.",
+      "Realistic AI behavior."
+    ],
+    "links": [],
+    "images": [],
+    "video": "/assets/videos/zombie_demo.mp4"
+  },
+  {
+    "id": "wow-ai-bot",
+    "title": "AI Bot for World of Warcraft (MaNGOS)",
+    "tags": ["C++", "MaNGOS", "ChatGPT", "AI"],
+    "description": [],
+    "features": [
+      "Developed an advanced AI bot for World of Warcraft using the MaNGOS server.",
+      "The bot can patrol cities, automatically grind for experience, and interact with NPCs.",
+      "Conversations are powered by ChatGPT, making the bot capable of dynamic dialogues.",
+      "NPCs also respond using AI, creating a more immersive experience.",
+      "Fully automated gameplay with decision-making based on real-time events."
+    ],
+    "links": [],
+    "images": [],
+    "video": "/assets/videos/bot_demo.mp4"
+  }
+]
